@@ -1,0 +1,7 @@
+C:\Users\Daver\Documents\GitHub\Gestion2015\PagoElectronico\PagoElectronico\bin\Debug\PagoElectronico.exe
+C:\Users\Daver\Documents\GitHub\Gestion2015\PagoElectronico\PagoElectronico\bin\Debug\PagoElectronico.pdb
+C:\Users\Daver\Documents\GitHub\Gestion2015\PagoElectronico\PagoElectronico\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Daver\Documents\GitHub\Gestion2015\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.Properties.Resources.resources
+C:\Users\Daver\Documents\GitHub\Gestion2015\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.csproj.GenerateResource.Cache
+C:\Users\Daver\Documents\GitHub\Gestion2015\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.exe
+C:\Users\Daver\Documents\GitHub\Gestion2015\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.pdb

@@ -1,5 +1,7 @@
 ﻿namespace PagoElectronico
 {
+    using System.Data.SqlClient;
+
     partial class Form1
     {
         /// <summary>
@@ -18,6 +20,30 @@
                 components.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        protected override void OnLoad(System.EventArgs e)
+        {
+            base.OnLoad(e);
+
+            SqlConnection sqlConnection = new SqlConnection("Server=localhost\\SQLSERVER2008; Database=GD1C2015; User ID=gd; Password=gd2015;");
+
+            SqlDataReader reader;
+            SqlCommand sqlCommand = new SqlCommand("SELECT top 10 * FROM [gd_esquema].[Maestra] ms where ms.Cuenta_Numero = 1111111111111144", sqlConnection);
+            sqlConnection.Open();
+
+
+            reader = sqlCommand.ExecuteReader();
+            
+
+            while (reader.Read())
+            {
+                System.Console.Write("contains data "+ reader["Transf_Fecha"].ToString() + "\n");
+            }
+
+            sqlConnection.Close();
+
+
         }
 
         #region Windows Form Designer generated code
