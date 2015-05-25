@@ -14,14 +14,14 @@ create table THE_ULTIMATES.Rol(
 	rol_id tinyint PRIMARY KEY NOT NULL IDENTITY(1,1),
 	rol_desc varchar(15),
 	rol_activo bit DEFAULT 1  
-	);
+);
 
 GO	
 
 create table THE_ULTIMATES.Funcionalidad(
 	func_id tinyint PRIMARY KEY NOT NULL IDENTITY(1,1),
 	func_desc varchar(60)
-	);
+);
 
 GO
 	
@@ -29,7 +29,7 @@ create table THE_ULTIMATES.Funcionalidad_Rol(
 	func_rol_id  tinyint PRIMARY KEY NOT NULL IDENTITY(1,1),
 	func_rol_rol_id smallint  not null UNIQUE, /* FK  THE_ULTIMATES.Rol*/
 	func_rol_func_id smallint not null UNIQUE /* FK  THE_ULTIMATES.Funcionalidad*/
-	); 
+); 
 
 GO
 
@@ -43,9 +43,8 @@ create table THE_ULTIMATES.Usuario(
 	usu_respuesta char(64),
 	usu_activo bit DEFAULT 0,
 	usu_intentos_fallidos tinyint not null,
-	usu_clie_id int null
-	 /* FK  THE_ULTIMATES.CLiente*/
-	);
+	usu_clie_id int null /* FK  THE_ULTIMATES.CLiente*/
+);
 
 GO
 
@@ -53,7 +52,7 @@ create table THE_ULTIMATES.Rol_Usuario(
 	rol_usu int PRIMARY KEY NOT NULL IDENTITY(1,1),
 	rol_usu_rol_id smallint  not null UNIQUE, /* FK  THE_ULTIMATES.Rol*/
 	rol_usu_usu_id smallint  not null UNIQUE  /* FK  THE_ULTIMATES.Usuario*/
-	);
+);
 	
 GO
 
@@ -63,21 +62,21 @@ create table THE_ULTIMATES.Acceso_Log(
 	acc_fecha datetime not null,
 	acc_correcto bit not null,
 	acc_intent_fallido tinyint not null
-	);
+);
 
 GO
 	
 create table THE_ULTIMATES.Pais(
 	pais_id smallint PRIMARY KEY not null IDENTITY(1,1),
 	pais_desc varchar(50) not null
-	);
+);
 
 GO
 
 create table THE_ULTIMATES.Tipo_Doc(
 	tipo_doc_id smallint PRIMARY KEY not null IDENTITY(1,1),
 	tipo_doc_desc char(20) not null
-	);
+);
 
 GO
 	
@@ -95,7 +94,7 @@ create table THE_ULTIMATES.Cliente(
 	clie_dom_depto varchar(10),
 	clie_fecha_nac datetime not null,
 	clie_pais smallint not null /* FK  THE_ULTIMATES.Pais*/
-	);
+);
 
 GO
 	
@@ -109,7 +108,7 @@ create table THE_ULTIMATES.Cuenta(
 	cuen_pais_id smallint not null, /* FK  THE_ULTIMATES.Pais*/
 	cuen_saldo numeric(18,2) not null,
 	cuen_tipo_mon_id smallint not null /* FK  THE_ULTIMATES.Tipo_Moneda*/
-	);
+);
 
 GO
 	
@@ -117,14 +116,14 @@ create table THE_ULTIMATES.Tipo_Moneda(
 	tipo_moneda_id smallint PRIMARY KEY not null IDENTITY(1,1),
 	tipo_moneda_desc varchar(30) not null,
 	tipo_moneda_cambio numeric(18,3)not null
-	);
+);
 
 GO
 	
 create table THE_ULTIMATES.Estado_Cuenta(
 	esta_cuenta_id tinyint PRIMARY KEY not null IDENTITY(1,1),
 	esta_cuenta_desc varchar(30) not null
-	);
+);
 
 GO
 
@@ -133,7 +132,7 @@ create table THE_ULTIMATES.Tipo_Cuenta(
 	tipo_cuenta_desc varchar(30)not null,
 	tipo_cuenta_duracion smallint not null,
 	tipo_cuenta_costo numeric(18,2) not null
-	);
+);
 
 GO
 
@@ -147,14 +146,14 @@ create table THE_ULTIMATES.Tarjeta(
 	tarj_fecha_venc datetime not null,
 	tarj_codigo_seg char(4),
 	tarj_activa bit not null
-	);
+);
 
 GO
 
 create table THE_ULTIMATES.Emisor(
 	emisor_id int PRIMARY KEY not null IDENTITY(1,1),
 	emisor_desc varchar(30)
-	); 
+); 
 	
 GO
 
@@ -165,17 +164,106 @@ create table THE_ULTIMATES.Deposito(
 	depo_cuenta_id int not null,  /* FK  THE_ULTIMATES.Cuenta*/
 	depo_tarj_id int not null,  /* FK  THE_ULTIMATES.Tarjeta*/
 	depo_tipo_moneda_id int not null /* FK  THE_ULTIMATES.Tipo_Moneda*/
-	);
+);
 	
 GO
 
-create table THE_ULTIMATE.Cheque(
+create table THE_ULTIMATES.Cheque(
 	cheque_id int PRIMARY KEY NOT NULL IDENTITY(1,1),
 	cheque_fecha datetime not null,
 	cheque_importe numeric(18,3)not null,
 	cheque_banco_id int not null  /* FK  THE_ULTIMATES.Banco*/
-	);
+);
 	
+GO
+
+create table THE_ULTIMATES.Transferencia(
+	transf_id int PRIMARY KEY NOT NULL IDENTITY(1,1),
+	transf_fecha datetime not null,
+	transf_cuenta_origen int not null, /* FK  THE_ULTIMATES.Cuenta*/
+	transf_cueta_destino int not null,
+	transf_importe numeric(18,3)not null,
+	transf_costo_transf numeric(18,3)not null,
+	transf_cuenta_propia bit not null 
+);
+
+GO
+
+create table THE_ULTIMATES.Transaccion(
+	transac_id int PRIMARY KEY NOT NULL IDENTITY(1,1),
+	transac_fecha datetime not null,
+	transac_tipo_transac_id int not null, /* FK  THE_ULTIMATES.Cuenta*/
+	transac_imp_comision numeric(18,3)not null,
+	transac_pendiente bit not null	
+);
+
+GO
+
+create table THE_ULTIMATES.Tipo_Transaccion(
+	tipo_transac_id int PRIMARY KEY NOT NULL IDENTITY(1,1),
+	tipo_transac_desc varchar(50) not null,
+	tipo_transac_facturable bit not null
+);
+
+GO
+
+create table THE_ULTIMATES.Extraccion(
+	extrac_id int PRIMARY KEY NOT NULL IDENTITY(1,1),
+	extrac_cuenta_id int not null, /* FK  THE_ULTIMATES.Cuenta*/
+	extrac_cheq_id int not null /* FK  THE_ULTIMATES.Cheque*/
+);
+
+GO
+
+create table THE_ULTIMATES.Banco(
+	banc_id int PRIMARY KEY NOT NULL IDENTITY(1,1),
+	banc_nombre varchar(50) not null,
+	banc_direc varchar(50) not null
+);
+
+GO
+
+create table THE_ULTIMATES.Factura(
+	fact_num int PRIMARY KEY NOT NULL IDENTITY(1,1),
+	fact_fecha datetime not null,
+	fact_clie_id int not null, /* FK  THE_ULTIMATES.Cliente*/
+);
+
+GO 
+
+create table THE_ULTIMATES.Item_Factura(
+	item_fact_id int PRIMARY KEY NOT NULL IDENTITY(1,1),
+	item_fact_num int not null, /* FK  THE_ULTIMATES.Factura*/
+	item_fact_desc varchar(250) not null,
+	item_fact_precio numeric(18,3)not null
+);
+
+GO
+
+/******************************************** FIN - CREACION DE TABLAS *********************************************/
+
+
+/******************************************** INICIO - FOREING KEY *************************************************/
+/******************************************** FIN - FOREING KEY ****************************************************/
+
+
+/******************************************** INICIO - CREACION DE INDICES *****************************************/
+/******************************************** FIN - CREACION DE INDICES *****************************************/
+
+/******************************************** INICIO - LLENADO DE TABLAS *********************************************/
+/******************************************** FIN - LLENADO DE TABLAS *********************************************/
+
+/******************************************** INICIO - CREACION DE STORED PROCEDURES, FUNCIONES Y VISTAS *************/
+/******************************************** FIN - CREACION DE STORED PROCEDURES, FUNCIONES Y VISTAS *************/
+
+/******************************************** INICIO - TRIGGERS *****************************************/
+/******************************************** FIN - TRIGGERS *****************************************/
+
+
+
+
+
+
 	
 	
 	
