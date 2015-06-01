@@ -5,3 +5,5 @@ C:\Users\Daver\Documents\GitHub\Gestion2015\PagoElectronico\PagoElectronico\obj\
 C:\Users\Daver\Documents\GitHub\Gestion2015\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.csproj.GenerateResource.Cache
 C:\Users\Daver\Documents\GitHub\Gestion2015\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.exe
 C:\Users\Daver\Documents\GitHub\Gestion2015\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.pdb
+C:\Users\RomiVM\Documents\github\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.exe
+C:\Users\RomiVM\Documents\github\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.pdb
