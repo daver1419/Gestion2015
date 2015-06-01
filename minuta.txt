@@ -1,0 +1,23 @@
+*Migración , para c/u de los  cliente  existente deberá hacer un script para crear los usuar
+
+* Para un potencial cliente, tendra el Rol Cliente . 
+
+
+* primero se dara de alta un  usuario , para despues dar un rol 
+
+* El primer login de usuario te pedirá una pregunta secreta y una respuesta . 
+
+
+* Unicidad : tipo y numero de doc . 
+ 
+Si se trata de  dar de alta a un cliente existente pasara si se encuentra deshabilitado se da lo pasará a estado habilitado,
+en el caso que este habilitado se emitira un error . 
+ 
+
+* Se  soportara diferentes tipos monedas pero en las transaciones solo se hara en el mismo tipo de moneda . 
+
+
+* Si la cuenta esta deshabilitado no puede 
+1) depositar 
+2)extracion 
+3) transferencia ?? ( logicamente no  quedo en duda) 
