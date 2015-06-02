@@ -11,7 +11,7 @@ GO */
 /******************************************** INICIO - CREACION DE TABLAS ******************************************/
 
 create table THE_ULTIMATES.Rol( 
-	rol_id tinyint PRIMARY KEY NOT NULL IDENTITY(1,1),
+	rol_id int PRIMARY KEY NOT NULL IDENTITY(1,1),
 	rol_desc varchar(15),
 	rol_activo bit DEFAULT 1  
 );
@@ -19,15 +19,15 @@ create table THE_ULTIMATES.Rol(
 GO	
 
 create table THE_ULTIMATES.Funcionalidad(
-	func_id tinyint PRIMARY KEY NOT NULL IDENTITY(1,1),
+	func_id int PRIMARY KEY NOT NULL IDENTITY(1,1),
 	func_desc varchar(60)
 );
 
 GO
 	
 create table THE_ULTIMATES.Funcionalidad_Rol(
-	func_rol_rol_id smallint  not null, /* FK  THE_ULTIMATES.Rol*/
-	func_rol_func_id smallint not null, /* FK  THE_ULTIMATES.Funcionalidad*/
+	func_rol_rol_id int not null, /* FK  THE_ULTIMATES.Rol*/
+	func_rol_func_id int not null, /* FK  THE_ULTIMATES.Funcionalidad*/
 	primary key(func_rol_rol_id,func_rol_func_id)
 ); 
 
@@ -49,8 +49,8 @@ create table THE_ULTIMATES.Usuario(
 GO
 
 create table THE_ULTIMATES.Rol_Usuario(
-	rol_usu_rol_id smallint  not null, /* FK  THE_ULTIMATES.Rol*/
-	rol_usu_usu_id smallint  not null,  /* FK  THE_ULTIMATES.Usuario*/
+	rol_usu_rol_id int  not null, /* FK  THE_ULTIMATES.Rol*/
+	rol_usu_usu_id int  not null, /* FK  THE_ULTIMATES.Usuario*/
 	primary key(rol_usu_rol_id,rol_usu_usu_id)
 );
 	
@@ -244,6 +244,27 @@ GO
 
 
 /******************************************** INICIO - FOREING KEY *************************************************/
+alter table THE_ULTIMATES.Funcionalidad_Rol
+ add constraint FK_rol_id
+ foreign key (func_rol_rol_id)
+ references THE_ULTIMATES.Rol(rol_id);
+ 
+ alter table THE_ULTIMATES.Funcionalidad_Rol
+ add constraint FK_func_id
+ foreign key (func_rol_func_id)
+ references THE_ULTIMATES.Funcionalidad(func_id);
+ 
+ alter table THE_ULTIMATES.Usuario
+ add constraint FK_clie_id
+ foreign key (usu_clie_id)
+ references THE_ULTIMATES.Cliente(clie_id);
+ 
+ alter table THE_ULTIMATES.Rol_Usuario
+ add constraint FK_rol_usu_id
+ foreign key (rol_usu_rol_id)
+ references THE_ULTIMATES.Rol(rol_id);
+ 
+ 
 /******************************************** FIN - FOREING KEY ****************************************************/
 
 
