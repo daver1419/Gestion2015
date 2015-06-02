@@ -28,7 +28,7 @@ GO
 create table THE_ULTIMATES.Funcionalidad_Rol(
 	func_rol_rol_id smallint  not null, /* FK  THE_ULTIMATES.Rol*/
 	func_rol_func_id smallint not null, /* FK  THE_ULTIMATES.Funcionalidad*/
-	primary key(func_rol_rol_id,func_rol_func_id smallint)
+	primary key(func_rol_rol_id,func_rol_func_id)
 ); 
 
 GO
