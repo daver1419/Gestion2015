@@ -26,9 +26,9 @@ create table THE_ULTIMATES.Funcionalidad(
 GO
 	
 create table THE_ULTIMATES.Funcionalidad_Rol(
-	func_rol_id  tinyint PRIMARY KEY NOT NULL IDENTITY(1,1),
-	func_rol_rol_id smallint  not null UNIQUE, /* FK  THE_ULTIMATES.Rol*/
-	func_rol_func_id smallint not null UNIQUE /* FK  THE_ULTIMATES.Funcionalidad*/
+	func_rol_rol_id smallint  not null, /* FK  THE_ULTIMATES.Rol*/
+	func_rol_func_id smallint not null, /* FK  THE_ULTIMATES.Funcionalidad*/
+	primary key(func_rol_rol_id,func_rol_func_id smallint)
 ); 
 
 GO
@@ -49,9 +49,9 @@ create table THE_ULTIMATES.Usuario(
 GO
 
 create table THE_ULTIMATES.Rol_Usuario(
-	rol_usu int PRIMARY KEY NOT NULL IDENTITY(1,1),
-	rol_usu_rol_id smallint  not null UNIQUE, /* FK  THE_ULTIMATES.Rol*/
-	rol_usu_usu_id smallint  not null UNIQUE  /* FK  THE_ULTIMATES.Usuario*/
+	rol_usu_rol_id smallint  not null, /* FK  THE_ULTIMATES.Rol*/
+	rol_usu_usu_id smallint  not null,  /* FK  THE_ULTIMATES.Usuario*/
+	primary key(rol_usu_rol_id,rol_usu_usu_id)
 );
 	
 GO
