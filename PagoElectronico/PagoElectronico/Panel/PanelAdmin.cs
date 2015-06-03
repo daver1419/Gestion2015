@@ -18,5 +18,49 @@ namespace PagoElectronico.Panel
         {
             InitializeComponent();
         }
+
+        private void btnAltaClienteUsu_Click(object sender, EventArgs e)
+        {
+            tab.SelectedTab = tabCliente;
+            panelBusquedaUsu.Visible = false;
+
+        }
+
+        private void btnAddTarjeta_Click(object sender, EventArgs e)
+        {
+            tab.SelectedTab = tabTarjeta;
+            // llenar los label para cliente y  numero de cuenta 
+
+            lblNcuentaTar.Text = txtNumeroCuenta.Text;
+           
+
+
+        }
+
+        private void btnConfTarj_Click(object sender, EventArgs e)
+        {
+            btnAddTarjeta.Visible = true;
+        }
+
+     
+      
+
+        
+       
+      
+
+      
+
+     
+
+      
+
+        
+
+       
+
+     
+
+      
     }
 }

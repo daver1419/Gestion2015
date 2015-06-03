@@ -13,3 +13,5 @@ C:\Users\RomiVM\Documents\github\PagoElectronico\PagoElectronico\obj\Debug\Resol
 C:\Users\RomiVM\Documents\github\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.Login.Login.resources
 C:\Users\RomiVM\Documents\github\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.Properties.Resources.resources
 C:\Users\RomiVM\Documents\github\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.csproj.GenerateResource.Cache
+C:\Users\RomiVM\Documents\github\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.Panel.PanelAdmin.resources
+C:\Users\RomiVM\Documents\github\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.PanelCliente.PanelCliente.resources
