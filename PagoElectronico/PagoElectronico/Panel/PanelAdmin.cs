@@ -39,7 +39,7 @@ namespace PagoElectronico.Panel
 
         private void btnConfTarj_Click(object sender, EventArgs e)
         {
-            btnAddTarjeta.Visible = true;
+            btnAddTarjeta.Visible=true;
         }
 
      

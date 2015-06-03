@@ -190,6 +190,7 @@
             this.comboBox8 = new System.Windows.Forms.ComboBox();
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabUsuario.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tab.SuspendLayout();
@@ -404,6 +405,7 @@
             this.tab.Controls.Add(this.tabTarjeta);
             this.tab.Controls.Add(this.Saldo);
             this.tab.Controls.Add(this.tabRol);
+            this.tab.Controls.Add(this.tabPage1);
             this.tab.Location = new System.Drawing.Point(12, 12);
             this.tab.Name = "tab";
             this.tab.SelectedIndex = 0;
@@ -1713,6 +1715,16 @@
             this.label32.TabIndex = 0;
             this.label32.Text = "Buscar Cliente ";
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(634, 575);
+            this.tabPage1.TabIndex = 7;
+            this.tabPage1.Text = "Estadistica";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
             // PanelAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1922,6 +1934,7 @@
         private System.Windows.Forms.Label lblErrorBusqRol;
         private System.Windows.Forms.Label lblErrorBuqUsuCli;
         private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.TabPage tabPage1;
 
     }
 }
