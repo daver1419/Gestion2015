@@ -42,6 +42,7 @@ namespace PagoElectronico.Panel
             btnAddTarjeta.Visible=true;
         }
 
+        
      
       
 

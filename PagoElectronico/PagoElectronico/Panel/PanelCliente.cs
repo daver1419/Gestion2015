@@ -20,6 +20,8 @@ namespace PagoElectronico.PanelCliente
             InitializeComponent();
         }
 
+       
+    
      
     }
 }

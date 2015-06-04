@@ -143,6 +143,7 @@
             this.label36 = new System.Windows.Forms.Label();
             this.listboxCuentasAsociadas = new System.Windows.Forms.CheckedListBox();
             this.panelBusqCliSaldo = new System.Windows.Forms.Panel();
+            this.label49 = new System.Windows.Forms.Label();
             this.btnBuscarCliSaldo = new System.Windows.Forms.Button();
             this.txtNDocClSaldo = new System.Windows.Forms.TextBox();
             this.label33 = new System.Windows.Forms.Label();
@@ -164,6 +165,18 @@
             this.btnBuscarRol = new System.Windows.Forms.Button();
             this.txtRolBusqueda = new System.Windows.Forms.TextBox();
             this.label39 = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dataGridTotalTipoCuenta = new System.Windows.Forms.DataGridView();
+            this.label48 = new System.Windows.Forms.Label();
+            this.dataGridPaisCantMov = new System.Windows.Forms.DataGridView();
+            this.label47 = new System.Windows.Forms.Label();
+            this.dataGridCliCantTransicion = new System.Windows.Forms.DataGridView();
+            this.dataGridCliCantComision = new System.Windows.Forms.DataGridView();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.dataGridCliInhabilitado = new System.Windows.Forms.DataGridView();
+            this.label43 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
@@ -190,7 +203,6 @@
             this.comboBox8 = new System.Windows.Forms.ComboBox();
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabUsuario.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tab.SuspendLayout();
@@ -208,6 +220,12 @@
             this.tabRol.SuspendLayout();
             this.panelRol.SuspendLayout();
             this.panelBusqRol.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridTotalTipoCuenta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridPaisCantMov)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridCliCantTransicion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridCliCantComision)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridCliInhabilitado)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.SuspendLayout();
@@ -1286,6 +1304,7 @@
             // 
             // panelBusqCliSaldo
             // 
+            this.panelBusqCliSaldo.Controls.Add(this.label49);
             this.panelBusqCliSaldo.Controls.Add(this.btnBuscarCliSaldo);
             this.panelBusqCliSaldo.Controls.Add(this.txtNDocClSaldo);
             this.panelBusqCliSaldo.Controls.Add(this.label33);
@@ -1296,6 +1315,17 @@
             this.panelBusqCliSaldo.Name = "panelBusqCliSaldo";
             this.panelBusqCliSaldo.Size = new System.Drawing.Size(583, 57);
             this.panelBusqCliSaldo.TabIndex = 3;
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.ForeColor = System.Drawing.Color.Red;
+            this.label49.Location = new System.Drawing.Point(154, 36);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(226, 13);
+            this.label49.TabIndex = 6;
+            this.label49.Text = "No se ha encontrado resultado a su busqueda";
+            this.label49.Visible = false;
             // 
             // btnBuscarCliSaldo
             // 
@@ -1448,7 +1478,8 @@
             // lblErrorBusqRol
             // 
             this.lblErrorBusqRol.AutoSize = true;
-            this.lblErrorBusqRol.Location = new System.Drawing.Point(11, 41);
+            this.lblErrorBusqRol.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorBusqRol.Location = new System.Drawing.Point(127, 42);
             this.lblErrorBusqRol.Name = "lblErrorBusqRol";
             this.lblErrorBusqRol.Size = new System.Drawing.Size(250, 13);
             this.lblErrorBusqRol.TabIndex = 4;
@@ -1488,6 +1519,135 @@
             this.label39.Size = new System.Drawing.Size(62, 13);
             this.label39.TabIndex = 0;
             this.label39.Text = "Buscar Rol ";
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.dataGridTotalTipoCuenta);
+            this.tabPage1.Controls.Add(this.label48);
+            this.tabPage1.Controls.Add(this.dataGridPaisCantMov);
+            this.tabPage1.Controls.Add(this.label47);
+            this.tabPage1.Controls.Add(this.dataGridCliCantTransicion);
+            this.tabPage1.Controls.Add(this.dataGridCliCantComision);
+            this.tabPage1.Controls.Add(this.label46);
+            this.tabPage1.Controls.Add(this.label45);
+            this.tabPage1.Controls.Add(this.label44);
+            this.tabPage1.Controls.Add(this.dataGridCliInhabilitado);
+            this.tabPage1.Controls.Add(this.label43);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(634, 575);
+            this.tabPage1.TabIndex = 7;
+            this.tabPage1.Text = "Estadistica";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // dataGridTotalTipoCuenta
+            // 
+            this.dataGridTotalTipoCuenta.AllowUserToAddRows = false;
+            this.dataGridTotalTipoCuenta.AllowUserToDeleteRows = false;
+            this.dataGridTotalTipoCuenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridTotalTipoCuenta.Location = new System.Drawing.Point(6, 459);
+            this.dataGridTotalTipoCuenta.Name = "dataGridTotalTipoCuenta";
+            this.dataGridTotalTipoCuenta.ReadOnly = true;
+            this.dataGridTotalTipoCuenta.Size = new System.Drawing.Size(477, 80);
+            this.dataGridTotalTipoCuenta.TabIndex = 12;
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(16, 431);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(173, 13);
+            this.label48.TabIndex = 11;
+            this.label48.Text = "Total facturado por Tipo de Cuenta";
+            // 
+            // dataGridPaisCantMov
+            // 
+            this.dataGridPaisCantMov.AllowUserToAddRows = false;
+            this.dataGridPaisCantMov.AllowUserToDeleteRows = false;
+            this.dataGridPaisCantMov.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridPaisCantMov.Location = new System.Drawing.Point(6, 336);
+            this.dataGridPaisCantMov.Name = "dataGridPaisCantMov";
+            this.dataGridPaisCantMov.ReadOnly = true;
+            this.dataGridPaisCantMov.Size = new System.Drawing.Size(477, 80);
+            this.dataGridPaisCantMov.TabIndex = 10;
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(16, 320);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(205, 13);
+            this.label47.TabIndex = 9;
+            this.label47.Text = "Paises con mayor cantidad de movimiento";
+            // 
+            // dataGridCliCantTransicion
+            // 
+            this.dataGridCliCantTransicion.AllowUserToAddRows = false;
+            this.dataGridCliCantTransicion.AllowUserToDeleteRows = false;
+            this.dataGridCliCantTransicion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridCliCantTransicion.Location = new System.Drawing.Point(6, 233);
+            this.dataGridCliCantTransicion.Name = "dataGridCliCantTransicion";
+            this.dataGridCliCantTransicion.ReadOnly = true;
+            this.dataGridCliCantTransicion.Size = new System.Drawing.Size(477, 80);
+            this.dataGridCliCantTransicion.TabIndex = 8;
+            // 
+            // dataGridCliCantComision
+            // 
+            this.dataGridCliCantComision.AllowUserToAddRows = false;
+            this.dataGridCliCantComision.AllowUserToDeleteRows = false;
+            this.dataGridCliCantComision.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridCliCantComision.Location = new System.Drawing.Point(6, 134);
+            this.dataGridCliCantComision.Name = "dataGridCliCantComision";
+            this.dataGridCliCantComision.ReadOnly = true;
+            this.dataGridCliCantComision.Size = new System.Drawing.Size(477, 80);
+            this.dataGridCliCantComision.TabIndex = 7;
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(13, 350);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(0, 13);
+            this.label46.TabIndex = 6;
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(16, 217);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(306, 13);
+            this.label45.TabIndex = 4;
+            this.label45.Text = " Cliente con mayor cantidad transaciones entre propias cuentas";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(13, 118);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(194, 13);
+            this.label44.TabIndex = 2;
+            this.label44.Text = "Cliente con mayor cantidad de comisión";
+            // 
+            // dataGridCliInhabilitado
+            // 
+            this.dataGridCliInhabilitado.AllowUserToAddRows = false;
+            this.dataGridCliInhabilitado.AllowUserToDeleteRows = false;
+            this.dataGridCliInhabilitado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridCliInhabilitado.Location = new System.Drawing.Point(6, 35);
+            this.dataGridCliInhabilitado.Name = "dataGridCliInhabilitado";
+            this.dataGridCliInhabilitado.ReadOnly = true;
+            this.dataGridCliInhabilitado.Size = new System.Drawing.Size(477, 80);
+            this.dataGridCliInhabilitado.TabIndex = 1;
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(13, 19);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(339, 13);
+            this.label43.TabIndex = 0;
+            this.label43.Text = " Clientes inhabilitados por morosos (falta de pago costo de facturación)";
             // 
             // button7
             // 
@@ -1715,21 +1875,11 @@
             this.label32.TabIndex = 0;
             this.label32.Text = "Buscar Cliente ";
             // 
-            // tabPage1
-            // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(634, 575);
-            this.tabPage1.TabIndex = 7;
-            this.tabPage1.Text = "Estadistica";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
             // PanelAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(681, 625);
+            this.ClientSize = new System.Drawing.Size(681, 646);
             this.Controls.Add(this.tab);
             this.Name = "PanelAdmin";
             this.Text = "PanelAdmin";
@@ -1763,6 +1913,13 @@
             this.panelRol.PerformLayout();
             this.panelBusqRol.ResumeLayout(false);
             this.panelBusqRol.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridTotalTipoCuenta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridPaisCantMov)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridCliCantTransicion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridCliCantComision)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridCliInhabilitado)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
@@ -1935,6 +2092,18 @@
         private System.Windows.Forms.Label lblErrorBuqUsuCli;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.DataGridView dataGridCliInhabilitado;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.DataGridView dataGridCliCantTransicion;
+        private System.Windows.Forms.DataGridView dataGridCliCantComision;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.DataGridView dataGridTotalTipoCuenta;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.DataGridView dataGridPaisCantMov;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Label label49;
 
     }
 }
