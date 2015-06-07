@@ -349,6 +349,21 @@ go
 
 /******************************************** INICIO - CREACION DE INDICES *****************************************/
 /******************************************** FIN - CREACION DE INDICES *****************************************/
+/******************************************** INICIO - CREACION DE STORED PROCEDURES, FUNCIONES Y VISTAS *************/
+
+CREATE FUNCTION THE_ULTIMATES.RemoverTildes(@Cadena VARCHAR(20))
+RETURNS VARCHAR(20)
+AS BEGIN
+    RETURN REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(@Cadena, 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u')
+END
+
+CREATE FUNCTION THE_ULTIMATES.GenerarUsuario(@nombre varchar(255), @apellido varchar(255))
+RETURNS VARCHAR(20)
+AS BEGIN	
+	RETURN THE_ULTIMATES.RemoverTildes(lower(LEFT(@nombre, 1) + SUBSTRING(@apellido, 1,19)))
+END
+/******************************************** FIN - CREACION DE STORED PROCEDURES, FUNCIONES Y VISTAS *************/
+
 
 /******************************************** INICIO - LLENADO DE TABLAS *********************************************/
 
@@ -383,21 +398,141 @@ go
 insert into THE_ULTIMATES.Funcionalidad
 values ('Listado Estadistico');
 go
+
+set identity_insert THE_ULTIMATES.Pais on;
+go
+
+DECLARE @usu_id int
+
+DECLARE @cli_pais_codigo numeric (18,0), 
+		@cli_pais_desc varchar(250), 
+		@cli_nombre varchar(255),
+		@cli_apellido varchar(255), 
+		@cli_tipo_doc_cod numeric(18,0), 
+		@cli_nro_doc numeric(18,0),
+		@cli_tipo_doc_desc varchar(255), 
+		@cli_dom_calle varchar(255), 
+		@cli_dom_nro numeric(18,0),
+		@cli_dom_piso numeric(18,0), 
+		@cli_dom_depto varchar(10), 
+		@cli_fecha_nac datetime, 
+		@cli_mail varchar(255)
+
+DECLARE cursor_carga_cliente_usuario_pais CURSOR FOR 
+	select distinct Cli_Pais_Codigo, 
+					Cli_Pais_Desc, 
+					Cli_Nombre, 
+					Cli_Apellido, 
+					Cli_Tipo_Doc_Cod,
+					Cli_Nro_Doc, 
+					Cli_Tipo_Doc_Desc, 
+					Cli_Dom_Calle, 
+					Cli_Dom_Nro, 
+					Cli_Dom_Piso, 
+					Cli_Dom_Depto,
+					Cli_Fecha_Nac, 
+					Cli_Mail
+	from gd_esquema.Maestra
+
+OPEN cursor_carga_cliente_usuario_pais;
+
+FETCH NEXT FROM cursor_carga_cliente_usuario_pais 
+INTO	@cli_pais_codigo , 
+		@cli_pais_desc , 
+		@cli_nombre , 
+		@cli_apellido, 
+		@cli_tipo_doc_cod, 
+		@cli_nro_doc, 
+		@cli_tipo_doc_desc, 
+		@cli_dom_calle, 
+		@cli_dom_nro, 
+		@cli_dom_piso, 
+		@cli_dom_depto, 
+		@cli_fecha_nac, 
+		@cli_mail
+
+BEGIN TRANSACTION transaction_maestra;
+WHILE @@FETCH_STATUS = 0
+BEGIN
+	
+	IF not exists(select 1 from THE_ULTIMATES.Pais where pais_id = @cli_pais_codigo)  
+	BEGIN
+		insert into THE_ULTIMATES.Pais(pais_id,pais_desc)
+		values(@cli_pais_codigo, @cli_pais_desc)
+	END
+	
+	IF not exists(select 1 from THE_ULTIMATES.Cliente where clie_nro_doc = @cli_nro_doc and clie_tipo_doc_id = @cli_tipo_doc_cod)  
+	BEGIN
+	
+		INSERT INTO THE_ULTIMATES.Usuario(	[usu_username],
+											[usu_password],
+											[usu_fecha_alta],
+											[usu_fecha_mod],
+											[usu_pregunta],
+											[usu_respuesta],
+											[usu_activo],
+											[usu_intentos_fallidos])
+		VALUES (THE_ULTIMATES.GenerarUsuario(@cli_nombre,@cli_apellido), 
+				'CONTRASEÑA', 
+				GETDATE(), 
+				GETDATE(), 
+				NULL, 
+				NULL, 
+				1, 
+				0)
+			
+		SET @usu_id = SCOPE_IDENTITY()	
+		INSERT INTO THE_ULTIMATES.Cliente(	[clie_nombre],
+											[clie_apellido],
+											[clie_nro_doc],
+											[clie_tipo_doc_id],
+											[clie_mail],
+											[clie_activo],
+											[clie_dom_calle],
+											[clie_dom_numero],
+											[clie_dom_piso],
+											[clie_dom_depto],
+											[clie_fecha_nac],
+											[clie_pais_id],
+											[clie_usu_id])
+		values(	@cli_nombre, 
+				@cli_apellido, 
+				@cli_nro_doc, 
+				@cli_tipo_doc_cod, 
+				@cli_mail, 
+				1,
+				@cli_dom_calle, 
+				@cli_dom_nro, 
+				@cli_dom_piso, 
+				@cli_dom_depto, 
+				@cli_fecha_nac, 
+				@cli_pais_codigo, 
+				@usu_id)
+	END
+		
+	FETCH NEXT FROM cursor_carga_cliente_usuario_pais 
+	INTO	@cli_pais_codigo , 
+			@cli_pais_desc , 
+			@cli_nombre , 
+			@cli_apellido, 
+			@cli_tipo_doc_cod, 
+			@cli_nro_doc, 
+			@cli_tipo_doc_desc, 
+			@cli_dom_calle, 
+			@cli_dom_nro, 
+			@cli_dom_piso, 
+			@cli_dom_depto, 
+			@cli_fecha_nac, 
+			@cli_mail
+END 
+CLOSE cursor_carga_cliente_usuario_pais;
+DEALLOCATE cursor_carga_cliente_usuario_pais;
+
+COMMIT TRANSACTION transaction_maestra;
+set identity_insert THE_ULTIMATES.Pais off;
+go
 /******************************************** FIN - LLENADO DE TABLAS *********************************************/
 
-/******************************************** INICIO - CREACION DE STORED PROCEDURES, FUNCIONES Y VISTAS *************/
-CREATE FUNCTION THE_ULTIMATES.RemoverTildes(@Cadena VARCHAR(20))
-RETURNS VARCHAR(20)
-AS BEGIN
-    RETURN REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(@Cadena, 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u')
-END
-
-CREATE FUNCTION THE_ULTIMATES.GenerarUsuario(@nombre varchar(255), @apellido varchar(255))
-RETURNS VARCHAR(20)
-AS BEGIN	
-	RETURN THE_ULTIMATES.RemoverTildes(lower(LEFT(@nombre, 1) + SUBSTRING(@apellido, 1,19)))
-END
-/******************************************** FIN - CREACION DE STORED PROCEDURES, FUNCIONES Y VISTAS *************/
 
 /******************************************** INICIO - TRIGGERS *****************************************/
 /******************************************** FIN - TRIGGERS *****************************************/
