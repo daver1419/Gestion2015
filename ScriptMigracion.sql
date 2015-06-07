@@ -351,38 +351,40 @@ go
 /******************************************** INICIO - CREACION DE INDICES *****************************************/
 /******************************************** FIN - CREACION DE INDICES *****************************************/
 /******************************************** INICIO - CREACION DE STORED PROCEDURES, FUNCIONES Y VISTAS *************/
+go
 
 CREATE FUNCTION THE_ULTIMATES.RemoverTildes(@Cadena VARCHAR(20))
 RETURNS VARCHAR(20)
 AS BEGIN
     RETURN REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(@Cadena, 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u')
 END
+go
 
 CREATE FUNCTION THE_ULTIMATES.GenerarUsuario(@nombre varchar(255), @apellido varchar(255))
 RETURNS VARCHAR(20)
 AS BEGIN	
 	RETURN THE_ULTIMATES.RemoverTildes(lower(LEFT(@nombre, 1) + SUBSTRING(@apellido, 1,19)))
 END
-
+go
 
 create procedure THE_ULTIMATES.Cargar_Cuentas 
-as
+as 
+begin
 
 set identity_insert THE_ULTIMATES.Cuenta on;
-go
 
 insert into THE_ULTIMATES.Cuenta 
-select Cuenta_Numero, 
-	(select clie_id from THE_ULTIMATES.Cliente 
-	where clie_tipo_doc_id = Cli_Tipo_Doc_Cod and clie_nro_doc = Cli_Nro_Doc),
-	4, Cuenta_Fecha_Creacion, null, 5, Cuenta_Pais_Codigo, 0.00, 1
-from gd_esquema.Maestra
-where Cuenta_Numero is not null;
-go
+	select distinct Cuenta_Numero, 
+		(select clie_id from THE_ULTIMATES.Cliente 
+		where clie_tipo_doc_id = Cli_Tipo_Doc_Cod and clie_nro_doc = Cli_Nro_Doc),
+		4, Cuenta_Fecha_Creacion, null, 5, Cuenta_Pais_Codigo, 0.00, 1
+	from gd_esquema.Maestra
+	where Cuenta_Numero is not null;
 
 set identity_insert THE_ULTIMATES.Cuenta off;
 
 end
+go
 /******************************************** FIN - CREACION DE STORED PROCEDURES, FUNCIONES Y VISTAS *************/
 
 
