@@ -115,6 +115,7 @@ GO
 create table THE_ULTIMATES.Tipo_Moneda(
 	tipo_moneda_id smallint CONSTRAINT PK_tipo_moneda_id PRIMARY KEY not null IDENTITY(1,1),
 	tipo_moneda_desc varchar(30) not null,
+	tipo_moneda_codigo char(3) not null unique, 
 	tipo_moneda_cambio numeric(18,3)not null
 );
 
@@ -383,9 +384,72 @@ go
 insert into THE_ULTIMATES.Funcionalidad
 values ('Listado Estadistico');
 go
+
+
+
+insert into THE_ULTIMATES.Estado_Cuenta
+values ('Pendiente de Activacion');
+go
+
+insert into THE_ULTIMATES.Estado_Cuenta
+values ('Cerrada');
+go
+
+insert into THE_ULTIMATES.Estado_Cuenta
+values ('Inhabilitada');
+go
+
+insert into THE_ULTIMATES.Estado_Cuenta
+values ('Habilitada');
+go
+
+
+
+insert into THE_ULTIMATES.Tipo_Cuenta
+values ('Oro', 1, 3.00);
+go
+
+insert into THE_ULTIMATES.Tipo_Cuenta
+values ('Plata', 1, 2.00);
+go
+
+insert into THE_ULTIMATES.Tipo_Cuenta
+values ('Bronce', 1, 1.00);
+go
+
+insert into THE_ULTIMATES.Tipo_Cuenta
+values ('Gratuita', 1, 0.00);
+go
+
+
+insert into THE_ULTIMATES.Tipo_Moneda
+values ('Dolar','USD', 1.000);
+go
+
+
 /******************************************** FIN - LLENADO DE TABLAS *********************************************/
 
 /******************************************** INICIO - CREACION DE STORED PROCEDURES, FUNCIONES Y VISTAS *************/
+
+create procedure THE_ULTIMATES.Cargar_Cuentas 
+as
+
+set identity_insert THE_ULTIMATES.Cuenta on;
+go
+
+insert into THE_ULTIMATES.Cuenta 
+select Cuenta_Numero, 
+	(select clie_id from THE_ULTIMATES.Cliente 
+	where clie_tipo_doc_id = Cli_Tipo_Doc_Cod and clie_nro_doc = Cli_Nro_Doc),
+	4, Cuenta_Fecha_Creacion, null, 5, Cuenta_Pais_Codigo, 0.00, 1
+from gd_esquema.Maestra
+where Cuenta_Numero is not null;
+go
+
+set identity_insert THE_ULTIMATES.Cuenta off;
+
+end
+
 /******************************************** FIN - CREACION DE STORED PROCEDURES, FUNCIONES Y VISTAS *************/
 
 /******************************************** INICIO - TRIGGERS *****************************************/
