@@ -386,6 +386,17 @@ go
 /******************************************** FIN - LLENADO DE TABLAS *********************************************/
 
 /******************************************** INICIO - CREACION DE STORED PROCEDURES, FUNCIONES Y VISTAS *************/
+CREATE FUNCTION THE_ULTIMATES.RemoverTildes(@Cadena VARCHAR(20))
+RETURNS VARCHAR(20)
+AS BEGIN
+    RETURN REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(@Cadena, 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u')
+END
+
+CREATE FUNCTION THE_ULTIMATES.GenerarUsuario(@nombre varchar(255), @apellido varchar(255))
+RETURNS VARCHAR(20)
+AS BEGIN	
+	RETURN THE_ULTIMATES.RemoverTildes(lower(LEFT(@nombre, 1) + SUBSTRING(@apellido, 1,19)))
+END
 /******************************************** FIN - CREACION DE STORED PROCEDURES, FUNCIONES Y VISTAS *************/
 
 /******************************************** INICIO - TRIGGERS *****************************************/
