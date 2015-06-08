@@ -92,7 +92,8 @@ create table THE_ULTIMATES.Cliente(
 	clie_dom_piso numeric(18,0) null,
 	clie_dom_depto varchar(10),
 	clie_fecha_nac datetime not null,
-	clie_pais_id numeric(18,0) not null /* FK  THE_ULTIMATES.Pais*/
+	clie_pais_id numeric(18,0) not null, /* FK  THE_ULTIMATES.Pais*/
+	clie_usu_id int
 );
 
 GO
@@ -100,7 +101,7 @@ GO
 create table THE_ULTIMATES.Cuenta(
 	cuen_id numeric(18,0) CONSTRAINT PK_cuen_id PRIMARY KEY not null IDENTITY(1,1),
 	cuen_clie_id int not null, /* FK  THE_ULTIMATES.Cliente*/
-	cuen_tipo_cuenta_id tinyint not null, /* FK  THE_ULTIMATES.Tipo_Cuenta*/
+	cuen_tipo_cuenta_id int not null, /* FK  THE_ULTIMATES.Tipo_Cuenta*/
 	cuen_fecha_creacion datetime not null,
 	cuen_fecha_cierre datetime,
 	cuen_estado_id int not null, /* FK  THE_ULTIMATES.Estado_Cuenta*/
@@ -161,7 +162,7 @@ create table THE_ULTIMATES.Deposito(
 	depo_id int CONSTRAINT PK_depo_id PRIMARY KEY NOT NULL IDENTITY(1,1),
 	depo_fecha datetime not null,
 	depo_importe numeric(18,2) not null,
-	depo_cuen_id int not null,  /* FK  THE_ULTIMATES.Cuenta*/
+	depo_cuen_id numeric(18,0) not null,  /* FK  THE_ULTIMATES.Cuenta*/
 	depo_tarj_id int not null,  /* FK  THE_ULTIMATES.Tarjeta*/
 	depo_tipo_moneda_id int not null /* FK  THE_ULTIMATES.Tipo_Moneda*/
 );
@@ -180,8 +181,8 @@ GO
 create table THE_ULTIMATES.Transferencia(
 	transf_id int CONSTRAINT PK_transf_id PRIMARY KEY NOT NULL IDENTITY(1,1),
 	transf_fecha datetime not null,
-	transf_cuenta_origen int not null, /* FK  THE_ULTIMATES.Cuenta*/
-	transf_cuenta_destino int not null, /* FK  THE_ULTIMATES.Cuenta*/
+	transf_cuenta_origen numeric(18,0) not null, /* FK  THE_ULTIMATES.Cuenta*/
+	transf_cuenta_destino numeric(18,0) not null, /* FK  THE_ULTIMATES.Cuenta*/
 	transf_importe numeric(18,3)not null,
 	transf_costo_transf numeric(18,3)not null,
 	transf_cuenta_propia bit not null 
@@ -209,7 +210,7 @@ GO
 
 create table THE_ULTIMATES.Extraccion(
 	extrac_id int CONSTRAINT PK_extrac_id PRIMARY KEY NOT NULL IDENTITY(1,1),
-	extrac_cuenta_id int not null, /* FK  THE_ULTIMATES.Cuenta*/
+	extrac_cuenta_id numeric(18,0) not null, /* FK  THE_ULTIMATES.Cuenta*/
 	extrac_cheque_id int not null /* FK  THE_ULTIMATES.Cheque*/
 );
 
@@ -260,11 +261,6 @@ add constraint FK_func_ron_rol_id foreign key (func_rol_rol_id) references THE_U
 
 GO
 
-alter table THE_ULTIMATES.Usuario
-add constraint FK_usu_clie_id foreign key (usu_clie_id) references THE_ULTIMATES.Cliente(clie_id);
-
-go
-
 alter table THE_ULTIMATES.Rol_Usuario
 add constraint FK_rol_usu_rol_id foreign key (rol_usu_rol_id) references THE_ULTIMATES.Rol(rol_id),
 	constraint FK_rol_usu_usu_id foreign key (rol_usu_usu_id) references THE_ULTIMATES.Usuario(usu_id);
@@ -278,7 +274,8 @@ go
 
 alter table THE_ULTIMATES.Cliente
 add constraint FK_clie_tipo_doc_id foreign key (clie_tipo_doc_id) references THE_ULTIMATES.Tipo_Doc(tipo_doc_id),
-	constraint FK_clie_pais_id foreign key (clie_pais_id) references THE_ULTIMATES.Pais(pais_id);
+	constraint FK_clie_pais_id foreign key (clie_pais_id) references THE_ULTIMATES.Pais(pais_id),
+	constraint FK_clie_usu_id foreign key (clie_usu_id) references THE_ULTIMATES.Usuario(usu_id);
 
 go
 
@@ -332,17 +329,10 @@ add constraint FK_fact_clie_id foreign key (fact_clie_id) references THE_ULTIMAT
 go
 
 alter table THE_ULTIMATES.Item_Factura
-add constraint FK_item_fact_num foreign key(item_fact_num) references THE_ULTIMATES.Factura(fact_num)/*,
+add constraint FK_item_fact_num foreign key(item_fact_num) references THE_ULTIMATES.Factura(fact_num);/*,
 	constraint FK_item_fact_transac_id foreign key(item_fact_transac_id) references THE_ULTIMATES.Transaccion(transac_id)*/
 
 go
-
-
-	
-
-
-
-
 
 /******************************************** FIN - FOREING KEY ****************************************************/
 
@@ -389,80 +379,61 @@ go
 
 /******************************************** INICIO - LLENADO DE TABLAS *********************************************/
 
-insert into THE_ULTIMATES.Rol
-values ('Administrador', 1);
+--ROL
+insert into THE_ULTIMATES.Rol values ('Administrador', 1);
+go
+insert into THE_ULTIMATES.Rol values ('Cliente', 1);
 go
 
-insert into THE_ULTIMATES.Rol
-values ('Cliente', 1);
+--FUNCIONALIDAD
+insert into THE_ULTIMATES.Funcionalidad values ('Deposito');
+go
+insert into THE_ULTIMATES.Funcionalidad values ('Extraccion');
+go
+insert into THE_ULTIMATES.Funcionalidad values ('Transferencia');
+go
+insert into THE_ULTIMATES.Funcionalidad values ('Facturacion');
+go
+insert into THE_ULTIMATES.Funcionalidad values ('Consulta de Saldo');
+go
+insert into THE_ULTIMATES.Funcionalidad values ('Listado Estadistico');
 go
 
-insert into THE_ULTIMATES.Funcionalidad
-values ('Deposito');
+--ESTADO_CUENTA
+insert into THE_ULTIMATES.Estado_Cuenta values ('Pendiente de Activacion');
+go
+insert into THE_ULTIMATES.Estado_Cuenta values ('Cerrada');
+go
+insert into THE_ULTIMATES.Estado_Cuenta values ('Inhabilitada');
+go
+insert into THE_ULTIMATES.Estado_Cuenta values ('Habilitada');
 go
 
-insert into THE_ULTIMATES.Funcionalidad
-values ('Extraccion');
+--TIPO_CUENTA
+insert into THE_ULTIMATES.Tipo_Cuenta values ('Oro', 1, 3.00);
+go
+insert into THE_ULTIMATES.Tipo_Cuenta values ('Plata', 1, 2.00);
+go
+insert into THE_ULTIMATES.Tipo_Cuenta values ('Bronce', 1, 1.00);
+go
+insert into THE_ULTIMATES.Tipo_Cuenta values ('Gratuita', 1, 0.00);
 go
 
-insert into THE_ULTIMATES.Funcionalidad
-values ('Transferencia');
+--TIPO_MONEDA
+insert into THE_ULTIMATES.Tipo_Moneda values ('Dolar','USD', 1.000);
 go
 
-insert into THE_ULTIMATES.Funcionalidad
-values ('Facturacion');
+--TIPO_DOC
+set identity_insert THE_ULTIMATES.Tipo_Doc on;
+go
+insert into THE_ULTIMATES.Tipo_Doc(tipo_doc_id,tipo_doc_desc)
+select distinct Cli_Tipo_Doc_Cod,Cli_Tipo_Doc_Desc
+from gd_esquema.Maestra;
+go
+set identity_insert THE_ULTIMATES.Tipo_Doc off;
 go
 
-insert into THE_ULTIMATES.Funcionalidad
-values ('Consulta de Saldo');
-go
-
-insert into THE_ULTIMATES.Funcionalidad
-values ('Listado Estadistico');
-go
-
-
-
-insert into THE_ULTIMATES.Estado_Cuenta
-values ('Pendiente de Activacion');
-go
-
-insert into THE_ULTIMATES.Estado_Cuenta
-values ('Cerrada');
-go
-
-insert into THE_ULTIMATES.Estado_Cuenta
-values ('Inhabilitada');
-go
-
-insert into THE_ULTIMATES.Estado_Cuenta
-values ('Habilitada');
-go
-
-
-
-insert into THE_ULTIMATES.Tipo_Cuenta
-values ('Oro', 1, 3.00);
-go
-
-insert into THE_ULTIMATES.Tipo_Cuenta
-values ('Plata', 1, 2.00);
-go
-
-insert into THE_ULTIMATES.Tipo_Cuenta
-values ('Bronce', 1, 1.00);
-go
-
-insert into THE_ULTIMATES.Tipo_Cuenta
-values ('Gratuita', 1, 0.00);
-go
-
-
-insert into THE_ULTIMATES.Tipo_Moneda
-values ('Dolar','USD', 1.000);
-go
-
-
+--PAIS,CLIENTE,USUARIO
 set identity_insert THE_ULTIMATES.Pais on;
 go
 

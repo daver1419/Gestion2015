@@ -4,7 +4,6 @@ GO
 
 alter table THE_ULTIMATES.Funcionalidad_Rol drop constraint FK_func_ron_rol_id;
 alter table THE_ULTIMATES.Funcionalidad_Rol drop constraint FK_func_ron_func_id;
-alter table THE_ULTIMATES.Usuario drop constraint FK_usu_clie_id;
 alter table THE_ULTIMATES.Rol_Usuario drop constraint FK_rol_usu_rol_id;
 alter table THE_ULTIMATES.Rol_Usuario drop constraint FK_rol_usu_usu_id;
 alter table THE_ULTIMATES.Acceso_Log drop constraint FK_acc_usu_id;
