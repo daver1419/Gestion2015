@@ -336,14 +336,6 @@ add constraint FK_item_fact_num foreign key(item_fact_num) references THE_ULTIMA
 	constraint FK_item_fact_transac_id foreign key(item_fact_transac_id) references THE_ULTIMATES.Transaccion(transac_id)*/
 
 go
-
-
-	
-
-
-
-
-
 /******************************************** FIN - FOREING KEY ****************************************************/
 
 
@@ -366,7 +358,7 @@ AS BEGIN
 END
 go
 
-create procedure THE_ULTIMATES.Cargar_Cuentas 
+create procedure THE_ULTIMATES.SP_CargarCuentas 
 as 
 begin
 
@@ -383,6 +375,12 @@ insert into THE_ULTIMATES.Cuenta
 set identity_insert THE_ULTIMATES.Cuenta off;
 
 end
+go
+
+create procedure THE_ULTIMATES.SP_CargarTransferencias
+as
+
+
 go
 /******************************************** FIN - CREACION DE STORED PROCEDURES, FUNCIONES Y VISTAS *************/
 
