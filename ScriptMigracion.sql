@@ -35,7 +35,7 @@ GO
 
 create table THE_ULTIMATES.Usuario(
 	usu_id int CONSTRAINT PK_usu_id PRIMARY KEY NOT NULL IDENTITY(1,1),
-	usu_username varchar(20) not null UNIQUE,
+	usu_username varchar(25) not null UNIQUE,
 	usu_password char(64) not null,
 	usu_fecha_alta datetime not null,
 	usu_fecha_mod datetime null,
@@ -344,17 +344,17 @@ go
 /******************************************** INICIO - CREACION DE STORED PROCEDURES, FUNCIONES Y VISTAS *************/
 go
 
-CREATE FUNCTION THE_ULTIMATES.RemoverTildes(@Cadena VARCHAR(20))
-RETURNS VARCHAR(20)
+CREATE FUNCTION THE_ULTIMATES.RemoverTildes(@Cadena VARCHAR(25))
+RETURNS VARCHAR(25)
 AS BEGIN
-    RETURN REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(@Cadena, 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u')
+    RETURN REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(@Cadena, ' ', ''), 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u')
 END
 go
 
 CREATE FUNCTION THE_ULTIMATES.GenerarUsuario(@nombre varchar(255), @apellido varchar(255))
-RETURNS VARCHAR(20)
+RETURNS VARCHAR(25)
 AS BEGIN	
-	RETURN THE_ULTIMATES.RemoverTildes(SUBSTRING(@nombre, 1,19) + SUBSTRING(@apellido, 1,19))
+	RETURN THE_ULTIMATES.RemoverTildes(lower(SUBSTRING(@nombre, 1,19) + '.' + SUBSTRING(@apellido, 1,19)))
 END
 go
 
@@ -464,6 +464,7 @@ go
 
 --CLIENTE,USUARIO
 DECLARE @usu_id int
+DECLARE @username varchar(25);
 
 DECLARE @cli_pais_codigo numeric (18,0), 
 		@cli_nombre varchar(255),
@@ -517,6 +518,9 @@ BEGIN
 	
 	IF not exists(select 1 from THE_ULTIMATES.Cliente where clie_nro_doc = @cli_nro_doc and clie_tipo_doc_id = @cli_tipo_doc_cod)  
 	BEGIN
+	
+	set @username = THE_ULTIMATES.GenerarUsuario(@cli_nombre,@cli_apellido);
+	
 		INSERT INTO THE_ULTIMATES.Usuario(	[usu_username],
 											[usu_password],
 											[usu_fecha_alta],
@@ -525,8 +529,9 @@ BEGIN
 											[usu_respuesta],
 											[usu_activo],
 											[usu_intentos_fallidos])
-		VALUES (THE_ULTIMATES.GenerarUsuario(@cli_nombre,@cli_apellido), 
-				'CONTRASEÑA', 
+		VALUES (@username, 
+				@username, -- Por unica vez se le asigna el usuario como password, 
+						   -- luego el cliente tendra que cambiarla cuando ingrese por primera vez al sistema.
 				GETDATE(), 
 				GETDATE(), 
 				NULL, 
@@ -586,15 +591,21 @@ go
 --CUENTA
 set identity_insert THE_ULTIMATES.Cuenta on;
 
-insert into THE_ULTIMATES.Cuenta (cuen_id, cuen_clie_id, cuen_tipo_cuenta_id,
-	cuen_fecha_creacion, cuen_fecha_cierre, cuen_estado_id, cuen_pais_id, 
-	cuen_saldo, cuen_tipo_mon_id)
+insert into THE_ULTIMATES.Cuenta (cuen_id, 
+								cuen_clie_id, 
+								cuen_tipo_cuenta_id,
+								cuen_fecha_creacion, 
+								cuen_fecha_cierre, 
+								cuen_estado_id, 
+								cuen_pais_id, 
+								cuen_saldo, 
+								cuen_tipo_mon_id)
 	select distinct Cuenta_Numero, 
 					(select clie_id from THE_ULTIMATES.Cliente where clie_tipo_doc_id = Cli_Tipo_Doc_Cod and clie_nro_doc = Cli_Nro_Doc),
 					4, 
 					Cuenta_Fecha_Creacion, 
 					null, 
-					5, 
+					4, 
 					Cuenta_Pais_Codigo, 
 					0.00, 
 					1
