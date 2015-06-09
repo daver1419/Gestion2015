@@ -352,11 +352,11 @@ go
 CREATE FUNCTION THE_ULTIMATES.GenerarUsuario(@nombre varchar(255), @apellido varchar(255))
 RETURNS VARCHAR(20)
 AS BEGIN	
-	RETURN THE_ULTIMATES.RemoverTildes(lower(LEFT(@nombre, 1) + SUBSTRING(@apellido, 1,19)))
+	RETURN THE_ULTIMATES.RemoverTildes(SUBSTRING(@nombre, 1,19) + SUBSTRING(@apellido, 1,19))
 END
 go
 
-create procedure THE_ULTIMATES.SP_CargarCuentas 
+/*create procedure THE_ULTIMATES.Cargar_Cuentas 
 as 
 begin
 
@@ -372,13 +372,7 @@ insert into THE_ULTIMATES.Cuenta
 
 set identity_insert THE_ULTIMATES.Cuenta off;
 
-end
-go
-
-create procedure THE_ULTIMATES.SP_CargarTransferencias
-as
-
-
+end*/
 go
 /******************************************** FIN - CREACION DE STORED PROCEDURES, FUNCIONES Y VISTAS *************/
 
@@ -439,14 +433,21 @@ go
 set identity_insert THE_ULTIMATES.Tipo_Doc off;
 go
 
---PAIS,CLIENTE,USUARIO
+--PAIS
 set identity_insert THE_ULTIMATES.Pais on;
 go
+insert into THE_ULTIMATES.Pais(pais_id,pais_desc)
+select distinct Cli_Pais_Codigo,Cli_Pais_Desc from gd_esquema.Maestra 
+union
+select distinct Cuenta_Dest_Pais_Codigo,Cuenta_Dest_Pais_Desc from gd_esquema.Maestra where Cuenta_Dest_Pais_Codigo is not null;
+go
+set identity_insert THE_ULTIMATES.Pais off;
+go
 
+--CLIENTE,USUARIO
 DECLARE @usu_id int
 
 DECLARE @cli_pais_codigo numeric (18,0), 
-		@cli_pais_desc varchar(250), 
 		@cli_nombre varchar(255),
 		@cli_apellido varchar(255), 
 		@cli_tipo_doc_cod numeric(18,0), 
@@ -458,10 +459,9 @@ DECLARE @cli_pais_codigo numeric (18,0),
 		@cli_dom_depto varchar(10), 
 		@cli_fecha_nac datetime, 
 		@cli_mail varchar(255)
-
-DECLARE cursor_carga_cliente_usuario_pais CURSOR FOR 
+		
+DECLARE cursor_carga_cliente_usuario CURSOR FOR 
 	select distinct Cli_Pais_Codigo, 
-					Cli_Pais_Desc, 
 					Cli_Nombre, 
 					Cli_Apellido, 
 					Cli_Tipo_Doc_Cod,
@@ -473,13 +473,13 @@ DECLARE cursor_carga_cliente_usuario_pais CURSOR FOR
 					Cli_Dom_Depto,
 					Cli_Fecha_Nac, 
 					Cli_Mail
+					
 	from gd_esquema.Maestra
 
-OPEN cursor_carga_cliente_usuario_pais;
+OPEN cursor_carga_cliente_usuario;
 
-FETCH NEXT FROM cursor_carga_cliente_usuario_pais 
+FETCH NEXT FROM cursor_carga_cliente_usuario 
 INTO	@cli_pais_codigo , 
-		@cli_pais_desc , 
 		@cli_nombre , 
 		@cli_apellido, 
 		@cli_tipo_doc_cod, 
@@ -491,20 +491,14 @@ INTO	@cli_pais_codigo ,
 		@cli_dom_depto, 
 		@cli_fecha_nac, 
 		@cli_mail
+		
 
 BEGIN TRANSACTION transaction_maestra;
 WHILE @@FETCH_STATUS = 0
 BEGIN
 	
-	IF not exists(select 1 from THE_ULTIMATES.Pais where pais_id = @cli_pais_codigo)  
-	BEGIN
-		insert into THE_ULTIMATES.Pais(pais_id,pais_desc)
-		values(@cli_pais_codigo, @cli_pais_desc)
-	END
-	
 	IF not exists(select 1 from THE_ULTIMATES.Cliente where clie_nro_doc = @cli_nro_doc and clie_tipo_doc_id = @cli_tipo_doc_cod)  
 	BEGIN
-	
 		INSERT INTO THE_ULTIMATES.Usuario(	[usu_username],
 											[usu_password],
 											[usu_fecha_alta],
@@ -551,9 +545,8 @@ BEGIN
 				@usu_id)
 	END
 		
-	FETCH NEXT FROM cursor_carga_cliente_usuario_pais 
+	FETCH NEXT FROM cursor_carga_cliente_usuario 
 	INTO	@cli_pais_codigo , 
-			@cli_pais_desc , 
 			@cli_nombre , 
 			@cli_apellido, 
 			@cli_tipo_doc_cod, 
@@ -565,30 +558,31 @@ BEGIN
 			@cli_dom_depto, 
 			@cli_fecha_nac, 
 			@cli_mail
+			
 END 
-CLOSE cursor_carga_cliente_usuario_pais;
-DEALLOCATE cursor_carga_cliente_usuario_pais;
-
+CLOSE cursor_carga_cliente_usuario;
+DEALLOCATE cursor_carga_cliente_usuario;
 COMMIT TRANSACTION transaction_maestra;
-set identity_insert THE_ULTIMATES.Pais off;
 go
+
+--CUENTA
+set identity_insert THE_ULTIMATES.Cuenta on;
+
+insert into THE_ULTIMATES.Cuenta 
+	select distinct Cuenta_Numero, 
+					(select clie_id from THE_ULTIMATES.Cliente where clie_tipo_doc_id = Cli_Tipo_Doc_Cod and clie_nro_doc = Cli_Nro_Doc),
+					4, 
+					Cuenta_Fecha_Creacion, 
+					null, 
+					5, 
+					Cuenta_Pais_Codigo, 
+					0.00, 
+					1
+	from gd_esquema.Maestra
+	where Cuenta_Numero is not null;
+
+set identity_insert THE_ULTIMATES.Cuenta off;
 /******************************************** FIN - LLENADO DE TABLAS *********************************************/
 
 /******************************************** INICIO - TRIGGERS *****************************************/
 /******************************************** FIN - TRIGGERS *****************************************/
-
-
-
-
-
-
-	
-	
-	
-	
-	
-	
-	
-
-
- 

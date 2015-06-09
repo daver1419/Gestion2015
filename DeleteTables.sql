@@ -53,3 +53,6 @@ drop table THE_ULTIMATES.Item_Factura;
 drop table THE_ULTIMATES.Tipo_Transaccion;
 drop table THE_ULTIMATES.Transaccion;
 drop table THE_ULTIMATES.Transferencia;
+
+drop function THE_ULTIMATES.GenerarUsuario;
+drop function THE_ULTIMATES.RemoverTildes;
