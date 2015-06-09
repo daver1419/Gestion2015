@@ -404,6 +404,15 @@ insert into THE_ULTIMATES.Rol values ('Cliente', 1);
 go
 
 --FUNCIONALIDAD
+
+insert into THE_ULTIMATES.Funcionalidad values ('ABM Rol');
+go
+insert into THE_ULTIMATES.Funcionalidad values ('ABM Usuario');
+go
+insert into THE_ULTIMATES.Funcionalidad values ('AMB Cliente');
+go
+insert into THE_ULTIMATES.Funcionalidad values ('ABM Cuentas');
+go
 insert into THE_ULTIMATES.Funcionalidad values ('Deposito');
 go
 insert into THE_ULTIMATES.Funcionalidad values ('Extraccion');
@@ -417,6 +426,15 @@ go
 insert into THE_ULTIMATES.Funcionalidad values ('Listado Estadistico');
 go
 
+
+--FUNCIONALIDAD_POR_ROL
+
+insert into THE_ULTIMATES.Funcionalidad_Rol 
+select rol_id , func_id from THE_ULTIMATES.Rol, THE_ULTIMATES.Funcionalidad where rol_id = 1
+
+ 
+
+
 --ESTADO_CUENTA
 insert into THE_ULTIMATES.Estado_Cuenta values ('Pendiente de Activacion');
 go
@@ -428,11 +446,11 @@ insert into THE_ULTIMATES.Estado_Cuenta values ('Habilitada');
 go
 
 --TIPO_CUENTA
-insert into THE_ULTIMATES.Tipo_Cuenta values ('Oro', 1, 3.00);
+insert into THE_ULTIMATES.Tipo_Cuenta values ('Oro', 31, 30.00);
 go
-insert into THE_ULTIMATES.Tipo_Cuenta values ('Plata', 1, 2.00);
+insert into THE_ULTIMATES.Tipo_Cuenta values ('Plata', 31, 20.00);
 go
-insert into THE_ULTIMATES.Tipo_Cuenta values ('Bronce', 1, 1.00);
+insert into THE_ULTIMATES.Tipo_Cuenta values ('Bronce', 31, 10.00);
 go
 insert into THE_ULTIMATES.Tipo_Cuenta values ('Gratuita', 1, 0.00);
 go
