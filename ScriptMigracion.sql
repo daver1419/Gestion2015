@@ -185,7 +185,7 @@ create table THE_ULTIMATES.Transferencia(
 	transf_cuenta_destino numeric(18,0) not null, /* FK  THE_ULTIMATES.Cuenta*/
 	transf_importe numeric(18,3)not null,
 	transf_costo_transf numeric(18,3)not null,
-	transf_cuenta_propia bit not null 
+	transf_cuenta_propia bit null 
 );
 
 GO
@@ -586,7 +586,9 @@ go
 --CUENTA
 set identity_insert THE_ULTIMATES.Cuenta on;
 
-insert into THE_ULTIMATES.Cuenta 
+insert into THE_ULTIMATES.Cuenta (cuen_id, cuen_clie_id, cuen_tipo_cuenta_id,
+	cuen_fecha_creacion, cuen_fecha_cierre, cuen_estado_id, cuen_pais_id, 
+	cuen_saldo, cuen_tipo_mon_id)
 	select distinct Cuenta_Numero, 
 					(select clie_id from THE_ULTIMATES.Cliente where clie_tipo_doc_id = Cli_Tipo_Doc_Cod and clie_nro_doc = Cli_Nro_Doc),
 					4, 
