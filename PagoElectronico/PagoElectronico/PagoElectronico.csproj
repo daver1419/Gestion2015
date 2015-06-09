@@ -49,7 +49,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ABM de Usuario\ControladorUsuario.cs" />
+    <Compile Include="DAO\RolDAO.cs" />
+    <Compile Include="DAO\BaseDAO.cs" />
+    <Compile Include="DAO\SisDAO.cs" />
     <Compile Include="Entidad\Cliente.cs" />
+    <Compile Include="Entidad\Funcionalidad.cs" />
+    <Compile Include="Entidad\Pais.cs" />
+    <Compile Include="Entidad\Rol.cs" />
+    <Compile Include="Entidad\Sis.cs" />
+    <Compile Include="Entidad\TipoCuenta.cs" />
+    <Compile Include="Entidad\TipoDoc.cs" />
+    <Compile Include="Entidad\TipoMoneda.cs" />
     <Compile Include="Entidad\Usuario.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -95,6 +105,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

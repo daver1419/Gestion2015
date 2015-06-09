@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.tabUsuario = new System.Windows.Forms.TabPage();
+            this.btnFunRol1 = new System.Windows.Forms.Button();
             this.btnAltaClienteUsu = new System.Windows.Forms.Button();
             this.txtRespustaSecreta = new System.Windows.Forms.TextBox();
             this.txtPreguntaSecreta = new System.Windows.Forms.TextBox();
@@ -232,6 +233,7 @@
             // 
             // tabUsuario
             // 
+            this.tabUsuario.Controls.Add(this.btnFunRol1);
             this.tabUsuario.Controls.Add(this.btnAltaClienteUsu);
             this.tabUsuario.Controls.Add(this.txtRespustaSecreta);
             this.tabUsuario.Controls.Add(this.txtPreguntaSecreta);
@@ -256,6 +258,16 @@
             this.tabUsuario.TabIndex = 1;
             this.tabUsuario.Text = "Usuario";
             this.tabUsuario.UseVisualStyleBackColor = true;
+            // 
+            // btnFunRol1
+            // 
+            this.btnFunRol1.Location = new System.Drawing.Point(282, 59);
+            this.btnFunRol1.Name = "btnFunRol1";
+            this.btnFunRol1.Size = new System.Drawing.Size(168, 23);
+            this.btnFunRol1.TabIndex = 17;
+            this.btnFunRol1.Text = "Buscar Funcionalidades";
+            this.btnFunRol1.UseVisualStyleBackColor = true;
+            this.btnFunRol1.Click += new System.EventHandler(this.btnFunRol1_Click);
             // 
             // btnAltaClienteUsu
             // 
@@ -366,6 +378,7 @@
             // 
             this.panel1.Controls.Add(this.lisboxFuncionalidades);
             this.panel1.Controls.Add(this.label4);
+            this.panel1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panel1.Location = new System.Drawing.Point(12, 89);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(361, 189);
@@ -373,6 +386,7 @@
             // 
             // lisboxFuncionalidades
             // 
+            this.lisboxFuncionalidades.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.lisboxFuncionalidades.FormattingEnabled = true;
             this.lisboxFuncionalidades.Location = new System.Drawing.Point(0, 17);
             this.lisboxFuncionalidades.Name = "lisboxFuncionalidades";
@@ -429,7 +443,6 @@
             this.tab.SelectedIndex = 0;
             this.tab.Size = new System.Drawing.Size(642, 601);
             this.tab.TabIndex = 0;
-            this.tab.Visible = false;
             // 
             // tabCliente
             // 
@@ -535,7 +548,7 @@
             // 
             // txtCliApellido
             // 
-            this.txtCliApellido.Location = new System.Drawing.Point(82, 79);
+            this.txtCliApellido.Location = new System.Drawing.Point(82, 84);
             this.txtCliApellido.Name = "txtCliApellido";
             this.txtCliApellido.Size = new System.Drawing.Size(348, 20);
             this.txtCliApellido.TabIndex = 20;
@@ -639,7 +652,7 @@
             // 
             // txtCliNumDoc
             // 
-            this.txtCliNumDoc.Location = new System.Drawing.Point(330, 113);
+            this.txtCliNumDoc.Location = new System.Drawing.Point(408, 114);
             this.txtCliNumDoc.Name = "txtCliNumDoc";
             this.txtCliNumDoc.Size = new System.Drawing.Size(100, 20);
             this.txtCliNumDoc.TabIndex = 8;
@@ -647,7 +660,7 @@
             // lblCliNumDoc
             // 
             this.lblCliNumDoc.AutoSize = true;
-            this.lblCliNumDoc.Location = new System.Drawing.Point(206, 113);
+            this.lblCliNumDoc.Location = new System.Drawing.Point(275, 116);
             this.lblCliNumDoc.Name = "lblCliNumDoc";
             this.lblCliNumDoc.Size = new System.Drawing.Size(117, 13);
             this.lblCliNumDoc.TabIndex = 7;
@@ -658,7 +671,7 @@
             this.cbxCliTipoDoc.FormattingEnabled = true;
             this.cbxCliTipoDoc.Location = new System.Drawing.Point(120, 113);
             this.cbxCliTipoDoc.Name = "cbxCliTipoDoc";
-            this.cbxCliTipoDoc.Size = new System.Drawing.Size(70, 21);
+            this.cbxCliTipoDoc.Size = new System.Drawing.Size(121, 21);
             this.cbxCliTipoDoc.TabIndex = 6;
             // 
             // panelBusquedaUsu
@@ -808,6 +821,7 @@
             // 
             // textBox6
             // 
+            this.textBox6.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.textBox6.Location = new System.Drawing.Point(243, 4);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(100, 20);
@@ -915,7 +929,7 @@
             // cbxMoneda
             // 
             this.cbxMoneda.FormattingEnabled = true;
-            this.cbxMoneda.Location = new System.Drawing.Point(139, 297);
+            this.cbxMoneda.Location = new System.Drawing.Point(139, 303);
             this.cbxMoneda.Name = "cbxMoneda";
             this.cbxMoneda.Size = new System.Drawing.Size(121, 21);
             this.cbxMoneda.TabIndex = 11;
@@ -1346,7 +1360,7 @@
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(286, 13);
+            this.label33.Location = new System.Drawing.Point(299, 15);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(67, 13);
             this.label33.TabIndex = 3;
@@ -1355,15 +1369,15 @@
             // cbxTipoDocSaldo
             // 
             this.cbxTipoDocSaldo.FormattingEnabled = true;
-            this.cbxTipoDocSaldo.Location = new System.Drawing.Point(185, 12);
+            this.cbxTipoDocSaldo.Location = new System.Drawing.Point(169, 12);
             this.cbxTipoDocSaldo.Name = "cbxTipoDocSaldo";
-            this.cbxTipoDocSaldo.Size = new System.Drawing.Size(65, 21);
+            this.cbxTipoDocSaldo.Size = new System.Drawing.Size(111, 21);
             this.cbxTipoDocSaldo.TabIndex = 2;
             // 
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(136, 13);
+            this.label34.Location = new System.Drawing.Point(114, 15);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(54, 13);
             this.label34.TabIndex = 1;
@@ -1879,10 +1893,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(681, 646);
+            this.ClientSize = new System.Drawing.Size(681, 622);
             this.Controls.Add(this.tab);
             this.Name = "PanelAdmin";
             this.Text = "PanelAdmin";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.tabUsuario.ResumeLayout(false);
             this.tabUsuario.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -2104,6 +2119,7 @@
         private System.Windows.Forms.DataGridView dataGridPaisCantMov;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Button btnFunRol1;
 
     }
 }

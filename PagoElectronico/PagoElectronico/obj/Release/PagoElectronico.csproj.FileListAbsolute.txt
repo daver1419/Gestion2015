@@ -8,3 +8,4 @@ C:\Users\RomiVM\Documents\github\PagoElectronico\PagoElectronico\bin\Release\Pag
 C:\Users\RomiVM\Documents\github\PagoElectronico\PagoElectronico\bin\Release\PagoElectronico.pdb
 C:\Users\RomiVM\Documents\github\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.exe
 C:\Users\RomiVM\Documents\github\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.pdb
+C:\Users\RomiVM\Documents\github\PagoElectronico\PagoElectronico\bin\Release\PagoElectronico.exe.config

@@ -132,7 +132,7 @@
             // 
             this.btnAdministrador.Location = new System.Drawing.Point(242, 155);
             this.btnAdministrador.Name = "btnAdministrador";
-            this.btnAdministrador.Size = new System.Drawing.Size(75, 23);
+            this.btnAdministrador.Size = new System.Drawing.Size(90, 23);
             this.btnAdministrador.TabIndex = 9;
             this.btnAdministrador.Text = "Administrador";
             this.btnAdministrador.UseVisualStyleBackColor = true;
@@ -167,6 +167,7 @@
             this.Controls.Add(this.lblUsuario);
             this.Name = "Login";
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

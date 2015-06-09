@@ -107,6 +107,11 @@ namespace PagoElectronico.Login
             panelAdm.usuario = usu; 
         }
 
+        private void Login_Load(object sender, EventArgs e)
+        {
+
+        }
+
       
 
 

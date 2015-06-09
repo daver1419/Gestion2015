@@ -15,3 +15,4 @@ C:\Users\RomiVM\Documents\github\PagoElectronico\PagoElectronico\obj\Debug\PagoE
 C:\Users\RomiVM\Documents\github\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.csproj.GenerateResource.Cache
 C:\Users\RomiVM\Documents\github\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.Panel.PanelAdmin.resources
 C:\Users\RomiVM\Documents\github\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.PanelCliente.PanelCliente.resources
+C:\Users\RomiVM\Documents\github\PagoElectronico\PagoElectronico\bin\Debug\PagoElectronico.exe.config
