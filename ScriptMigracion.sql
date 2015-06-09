@@ -193,7 +193,8 @@ GO
 create table THE_ULTIMATES.Transaccion(
 	transac_id int CONSTRAINT PK_transac_id PRIMARY KEY NOT NULL IDENTITY(1,1),
 	transac_fecha datetime not null,
-	transac_tipo_transac_id int not null, /* FK  THE_ULTIMATES.Cuenta*/
+	transac_cuen_id numeric(18,0) not null, /* FK  THE_ULTIMATES.Cuenta*/
+	transac_tipo_transac_id int not null, /* FK  THE_ULTIMATES.Tipo_Transaccion*/
 	transac_importe_comision numeric(18,3)not null,
 	transac_pendiente bit not null	
 );
@@ -313,7 +314,8 @@ add constraint FK_transf_cuenta_origen foreign key (transf_cuenta_origen) refere
 go
 
 alter table THE_ULTIMATES.Transaccion
-add constraint FK_transac_tipo_transac_id foreign key (transac_tipo_transac_id) references THE_ULTIMATES.Tipo_Transaccion(tipo_transac_id);
+add constraint FK_transac_cuen_id foreign key (transac_cuen_id) references THE_ULTIMATES.Cuenta(cuen_id),
+	constraint FK_transac_tipo_transac_id foreign key (transac_tipo_transac_id) references THE_ULTIMATES.Tipo_Transaccion(tipo_transac_id);
 
 go
 
@@ -362,7 +364,9 @@ begin
 
 set identity_insert THE_ULTIMATES.Cuenta on;
 
-insert into THE_ULTIMATES.Cuenta 
+insert into THE_ULTIMATES.Cuenta (cuen_id, cuen_clie_id, cuen_tipo_cuenta_id,
+	cuen_fecha_creacion, cuen_fecha_cierre, cuen_estado_id, cuen_pais_id, 
+	cuen_saldo, cuen_tipo_mon_id)
 	select distinct Cuenta_Numero, 
 		(select clie_id from THE_ULTIMATES.Cliente 
 		where clie_tipo_doc_id = Cli_Tipo_Doc_Cod and clie_nro_doc = Cli_Nro_Doc),
@@ -375,11 +379,19 @@ set identity_insert THE_ULTIMATES.Cuenta off;
 end
 go
 
-create procedure THE_ULTIMATES.SP_CargarTransferencias
+/*create procedure THE_ULTIMATES.SP_CargarTransferencias
 as
-
-
-go
+begin
+insert into THE_ULTIMATES.Transferencia (transf_cuenta_origen, transf_cuenta_destino, transf_fecha,
+	transf_importe, transf_costo_transf, transf_cuenta_propia)
+	select Cuenta_Numero, Cuenta_Dest_Numero, Transf_Fecha, Trans_Importe, Trans_Costo_Trans, 0
+	from gd_esquema.Maestra
+	where Cuenta_Dest_Numero is not null 
+	
+update THE_ULTIMATES.Transferencia set transf_cuenta_propia = 1
+where transf_cuenta_destino in (select cuen_id from THE_ULTIMATES.Cuenta );
+end				
+go*/
 /******************************************** FIN - CREACION DE STORED PROCEDURES, FUNCIONES Y VISTAS *************/
 
 
@@ -575,6 +587,15 @@ go
 /******************************************** FIN - LLENADO DE TABLAS *********************************************/
 
 /******************************************** INICIO - TRIGGERS *****************************************/
+
+/*create trigger THE_ULTIMATES.Trigger_ControlCuentas on THE_ULTIMATES.Transaccion after insert
+as
+
+declare cursor_controlCuentas cursor for select i.transac_cuen_id from inserted i
+*/
+
+
+
 /******************************************** FIN - TRIGGERS *****************************************/
 
 
