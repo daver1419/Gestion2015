@@ -57,4 +57,7 @@ drop table THE_ULTIMATES.Transferencia;
 
 drop function THE_ULTIMATES.GenerarUsuario;
 drop function THE_ULTIMATES.RemoverTildes;
+drop function THE_ULTIMATES.esDelMismoCliente;
+drop function THE_ULTIMATES.esDelMismoCliente2;
 drop procedure THE_ULTIMATES.SP_CargarCuentas;
+drop procedure THE_ULTIMATES.SP_CargarTransferencias;

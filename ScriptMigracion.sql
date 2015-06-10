@@ -358,6 +358,37 @@ AS BEGIN
 END
 go
 
+create function THE_ULTIMATES.esDelMismoCliente(@CuentaOrigen numeric(18,0),@CuentaDestino numeric(18,0))
+returns int
+as begin
+	
+	declare @cuentaPropia int = (select 1 from THE_ULTIMATES.Cuenta c1, THE_ULTIMATES.Cuenta c2 
+								where @CuentaOrigen = c1.cuen_id and @CuentaDestino = c2.cuen_id
+								and c1.cuen_clie_id = c2.cuen_clie_id)
+	if(@cuentaPropia is null)
+		set @cuentaPropia = 0;
+	 
+	return @cuentaPropia;
+end
+go
+
+create function THE_ULTIMATES.esDelMismoCliente2(@CuentaOrigen numeric(18,0),@CuentaDestino numeric(18,0))
+returns int
+as begin
+
+	declare @cuentaPropia int;	
+	declare @clienteOrigen int = (select cuen_clie_id from THE_ULTIMATES.Cuenta where @CuentaDestino = cuen_id);
+	declare @clienteDestino int = (select cuen_clie_id from THE_ULTIMATES.Cuenta where @CuentaOrigen = cuen_id);	
+	
+	if(@clienteOrigen = @clienteDestino)
+		set @cuentaPropia = 1
+	else 
+		set @cuentaPropia = 0;
+	
+	return @cuentaPropia;
+end
+go
+
 create procedure THE_ULTIMATES.SP_CargarCuentas 
 as 
 begin
@@ -379,19 +410,39 @@ set identity_insert THE_ULTIMATES.Cuenta off;
 end
 go
 
-/*create procedure THE_ULTIMATES.SP_CargarTransferencias
+create procedure THE_ULTIMATES.SP_CargarTransferencias
 as
 begin
+
 insert into THE_ULTIMATES.Transferencia (transf_cuenta_origen, transf_cuenta_destino, transf_fecha,
 	transf_importe, transf_costo_transf, transf_cuenta_propia)
-	select Cuenta_Numero, Cuenta_Dest_Numero, Transf_Fecha, Trans_Importe, Trans_Costo_Trans, 0
+	select Cuenta_Numero, Cuenta_Dest_Numero, Transf_Fecha, Trans_Importe, Trans_Costo_Trans, 
+	THE_ULTIMATES.esDelMismoCliente(Cuenta_Numero, Cuenta_Dest_Numero)
 	from gd_esquema.Maestra
-	where Cuenta_Dest_Numero is not null 
+	where Cuenta_Dest_Numero is not null
 	
-update THE_ULTIMATES.Transferencia set transf_cuenta_propia = 1
-where transf_cuenta_destino in (select cuen_id from THE_ULTIMATES.Cuenta );
+end		
+go
+
+create procedure THE_ULTIMATES.SP_CargarTransferencias2
+as
+begin
+
+insert into THE_ULTIMATES.Transferencia (transf_cuenta_origen, transf_cuenta_destino, transf_fecha,
+	transf_importe, transf_costo_transf, transf_cuenta_propia)
+	select Cuenta_Numero, Cuenta_Dest_Numero, Transf_Fecha, Trans_Importe, Trans_Costo_Trans, 
+	(select 1 from THE_ULTIMATES.Cuenta c1, THE_ULTIMATES.Cuenta c2 where Cuenta_Numero = c1.cuen_id
+	and Cuenta_Dest_Numero = c2.cuen_id and c1.cuen_clie_id = c2.cuen_clie_id)
+	from gd_esquema.Maestra
+	where Cuenta_Dest_Numero is not null
+	
+update THE_ULTIMATES.Transferencia set transf_cuenta_propia = 0
+where transf_cuenta_propia is null
+
+alter table THE_ULTIMATES.Transferencia 
+alter column transf_cuenta_propia bit not null 
 end				
-go*/
+go
 /******************************************** FIN - CREACION DE STORED PROCEDURES, FUNCIONES Y VISTAS *************/
 
 
@@ -631,6 +682,11 @@ insert into THE_ULTIMATES.Cuenta (cuen_id,
 	where Cuenta_Numero is not null;
 
 set identity_insert THE_ULTIMATES.Cuenta off;
+
+--exec THE_ULTIMATES.SP_CargarCuentas;
+--exec THE_ULTIMATES.SP_CargarTransferencias;
+
+
 /******************************************** FIN - LLENADO DE TABLAS *********************************************/
 
 /******************************************** INICIO - TRIGGERS *****************************************/
