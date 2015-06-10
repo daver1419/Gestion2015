@@ -183,8 +183,8 @@ create table THE_ULTIMATES.Transferencia(
 	transf_fecha datetime not null,
 	transf_cuenta_origen numeric(18,0) not null, /* FK  THE_ULTIMATES.Cuenta*/
 	transf_cuenta_destino numeric(18,0) not null, /* FK  THE_ULTIMATES.Cuenta*/
-	transf_importe numeric(18,3)not null,
-	transf_costo_transf numeric(18,3)not null,
+	transf_importe numeric(18,2)not null,
+	transf_costo_transf numeric(18,2)not null,
 	transf_cuenta_propia bit null 
 );
 
@@ -464,6 +464,10 @@ insert into THE_ULTIMATES.Funcionalidad values ('AMB Cliente');
 go
 insert into THE_ULTIMATES.Funcionalidad values ('ABM Cuentas');
 go
+insert into THE_ULTIMATES.Funcionalidad values ('ABM Tipo de Cuentas');
+go
+insert into THE_ULTIMATES.Funcionalidad values ('Asociar Desasociar Tarjetas');
+go
 insert into THE_ULTIMATES.Funcionalidad values ('Deposito');
 go
 insert into THE_ULTIMATES.Funcionalidad values ('Extraccion');
@@ -483,7 +487,22 @@ go
 insert into THE_ULTIMATES.Funcionalidad_Rol 
 select rol_id , func_id from THE_ULTIMATES.Rol, THE_ULTIMATES.Funcionalidad where rol_id = 1
 
- 
+insert into THE_ULTIMATES.Funcionalidad_Rol values (2,4);
+go
+insert into THE_ULTIMATES.Funcionalidad_Rol values (2,6);
+go
+insert into THE_ULTIMATES.Funcionalidad_Rol values (2,7);
+go
+insert into THE_ULTIMATES.Funcionalidad_Rol values (2,8);
+go
+insert into THE_ULTIMATES.Funcionalidad_Rol values (2,9);
+go 
+insert into THE_ULTIMATES.Funcionalidad_Rol values (2,10);
+go
+insert into THE_ULTIMATES.Funcionalidad_Rol values (2,11);
+go 
+insert into THE_ULTIMATES.Funcionalidad_Rol values (2,12);
+go
 
 
 --ESTADO_CUENTA
@@ -684,7 +703,7 @@ insert into THE_ULTIMATES.Cuenta (cuen_id,
 set identity_insert THE_ULTIMATES.Cuenta off;
 
 --exec THE_ULTIMATES.SP_CargarCuentas;
---exec THE_ULTIMATES.SP_CargarTransferencias;
+exec THE_ULTIMATES.SP_CargarTransferencias;
 
 
 /******************************************** FIN - LLENADO DE TABLAS *********************************************/

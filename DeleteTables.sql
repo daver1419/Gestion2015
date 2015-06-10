@@ -61,3 +61,4 @@ drop function THE_ULTIMATES.esDelMismoCliente;
 drop function THE_ULTIMATES.esDelMismoCliente2;
 drop procedure THE_ULTIMATES.SP_CargarCuentas;
 drop procedure THE_ULTIMATES.SP_CargarTransferencias;
+drop procedure THE_ULTIMATES.SP_CargarTransferencias2;
