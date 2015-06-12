@@ -25,7 +25,7 @@ alter table THE_ULTIMATES.Transferencia drop constraint FK_transf_cuenta_destino
 alter table THE_ULTIMATES.Transaccion drop constraint FK_transac_tipo_transac_id;
 alter table THE_ULTIMATES.Transaccion drop constraint FK_transac_cuen_id;
 alter table THE_ULTIMATES.Extraccion drop constraint FK_extrac_cuenta_id;
-alter table THE_ULTIMATES.Extraccion drop constraint FK_extrac_cheque_id;
+alter table THE_ULTIMATES.Extraccion drop constraint FK_extrac_cheque_numero;
 alter table THE_ULTIMATES.Factura drop constraint FK_fact_clie_id;
 alter table THE_ULTIMATES.Item_Factura drop constraint FK_item_fact_num;
 /*alter table THE_ULTIMATES.Item_Factura drop constraint FK_item_fact_transac_id;*/
@@ -62,3 +62,5 @@ drop function THE_ULTIMATES.esDelMismoCliente2;
 drop procedure THE_ULTIMATES.SP_CargarCuentas;
 drop procedure THE_ULTIMATES.SP_CargarTransferencias;
 drop procedure THE_ULTIMATES.SP_CargarTransferencias2;
+drop procedure THE_ULTIMATES.SP_CargarBancos;
+drop procedure THE_ULTIMATES.SP_CargarCheques;

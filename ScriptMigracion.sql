@@ -170,10 +170,11 @@ create table THE_ULTIMATES.Deposito(
 GO
 
 create table THE_ULTIMATES.Cheque(
-	cheque_id int CONSTRAINT PK_cheque_id PRIMARY KEY NOT NULL IDENTITY(1,1),
+	cheque_numero numeric(18,0) CONSTRAINT PK_cheque_id PRIMARY KEY NOT NULL IDENTITY(1,1),
 	cheque_fecha datetime not null,
-	cheque_importe numeric(18,3)not null,
-	cheque_banco_id int not null  /* FK  THE_ULTIMATES.Banco*/
+	cheque_importe numeric(18,2)not null,
+	cheque_nombre_completo varchar(30),
+	cheque_banco_id numeric(18,0) not null  /* FK  THE_ULTIMATES.Banco*/
 );
 	
 GO
@@ -210,17 +211,17 @@ create table THE_ULTIMATES.Tipo_Transaccion(
 GO
 
 create table THE_ULTIMATES.Extraccion(
-	extrac_id int CONSTRAINT PK_extrac_id PRIMARY KEY NOT NULL IDENTITY(1,1),
+	extrac_id numeric(18,0) CONSTRAINT PK_extrac_id PRIMARY KEY NOT NULL IDENTITY(1,1),
 	extrac_cuenta_id numeric(18,0) not null, /* FK  THE_ULTIMATES.Cuenta*/
-	extrac_cheque_id int not null /* FK  THE_ULTIMATES.Cheque*/
+	extrac_cheque_numero numeric(18,0) not null /* FK  THE_ULTIMATES.Cheque*/
 );
 
 GO
 
 create table THE_ULTIMATES.Banco(
-	banco_id int CONSTRAINT PK_banco_id PRIMARY KEY NOT NULL IDENTITY(1,1),
-	banco_nombre varchar(50) not null,
-	banco_direc varchar(50) not null
+	banco_id numeric(18,0) CONSTRAINT PK_banco_id PRIMARY KEY NOT NULL IDENTITY(1,1),
+	banco_nombre varchar(255) not null,
+	banco_direc varchar(255) not null
 );
 
 GO
@@ -321,7 +322,7 @@ go
 
 alter table THE_ULTIMATES.Extraccion
 add constraint FK_extrac_cuenta_id foreign key (extrac_cuenta_id) references THE_ULTIMATES.Cuenta(cuen_id),
-	constraint FK_extrac_cheque_id foreign key (extrac_cheque_id) references THE_ULTIMATES.Cheque(cheque_id);
+	constraint FK_extrac_cheque_numero foreign key (extrac_cheque_numero) references THE_ULTIMATES.Cheque(cheque_numero);
 	
 go
 
@@ -442,6 +443,36 @@ where transf_cuenta_propia is null
 alter table THE_ULTIMATES.Transferencia 
 alter column transf_cuenta_propia bit not null 
 end				
+go
+
+create procedure THE_ULTIMATES.SP_CargarBancos
+as begin
+
+set identity_insert THE_ULTIMATES.Banco on;
+
+insert into THE_ULTIMATES.Banco (banco_id, banco_nombre, banco_direc)
+	select distinct Banco_Cogido, Banco_Nombre, Banco_Direccion
+	from gd_esquema.Maestra
+	where Banco_Cogido is not null
+	
+set identity_insert THE_ULTIMATES.Banco off;
+
+end
+go
+
+create procedure THE_ULTIMATES.SP_CargarCheques
+as begin
+
+set identity_insert THE_ULTIMATES.Cheque on;
+
+insert into THE_ULTIMATES.Cheque (cheque_numero, cheque_fecha, cheque_importe, cheque_nombre_completo, cheque_banco_id)
+	select distinct Cheque_Numero,Cheque_Fecha, Cheque_Importe, Cli_Nombre + ', ' + Cli_Apellido, Banco_Cogido
+	from gd_esquema.Maestra
+	where Cheque_Numero is not null
+	
+set identity_insert THE_ULTIMATES.Cheque off;
+
+end
 go
 /******************************************** FIN - CREACION DE STORED PROCEDURES, FUNCIONES Y VISTAS *************/
 
@@ -703,7 +734,9 @@ insert into THE_ULTIMATES.Cuenta (cuen_id,
 set identity_insert THE_ULTIMATES.Cuenta off;
 
 --exec THE_ULTIMATES.SP_CargarCuentas;
-exec THE_ULTIMATES.SP_CargarTransferencias;
+exec THE_ULTIMATES.SP_CargarTransferencias2;
+exec THE_ULTIMATES.SP_CargarBancos;
+exec THE_ULTIMATES.SP_CargarCheques;
 
 
 /******************************************** FIN - LLENADO DE TABLAS *********************************************/
