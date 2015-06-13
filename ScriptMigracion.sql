@@ -234,21 +234,21 @@ create table THE_ULTIMATES.Factura(
 
 GO 
 
-create table THE_ULTIMATES.Item_Factura(
+/*create table THE_ULTIMATES.Item_Factura(
 	item_fact_id int CONSTRAINT PK_item_fact_id PRIMARY KEY NOT NULL IDENTITY(1,1),
 	item_fact_num int not null, /* FK  THE_ULTIMATES.Factura*/
 	item_fact_desc varchar(250) not null,
 	item_fact_precio numeric(18,3)not null
 );
+*/
 
-
-/*create table THE_ULTIMATES.Item_Factura(
+create table THE_ULTIMATES.Item_Factura(
 	item_fact_num int not null, /* FK  THE_ULTIMATES.Factura*/
 	item_fact_transac_id int not null,  /* FK  THE_ULTIMATES.Transaccion*/
 	item_fact_cantidad int not null,
 	CONSTRAINT PK_item_factura PRIMARY KEY (item_fact_num, item_fact_transac_id)
 );
-*/
+
 
 GO
 
@@ -332,8 +332,8 @@ add constraint FK_fact_clie_id foreign key (fact_clie_id) references THE_ULTIMAT
 go
 
 alter table THE_ULTIMATES.Item_Factura
-add constraint FK_item_fact_num foreign key(item_fact_num) references THE_ULTIMATES.Factura(fact_num);/*,
-	constraint FK_item_fact_transac_id foreign key(item_fact_transac_id) references THE_ULTIMATES.Transaccion(transac_id)*/
+add constraint FK_item_fact_num foreign key(item_fact_num) references THE_ULTIMATES.Factura(fact_num),
+	constraint FK_item_fact_transac_id foreign key(item_fact_transac_id) references THE_ULTIMATES.Transaccion(transac_id);
 
 go
 
@@ -387,6 +387,13 @@ as begin
 		set @cuentaPropia = 0;
 	
 	return @cuentaPropia;
+end
+go
+
+create function THE_ULTIMATES.getClientId(@Cuenta numeric(18,0))
+returns int
+as begin
+	return (select cuen_clie_id from THE_ULTIMATES.Cuenta where @Cuenta = cuen_id)
 end
 go
 
@@ -472,6 +479,20 @@ insert into THE_ULTIMATES.Cheque (cheque_numero, cheque_fecha, cheque_importe, c
 	
 set identity_insert THE_ULTIMATES.Cheque off;
 
+end
+go
+
+create procedure THE_ULTIMATES.SP_CargarExtracciones
+as begin
+
+set identity_insert THE_ULTIMATES.Extraccion on;
+
+insert into THE_ULTIMATES.Extraccion (extrac_id, extrac_cheque_numero, extrac_cuenta_id)
+	select distinct Retiro_Codigo, Cheque_Numero, Cuenta_Numero
+	from gd_esquema.Maestra
+	where Retiro_Codigo is not null
+
+set identity_insert THE_ULTIMATES.Extraccion off;
 end
 go
 /******************************************** FIN - CREACION DE STORED PROCEDURES, FUNCIONES Y VISTAS *************/
@@ -734,20 +755,130 @@ insert into THE_ULTIMATES.Cuenta (cuen_id,
 set identity_insert THE_ULTIMATES.Cuenta off;
 
 --exec THE_ULTIMATES.SP_CargarCuentas;
-exec THE_ULTIMATES.SP_CargarTransferencias2;
+--exec THE_ULTIMATES.SP_CargarTransferencias2;
 exec THE_ULTIMATES.SP_CargarBancos;
 exec THE_ULTIMATES.SP_CargarCheques;
+exec THE_ULTIMATES.SP_CargarExtracciones;
+go
 
+--TIPO TRANSACCIONES
+
+insert into THE_ULTIMATES.Tipo_Transaccion values ('Deposito', 0);
+insert into THE_ULTIMATES.Tipo_Transaccion values ('Extraccion', 0);
+insert into THE_ULTIMATES.Tipo_Transaccion values ('Transferencia', 1);
+
+
+declare @cuenta_numero numeric(18,0), 
+		@cuenta_dest_numero varchar(255),
+		@trans_fecha datetime, 
+		@trans_importe numeric(18,2), 
+		@trans_costo_trans numeric(18,2),
+		@item_factura_descr varchar(255),
+		@item_factura_importe numeric(18,2),
+		@factura_numero numeric(18,0), 
+		@factura_fecha datetime,
+		@transac_pendiente bit = 1,
+		@transac_id int
+		
+declare cursor_transferencias cursor for 
+	(select Cuenta_Numero,
+			Cuenta_Dest_Numero,
+			Transf_Fecha,
+			Trans_Importe,
+			Trans_Costo_Trans,
+			Item_Factura_Descr,
+			Item_Factura_Importe,
+			Factura_Numero,
+			Factura_Fecha
+	from gd_esquema.Maestra
+	where Cuenta_Dest_Numero is not null)
+	
+open cursor_transferencias;
+
+fetch next from cursor_transferencias 
+into	@cuenta_numero , 
+		@cuenta_dest_numero , 
+		@trans_fecha, 
+		@trans_importe, 
+		@trans_costo_trans, 
+		@item_factura_descr, 
+		@item_factura_importe, 
+		@factura_numero, 
+		@factura_fecha
+		
+
+set identity_insert THE_ULTIMATES.Factura on;
+		
+while @@FETCH_STATUS = 0
+begin
+	
+	insert into THE_ULTIMATES.Transferencia (transf_cuenta_origen,
+											transf_cuenta_destino,
+											transf_fecha,
+											transf_importe,
+											transf_costo_transf,
+											transf_cuenta_propia)
+										
+	values (@cuenta_numero, @cuenta_dest_numero, @trans_fecha, @trans_importe,
+			@trans_costo_trans, THE_ULTIMATES.esDelMismoCliente(@cuenta_numero, @cuenta_dest_numero))
+
+	if(@item_factura_importe is not null)
+		set @transac_pendiente = 0
+
+	insert into THE_ULTIMATES.Transaccion (transac_cuen_id,
+											transac_fecha,
+											transac_importe_comision,
+											transac_pendiente,
+											transac_tipo_transac_id)
+											
+	values (@cuenta_numero, @trans_fecha, @trans_costo_trans, @transac_pendiente, 3)
+	
+	if(@item_factura_importe is not null)
+	begin 
+	
+		set @transac_id = SCOPE_IDENTITY();		
+		
+		insert into THE_ULTIMATES.Factura (fact_num, fact_fecha, fact_clie_id)
+		values (@factura_numero, @factura_fecha, THE_ULTIMATES.getClientId(@cuenta_numero))
+		
+		insert into THE_ULTIMATES.Item_Factura (item_fact_num, item_fact_transac_id, item_fact_cantidad)
+		values (@factura_numero, @transac_id, 1);
+	
+	end
+
+fetch next from cursor_transferencias 
+into	@cuenta_numero , 
+		@cuenta_dest_numero , 
+		@trans_fecha, 
+		@trans_importe, 
+		@trans_costo_trans, 
+		@item_factura_descr, 
+		@item_factura_importe, 
+		@factura_numero, 
+		@factura_fecha
+		
+end	
+
+set identity_insert THE_ULTIMATES.Factura off;
+close cursor_transferencias;
+deallocate cursor_transferencias;
 
 /******************************************** FIN - LLENADO DE TABLAS *********************************************/
 
 /******************************************** INICIO - TRIGGERS *****************************************/
 
-/*create trigger THE_ULTIMATES.Trigger_ControlCuentas on THE_ULTIMATES.Transaccion after insert
+/*create trigger THE_ULTIMATES.Trigger_ControlCuentas on THE_ULTIMATES.Transferencia after insert
 as
 
 declare cursor_controlCuentas cursor for select i.transac_cuen_id from inserted i
+
+Crear transaccion. 
+
+Si el campo de item es distinto de null
+	crear item, 
+	si la 
 */
+
 
 
 

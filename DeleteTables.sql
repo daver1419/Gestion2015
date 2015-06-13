@@ -28,7 +28,7 @@ alter table THE_ULTIMATES.Extraccion drop constraint FK_extrac_cuenta_id;
 alter table THE_ULTIMATES.Extraccion drop constraint FK_extrac_cheque_numero;
 alter table THE_ULTIMATES.Factura drop constraint FK_fact_clie_id;
 alter table THE_ULTIMATES.Item_Factura drop constraint FK_item_fact_num;
-/*alter table THE_ULTIMATES.Item_Factura drop constraint FK_item_fact_transac_id;*/
+alter table THE_ULTIMATES.Item_Factura drop constraint FK_item_fact_transac_id;
 
 drop table THE_ULTIMATES.Acceso_Log;
 drop table THE_ULTIMATES.Cliente;
@@ -59,8 +59,10 @@ drop function THE_ULTIMATES.GenerarUsuario;
 drop function THE_ULTIMATES.RemoverTildes;
 drop function THE_ULTIMATES.esDelMismoCliente;
 drop function THE_ULTIMATES.esDelMismoCliente2;
+drop function THE_ULTIMATES.getClientId;
 drop procedure THE_ULTIMATES.SP_CargarCuentas;
 drop procedure THE_ULTIMATES.SP_CargarTransferencias;
 drop procedure THE_ULTIMATES.SP_CargarTransferencias2;
 drop procedure THE_ULTIMATES.SP_CargarBancos;
 drop procedure THE_ULTIMATES.SP_CargarCheques;
+drop procedure THE_ULTIMATES.SP_CargarExtracciones;
