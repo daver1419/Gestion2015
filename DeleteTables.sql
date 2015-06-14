@@ -66,3 +66,4 @@ drop procedure THE_ULTIMATES.SP_CargarTransferencias2;
 drop procedure THE_ULTIMATES.SP_CargarBancos;
 drop procedure THE_ULTIMATES.SP_CargarCheques;
 drop procedure THE_ULTIMATES.SP_CargarExtracciones;
+drop procedure THE_ULTIMATES.SP_CargarFacturas;
