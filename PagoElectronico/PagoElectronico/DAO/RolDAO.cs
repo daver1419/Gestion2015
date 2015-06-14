@@ -46,7 +46,7 @@ namespace PagoElectronico.DAO
                 while (reader.Read())
                 {
                     Rol rol = new Rol();
-                    rol.id = reader.GetInt32(0);
+                    rol.id = reader.GetByte(0);
                     rol.descripcion = reader.GetString(1);
                    
                     lista.Add(rol);
