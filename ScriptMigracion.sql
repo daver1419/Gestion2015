@@ -569,7 +569,6 @@ insert into THE_ULTIMATES.Rol values ('Administrador', 1),
 go
 
 --FUNCIONALIDAD
-
 insert into THE_ULTIMATES.Funcionalidad values ('ABM Rol'), 
 											('ABM Usuario'),
 											('AMB Cliente'),
@@ -631,7 +630,17 @@ go
 set identity_insert THE_ULTIMATES.Pais off;
 go
 
---CLIENTE,USUARIO
+--CLIENTE,USUARIO,ROL_USUARIO
+
+insert into THE_ULTIMATES.Usuario values ('romi','w23e',GETDATE(),GETDATE(),null,null,1,0),
+										('emi','w23e',GETDATE(),GETDATE(),null,null,1,0),
+										('meli','w23e',GETDATE(),GETDATE(),null,null,1,0),
+										('david','w23e',GETDATE(),GETDATE(),null,null,1,0);
+go
+
+insert into THE_ULTIMATES.Rol_Usuario values (1,1),(1,2),(1,3),(1,4);
+go
+
 DECLARE @usu_id int
 DECLARE @username varchar(25);
 
@@ -709,6 +718,9 @@ BEGIN
 				0)
 			
 		SET @usu_id = SCOPE_IDENTITY()	
+		
+		insert into THE_ULTIMATES.Rol_Usuario values (2,@usu_id)
+		
 		INSERT INTO THE_ULTIMATES.Cliente(	[clie_nombre],
 											[clie_apellido],
 											[clie_nro_doc],
