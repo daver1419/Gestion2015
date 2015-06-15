@@ -140,13 +140,13 @@ GO
 create table THE_ULTIMATES.Tarjeta(
 	tarj_id int CONSTRAINT PK_tarj_id PRIMARY KEY not null IDENTITY(1,1),
 	tarj_clie_id int not null,  /* FK  THE_ULTIMATES.Cliente*/
-	tarj_numero char(64) not null UNIQUE,
+	tarj_numero char(20) not null UNIQUE,
 	tarj_numero_preview char(4) not null,
 	tarj_emisor_id int not null, /* FK  THE_ULTIMATES.Emisor*/
 	tarj_fecha_emision datetime not null,
 	tarj_fecha_venc datetime not null,
-	tarj_codigo_seg char(4),
-	tarj_activa bit not null
+	tarj_codigo_seg char(20),
+	tarj_activa bit default 1 not null
 );
 
 GO
@@ -159,7 +159,7 @@ create table THE_ULTIMATES.Emisor(
 GO
 
 create table THE_ULTIMATES.Deposito(
-	depo_id int CONSTRAINT PK_depo_id PRIMARY KEY NOT NULL IDENTITY(1,1),
+	depo_id numeric(18,0) CONSTRAINT PK_depo_id PRIMARY KEY NOT NULL IDENTITY(1,1),
 	depo_fecha datetime not null,
 	depo_importe numeric(18,2) not null,
 	depo_cuen_id numeric(18,0) not null,  /* FK  THE_ULTIMATES.Cuenta*/
@@ -497,17 +497,65 @@ end
 go
 
 create procedure THE_ULTIMATES.SP_CargarFacturas
-as begin
+as 
+begin
 
-set identity_insert THE_ULTIMATES.Factura on;
+	set identity_insert THE_ULTIMATES.Factura on;
 
-insert into THE_ULTIMATES.Factura (fact_num, fact_fecha, fact_clie_id)
-	select distinct Factura_Numero, Factura_Fecha, THE_ULTIMATES.getClientId(Cuenta_Numero)
+	insert into THE_ULTIMATES.Factura (fact_num, fact_fecha, fact_clie_id)
+		select distinct Factura_Numero, Factura_Fecha, THE_ULTIMATES.getClientId(Cuenta_Numero)
+		from gd_esquema.Maestra
+		where Factura_Numero is not null
+		
+	set identity_insert THE_ULTIMATES.Factura off;
+
+end
+go
+
+create procedure THE_ULTIMATES.SP_CargarEmisores
+as 
+begin
+	insert into THE_ULTIMATES.Emisor
+	select distinct Tarjeta_Emisor_Descripcion
 	from gd_esquema.Maestra
-	where Factura_Numero is not null
-	
-set identity_insert THE_ULTIMATES.Factura off;
+	where Tarjeta_Emisor_Descripcion is not null
+end
+go
 
+create procedure THE_ULTIMATES.SP_CargarTarjetas
+as 
+begin
+	insert into THE_ULTIMATES.Tarjeta (tarj_numero, tarj_numero_preview, tarj_fecha_emision,
+										tarj_fecha_venc, tarj_codigo_seg, tarj_emisor_id, tarj_clie_id)
+		select distinct HASHBYTES('SHA1', Tarjeta_Numero), RIGHT(Tarjeta_Numero, 4),
+				Tarjeta_Fecha_Emision, Tarjeta_Fecha_Vencimiento, HASHBYTES('SHA1', Tarjeta_Codigo_Seg), 
+				(select emisor_id from THE_ULTIMATES.Emisor 
+				 where emisor_desc = Tarjeta_Emisor_Descripcion),
+				(select clie_id from THE_ULTIMATES.Cliente
+				 where Cliente.clie_tipo_doc_id = Cli_Tipo_Doc_Cod and Cliente.clie_nro_doc = Cli_Nro_Doc)
+		from gd_esquema.Maestra 
+		where Tarjeta_Numero is not null
+end
+go
+
+create procedure THE_ULTIMATES.SP_CargarDepositos
+as 
+begin
+	set identity_insert THE_ULTIMATES.Deposito on;
+
+	insert into THE_ULTIMATES.Deposito (depo_id, depo_fecha, depo_importe, 
+										depo_cuen_id, depo_tarj_id, depo_tipo_moneda_id)
+		select distinct Deposito_Codigo, 
+						Deposito_Fecha, 
+						Deposito_Importe, 
+						Cuenta_Numero, 
+						(select tarj_id from THE_ULTIMATES.Tarjeta 
+						 where Tarjeta.tarj_numero = HASHBYTES('SHA1',Tarjeta_Numero)),
+						1
+		from gd_esquema.Maestra
+		where Deposito_Codigo is not null
+
+	set identity_insert THE_ULTIMATES.Deposito off;
 end
 go
 /******************************************** FIN - CREACION DE STORED PROCEDURES, FUNCIONES Y VISTAS *************/
@@ -516,80 +564,46 @@ go
 /******************************************** INICIO - LLENADO DE TABLAS *********************************************/
 
 --ROL
-insert into THE_ULTIMATES.Rol values ('Administrador', 1);
-go
-insert into THE_ULTIMATES.Rol values ('Cliente', 1);
+insert into THE_ULTIMATES.Rol values ('Administrador', 1), 
+									 ('Cliente', 1);
 go
 
 --FUNCIONALIDAD
 
-insert into THE_ULTIMATES.Funcionalidad values ('ABM Rol');
+insert into THE_ULTIMATES.Funcionalidad values ('ABM Rol'), 
+											('ABM Usuario'),
+											('AMB Cliente'),
+											('ABM Cuentas'),
+											('ABM Tipo de Cuentas'),
+											('Asociar Desasociar Tarjetas'),
+											('Deposito'),
+											('Extraccion'),
+											('Transferencia'),
+											('Facturacion'),
+											('Consulta de Saldo'),
+											('Listado Estadistico');
+											
 go
-insert into THE_ULTIMATES.Funcionalidad values ('ABM Usuario');
-go
-insert into THE_ULTIMATES.Funcionalidad values ('AMB Cliente');
-go
-insert into THE_ULTIMATES.Funcionalidad values ('ABM Cuentas');
-go
-insert into THE_ULTIMATES.Funcionalidad values ('ABM Tipo de Cuentas');
-go
-insert into THE_ULTIMATES.Funcionalidad values ('Asociar Desasociar Tarjetas');
-go
-insert into THE_ULTIMATES.Funcionalidad values ('Deposito');
-go
-insert into THE_ULTIMATES.Funcionalidad values ('Extraccion');
-go
-insert into THE_ULTIMATES.Funcionalidad values ('Transferencia');
-go
-insert into THE_ULTIMATES.Funcionalidad values ('Facturacion');
-go
-insert into THE_ULTIMATES.Funcionalidad values ('Consulta de Saldo');
-go
-insert into THE_ULTIMATES.Funcionalidad values ('Listado Estadistico');
-go
-
 
 --FUNCIONALIDAD_POR_ROL
-
 insert into THE_ULTIMATES.Funcionalidad_Rol 
 select rol_id , func_id from THE_ULTIMATES.Rol, THE_ULTIMATES.Funcionalidad where rol_id = 1
 
-insert into THE_ULTIMATES.Funcionalidad_Rol values (2,4);
+insert into THE_ULTIMATES.Funcionalidad_Rol values (2,4),(2,6),(2,7),(2,8),(2,9),(2,10),(2,11),(2,12);
 go
-insert into THE_ULTIMATES.Funcionalidad_Rol values (2,6);
-go
-insert into THE_ULTIMATES.Funcionalidad_Rol values (2,7);
-go
-insert into THE_ULTIMATES.Funcionalidad_Rol values (2,8);
-go
-insert into THE_ULTIMATES.Funcionalidad_Rol values (2,9);
-go 
-insert into THE_ULTIMATES.Funcionalidad_Rol values (2,10);
-go
-insert into THE_ULTIMATES.Funcionalidad_Rol values (2,11);
-go 
-insert into THE_ULTIMATES.Funcionalidad_Rol values (2,12);
-go
-
 
 --ESTADO_CUENTA
-insert into THE_ULTIMATES.Estado_Cuenta values ('Pendiente de Activacion');
-go
-insert into THE_ULTIMATES.Estado_Cuenta values ('Cerrada');
-go
-insert into THE_ULTIMATES.Estado_Cuenta values ('Inhabilitada');
-go
-insert into THE_ULTIMATES.Estado_Cuenta values ('Habilitada');
+insert into THE_ULTIMATES.Estado_Cuenta values ('Pendiente de Activacion'),
+											('Cerrada'),
+											('Inhabilitada'),
+											('Habilitada');
 go
 
 --TIPO_CUENTA
-insert into THE_ULTIMATES.Tipo_Cuenta values ('Oro', 31, 30.00);
-go
-insert into THE_ULTIMATES.Tipo_Cuenta values ('Plata', 31, 20.00);
-go
-insert into THE_ULTIMATES.Tipo_Cuenta values ('Bronce', 31, 10.00);
-go
-insert into THE_ULTIMATES.Tipo_Cuenta values ('Gratuita', 1, 0.00);
+insert into THE_ULTIMATES.Tipo_Cuenta values ('Oro', 31, 30.00),
+											('Plata', 31, 20.00),
+											('Bronce', 31, 10.00),
+											('Gratuita', 1, 0.00);
 go
 
 --TIPO_MONEDA
@@ -743,45 +757,22 @@ DEALLOCATE cursor_carga_cliente_usuario;
 COMMIT TRANSACTION transaction_maestra;
 go
 
---CUENTA
-set identity_insert THE_ULTIMATES.Cuenta on;
 
-insert into THE_ULTIMATES.Cuenta (cuen_id, 
-								cuen_clie_id, 
-								cuen_tipo_cuenta_id,
-								cuen_fecha_creacion, 
-								cuen_fecha_cierre, 
-								cuen_estado_id, 
-								cuen_pais_id, 
-								cuen_saldo, 
-								cuen_tipo_mon_id)
-	select distinct Cuenta_Numero, 
-					(select clie_id from THE_ULTIMATES.Cliente where clie_tipo_doc_id = Cli_Tipo_Doc_Cod and clie_nro_doc = Cli_Nro_Doc),
-					4, 
-					Cuenta_Fecha_Creacion, 
-					null, 
-					4, 
-					Cuenta_Pais_Codigo, 
-					0.00, 
-					1
-	from gd_esquema.Maestra
-	where Cuenta_Numero is not null;
-
-set identity_insert THE_ULTIMATES.Cuenta off;
-
---exec THE_ULTIMATES.SP_CargarCuentas;
+exec THE_ULTIMATES.SP_CargarCuentas;
 exec THE_ULTIMATES.SP_CargarTransferencias2;
 exec THE_ULTIMATES.SP_CargarBancos;
 exec THE_ULTIMATES.SP_CargarCheques;
 exec THE_ULTIMATES.SP_CargarExtracciones;
-go
+exec THE_ULTIMATES.SP_CargarEmisores;
+exec THE_ULTIMATES.SP_CargarTarjetas;
+exec THE_ULTIMATES.SP_CargarDepositos;
 
 --TIPO TRANSACCIONES
-
-insert into THE_ULTIMATES.Tipo_Transaccion values ('Deposito', 0);
-insert into THE_ULTIMATES.Tipo_Transaccion values ('Extraccion', 0);
-insert into THE_ULTIMATES.Tipo_Transaccion values ('Transferencia', 1);
-
+insert into THE_ULTIMATES.Tipo_Transaccion values ('Deposito', 0),
+												('Extraccion', 0),
+												('Transferencia', 1),
+												('Apertura de cuenta', 1),
+												('Cambio de cuenta', 1);											
 exec THE_ULTIMATES.SP_CargarFacturas;
 
 declare @cuenta_numero numeric(18,0), 
