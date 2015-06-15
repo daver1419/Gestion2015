@@ -409,7 +409,7 @@ insert into THE_ULTIMATES.Cuenta (cuen_id, cuen_clie_id, cuen_tipo_cuenta_id,
 	select distinct Cuenta_Numero, 
 		(select clie_id from THE_ULTIMATES.Cliente 
 		where clie_tipo_doc_id = Cli_Tipo_Doc_Cod and clie_nro_doc = Cli_Nro_Doc),
-		4, Cuenta_Fecha_Creacion, null, 5, Cuenta_Pais_Codigo, 0.00, 1
+		4, Cuenta_Fecha_Creacion, null, 4, Cuenta_Pais_Codigo, 0.00, 1
 	from gd_esquema.Maestra
 	where Cuenta_Numero is not null;
 
@@ -757,7 +757,6 @@ DEALLOCATE cursor_carga_cliente_usuario;
 COMMIT TRANSACTION transaction_maestra;
 go
 
-
 exec THE_ULTIMATES.SP_CargarCuentas;
 exec THE_ULTIMATES.SP_CargarTransferencias2;
 exec THE_ULTIMATES.SP_CargarBancos;
@@ -768,12 +767,16 @@ exec THE_ULTIMATES.SP_CargarTarjetas;
 exec THE_ULTIMATES.SP_CargarDepositos;
 
 --TIPO TRANSACCIONES
+
 insert into THE_ULTIMATES.Tipo_Transaccion values ('Deposito', 0),
 												('Extraccion', 0),
 												('Transferencia', 1),
 												('Apertura de cuenta', 1),
-												('Cambio de cuenta', 1);											
+												('Cambio de cuenta', 1);
+go
+
 exec THE_ULTIMATES.SP_CargarFacturas;
+
 
 declare @cuenta_numero numeric(18,0), 
 		@trans_fecha datetime,  
