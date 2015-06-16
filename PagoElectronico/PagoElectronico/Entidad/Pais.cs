@@ -7,7 +7,7 @@ namespace PagoElectronico.Entidad
 {
     class Pais
     {
-        public byte id { get; set; }
+        public decimal id { get; set; }
         public string descripcion { get; set; }
          
 

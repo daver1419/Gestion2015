@@ -46,7 +46,7 @@ namespace PagoElectronico.DAO
                 while (reader.Read())
                 {
                     Rol rol = new Rol();
-                    rol.id = reader.GetByte(0);
+                    rol.id = reader.GetInt32(0);
                     rol.descripcion = reader.GetString(1);
                    
                     lista.Add(rol);
@@ -59,7 +59,7 @@ namespace PagoElectronico.DAO
 
 
 
-        public List<Funcionalidad> listaFuncionalidad(int idRol)
+        public List<Funcionalidad> listaFuncionalidad(long idRol)
         {
             List<Funcionalidad> lista = new List<Funcionalidad>();
             using (SqlCommand command = InitializeConnection("Lista_Func_Rol"))

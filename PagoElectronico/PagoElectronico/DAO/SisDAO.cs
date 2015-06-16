@@ -22,7 +22,7 @@ namespace PagoElectronico.DAO
                 while (reader.Read())
                 {
                     Pais pais = new Pais();
-                    pais.id = reader.GetByte(0);
+                    pais.id = reader.GetDecimal(0);
                     pais.descripcion = reader.GetString(1);
                     lista.Add(pais);
 
