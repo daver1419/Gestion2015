@@ -48,14 +48,54 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABM de Usuario\ControladorUsuario.cs" />
+    <Compile Include="DAO\RolDAO.cs" />
+    <Compile Include="DAO\BaseDAO.cs" />
+    <Compile Include="DAO\SisDAO.cs" />
+    <Compile Include="Entidad\Cliente.cs" />
+    <Compile Include="Entidad\Funcionalidad.cs" />
+    <Compile Include="Entidad\Pais.cs" />
+    <Compile Include="Entidad\Rol.cs" />
+    <Compile Include="Entidad\Sis.cs" />
+    <Compile Include="Entidad\TipoCuenta.cs" />
+    <Compile Include="Entidad\TipoDoc.cs" />
+    <Compile Include="Entidad\TipoMoneda.cs" />
+    <Compile Include="Entidad\Usuario.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Login\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panel\PanelAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panel\PanelAdmin.Designer.cs">
+      <DependentUpon>PanelAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panel\PanelCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panel\PanelCliente.Designer.cs">
+      <DependentUpon>PanelCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Login\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel\PanelAdmin.resx">
+      <DependentUpon>PanelAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel\PanelCliente.resx">
+      <DependentUpon>PanelCliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -65,6 +105,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -78,13 +119,11 @@
   <ItemGroup>
     <Folder Include="ABM Cliente\" />
     <Folder Include="ABM Cuenta\" />
-    <Folder Include="ABM de Usuario\" />
     <Folder Include="ABM Rol\" />
     <Folder Include="Consulta Saldos\" />
     <Folder Include="Depositos\" />
     <Folder Include="Facturacion\" />
     <Folder Include="Listados\" />
-    <Folder Include="Login\" />
     <Folder Include="Retiros\" />
     <Folder Include="Transferencias\" />
   </ItemGroup>
