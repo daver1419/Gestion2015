@@ -4,7 +4,6 @@ GO
 
 alter table THE_ULTIMATES.Funcionalidad_Rol drop constraint FK_func_ron_rol_id;
 alter table THE_ULTIMATES.Funcionalidad_Rol drop constraint FK_func_ron_func_id;
-alter table THE_ULTIMATES.Usuario drop constraint FK_usu_clie_id;
 alter table THE_ULTIMATES.Rol_Usuario drop constraint FK_rol_usu_rol_id;
 alter table THE_ULTIMATES.Rol_Usuario drop constraint FK_rol_usu_usu_id;
 alter table THE_ULTIMATES.Acceso_Log drop constraint FK_acc_usu_id;
@@ -24,11 +23,12 @@ alter table THE_ULTIMATES.Cheque drop constraint FK_cheque_banco_id;
 alter table THE_ULTIMATES.Transferencia drop constraint FK_transf_cuenta_origen;
 alter table THE_ULTIMATES.Transferencia drop constraint FK_transf_cuenta_destino;
 alter table THE_ULTIMATES.Transaccion drop constraint FK_transac_tipo_transac_id;
+alter table THE_ULTIMATES.Transaccion drop constraint FK_transac_cuen_id;
 alter table THE_ULTIMATES.Extraccion drop constraint FK_extrac_cuenta_id;
-alter table THE_ULTIMATES.Extraccion drop constraint FK_extrac_cheque_id;
+alter table THE_ULTIMATES.Extraccion drop constraint FK_extrac_cheque_numero;
 alter table THE_ULTIMATES.Factura drop constraint FK_fact_clie_id;
 alter table THE_ULTIMATES.Item_Factura drop constraint FK_item_fact_num;
-/*alter table THE_ULTIMATES.Item_Factura drop constraint FK_item_fact_transac_id;*/
+alter table THE_ULTIMATES.Item_Factura drop constraint FK_item_fact_transac_id;
 
 drop table THE_ULTIMATES.Acceso_Log;
 drop table THE_ULTIMATES.Banco;
@@ -54,3 +54,19 @@ drop table THE_ULTIMATES.Tipo_Transaccion;
 drop table THE_ULTIMATES.Transaccion;
 drop table THE_ULTIMATES.Transferencia;
 drop table THE_ULTIMATES.Usuario;
+
+drop function THE_ULTIMATES.GenerarUsuario;
+drop function THE_ULTIMATES.RemoverTildes;
+drop function THE_ULTIMATES.esDelMismoCliente;
+drop function THE_ULTIMATES.esDelMismoCliente2;
+drop function THE_ULTIMATES.getClientId;
+drop procedure THE_ULTIMATES.SP_CargarCuentas;
+drop procedure THE_ULTIMATES.SP_CargarTransferencias;
+drop procedure THE_ULTIMATES.SP_CargarTransferencias2;
+drop procedure THE_ULTIMATES.SP_CargarBancos;
+drop procedure THE_ULTIMATES.SP_CargarCheques;
+drop procedure THE_ULTIMATES.SP_CargarExtracciones;
+drop procedure THE_ULTIMATES.SP_CargarFacturas;
+drop procedure THE_ULTIMATES.SP_CargarTarjetas;
+drop procedure THE_ULTIMATES.SP_CargarEmisores;
+drop procedure THE_ULTIMATES.SP_CargarDepositos;
