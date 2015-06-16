@@ -8,8 +8,6 @@ SELECT func_desc DESCRIPCION FROM THE_ULTIMATES.Funcionalidad func ,THE_ULTIMATE
 WHERE funcRol.func_rol_rol_id = @id and func.func_id = func_rol_func_id;
 END
 
-
-
 GO
 
 CREATE PROCEDURE [THE_ULTIMATES].[Lista_Pais]
@@ -42,3 +40,12 @@ SELECT tipo_cuenta_id  ID , tipo_cuenta_desc  DESCRIPCION   FROM THE_ULTIMATES.T
 END
 
 GO
+
+create procedure THE_ULTIMATES.SP_getClienteByTipoYNumeroDoc
+@tipo_doc_id numeric(18,0),
+@numero_doc numeric(18,0)
+as
+begin
+	set nocount on;
+	select * from THE_ULTIMATES.Cliente where clie_tipo_doc_id = @tipo_doc_id and clie_nro_doc = @numero_doc
+end
