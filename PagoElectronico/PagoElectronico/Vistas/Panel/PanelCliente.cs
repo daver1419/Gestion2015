@@ -77,6 +77,14 @@ namespace PagoElectronico.PanelCliente
 
 
         }
+
+        private void btnAdmSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Login.Login login = new Login.Login();
+            login.Visible = true;
+           
+        }
     
      
     }
