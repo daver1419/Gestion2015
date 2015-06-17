@@ -735,8 +735,8 @@ insert into THE_ULTIMATES.Estado_Cuenta values ('Pendiente de Activacion'),
 go
 
 --TIPO_CUENTA
-insert into THE_ULTIMATES.Tipo_Cuenta values ('Oro', 31, 30.00),
-											('Plata', 31, 20.00),
+insert into THE_ULTIMATES.Tipo_Cuenta values ('Oro', 31, 50.00),
+											('Plata', 31, 30.00),
 											('Bronce', 31, 10.00),
 											('Gratuita', 1, 0.00);
 go
