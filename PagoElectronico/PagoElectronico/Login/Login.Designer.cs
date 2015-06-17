@@ -116,6 +116,7 @@
             this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Visible = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnCliente
             // 
@@ -148,6 +149,7 @@
             this.lblrol.TabIndex = 10;
             this.lblrol.Text = "Seleccionar con que Rol ingresar";
             this.lblrol.Visible = false;
+          
             // 
             // Login
             // 

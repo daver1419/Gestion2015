@@ -14,7 +14,7 @@ namespace PagoElectronico.Panel
 {
     public partial class PanelAdmin : Form
     {
-       public Usuario usuario;
+     
 
        private RolDAO rolDAO;
 

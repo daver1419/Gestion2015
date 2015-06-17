@@ -35,59 +35,62 @@ namespace PagoElectronico.Login
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if(textUsuario.Text == null && textContra.Text == null){
-                MessageBox.Show("Debera ingresar un usuario y contraseña");
-                
-            }else{
-
-            controladorUsuario.crearClientePosible(textUsuario.Text , textContra.Text, posibleCliente); 
+            if (textUsuario.Text.Trim().CompareTo("") == 0 || textContra.Text.Trim().CompareTo("") == 0)
+            {
+                MessageBox.Show("Debe ingresar Usuario y Contraseña", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            } else{
+              controladorUsuario.crearClientePosible(textUsuario.Text , textContra.Text, posibleCliente); 
             } 
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            if(textUsuario.Text == null && textContra.Text == null){
+            if (textUsuario.Text.Trim().CompareTo("") == 0 || textContra.Text.Trim().CompareTo("") == 0)
+            {
                 MessageBox.Show("Debera ingresar un usuario y contraseña");
-                
+
             }
 
-            this.usu = controladorUsuario.buscarUsuario(textUsuario.Text, textContra.Text);
+            List<Usuario> listaU = new List<Usuario>();
+            listaU = controladorUsuario.buscarUsuario(textUsuario.Text, textContra.Text);
 
-            if (usu != null)
-            {
-                //inicio panel de aplicaciones segun el rol si es administrador por default tamb es cliente
-                if (usu.getRol() == "administrador"){ 
-                  
-                    
-                    btnRegistrar.Visible=false;
-                    btnIngresar.Visible=false;
-                   
-                    lblContrasena.Visible=false;
-                    textContra.Visible=false;
+            if (listaU.Count()== 0)
+            {  
+                MessageBox.Show("No se encontro Resultado para el usuario y contraseña ingresado ");
+            }else
+            if (listaU.First().habilitado )
+            {           
+                if (listaU.Count() == 2)
+                {
+                    lblrol.Visible = true;
+                    btnCliente.Visible = true;
+                    btnAdministrador.Visible = true;
+                    btnRegistrar.Visible = false;
+                    btnIngresar.Visible = false;
+                }
+                else
+                {
 
-                    textUsuario.ReadOnly=true;
 
-                    lblrol.Visible=true;
-                    btnCliente.Visible=true;
-                    btnAdministrador.Visible =true;
-
-                    
-                               
-
-                }else if (usu.getRol()=="cliente"){
-
-                    this.Close();
-                    
-                    PagoElectronico.PanelCliente.PanelCliente panelCliente = new PagoElectronico.PanelCliente.PanelCliente();
-                    panelCliente.usuario = usu;
-
+                    if (listaU.First().rol == 1)
+                    {
+                        this.Close();
+                        PagoElectronico.Panel.PanelAdmin panelAdmin = new PagoElectronico.Panel.PanelAdmin();
+                    }
+                    else if (listaU.First().rol == 2)
+                    {
+                        this.Close();
+                        PagoElectronico.PanelCliente.PanelCliente panelCliente = new PagoElectronico.PanelCliente.PanelCliente();
+                    }
                 }
 
-            }else {
-                   MessageBox.Show("No se encontro el  usuario " + textUsuario.Text );
+
+            }else
+            {
+                  MessageBox.Show("El usuario se encuentra bloqueado");
+               
             }
-
-
         }
 
         private void btnCliente_Click(object sender, EventArgs e)
@@ -95,8 +98,7 @@ namespace PagoElectronico.Login
             this.Close();
 
             PagoElectronico.PanelCliente.PanelCliente panelCliente = new PagoElectronico.PanelCliente.PanelCliente();
-            panelCliente.usuario = usu;
-
+        
         }
 
         private void btnAdministrador_Click(object sender, EventArgs e)
@@ -104,13 +106,30 @@ namespace PagoElectronico.Login
             this.Close();
             PagoElectronico.Panel.PanelAdmin panelAdm = new PagoElectronico.Panel.PanelAdmin();
 
-            panelAdm.usuario = usu; 
+        
         }
 
         private void Login_Load(object sender, EventArgs e)
         {
 
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            textUsuario.Text = " ";
+            textContra.Text = " ";
+            btnGuardar.Visible = false;
+            btnCancelar.Visible = false;
+            lblrol.Visible = false;
+            btnCliente.Visible = false;
+            btnAdministrador.Visible = false;
+            btnIngresar.Visible = true;
+            btnRegistrar.Visible = true;
+
+        }
+
+      
+       
 
       
 

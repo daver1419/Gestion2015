@@ -5,32 +5,21 @@ using System.Text;
 
 namespace PagoElectronico.Entidad
 {
-   public class Usuario
+    public class Usuario
     {
-        private String usuario;
-        private String contrasena;
-        private String preguntaSec;
-        private String respuestaSec;
-        private String rol;
-        private Boolean habilitado;
-        private Cliente cliente;
+        public long id { get; set; }
+        public String usuario { get; set; }
+        public String contrasena { get; set; }
+        public String preguntaSec { get; set; }
+        public String respuestaSec { get; set; }
+        public int rol { get; set; }
+        public Boolean habilitado { get; set; }
+        public Cliente cliente { get; set; }
 
-        public String getUsuario()
-        {
-            return usuario;
-        }
 
-        public String getContrasena()
-        {
-            return contrasena;
-        }
-
-        public String getRol()
-        {
-            return rol;
-        }
 
 
 
     }
+      
 }
