@@ -75,13 +75,15 @@ namespace PagoElectronico.Login
 
                     if (listaU.First().rol == 1)
                     {
-                        this.Close();
+                        this.Hide();
                         PagoElectronico.Panel.PanelAdmin panelAdmin = new PagoElectronico.Panel.PanelAdmin();
+                        panelAdmin.Show();
                     }
                     else if (listaU.First().rol == 2)
                     {
-                        this.Close();
+                        this.Hide();
                         PagoElectronico.PanelCliente.PanelCliente panelCliente = new PagoElectronico.PanelCliente.PanelCliente();
+                        panelCliente.Show();
                     }
                 }
 
