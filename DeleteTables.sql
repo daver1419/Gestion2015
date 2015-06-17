@@ -70,3 +70,16 @@ drop procedure THE_ULTIMATES.SP_CargarFacturas;
 drop procedure THE_ULTIMATES.SP_CargarTarjetas;
 drop procedure THE_ULTIMATES.SP_CargarEmisores;
 drop procedure THE_ULTIMATES.SP_CargarDepositos;
+drop function THE_ULTIMATES.SP_getCuentasByClieId;
+drop procedure THE_ULTIMATES.Lista_Func_Rol;
+drop procedure THE_ULTIMATES.Lista_Pais;
+drop procedure THE_ULTIMATES.Lista_Rol;
+drop procedure THE_ULTIMATES.Lista_Tipo_Cuenta;
+drop procedure THE_ULTIMATES.Lista_Tipo_Doc;
+drop procedure THE_ULTIMATES.Lista_Tipo_Moneda;
+drop procedure THE_ULTIMATES.login;
+drop procedure THE_ULTIMATES.SP_getClienteByTipoYNumeroDoc;
+
+
+
+
