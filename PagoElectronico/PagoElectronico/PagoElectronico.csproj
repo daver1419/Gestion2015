@@ -64,39 +64,33 @@
     <Compile Include="Entidad\TipoDoc.cs" />
     <Compile Include="Entidad\TipoMoneda.cs" />
     <Compile Include="Entidad\Usuario.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Vistas\Login\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Login\Login.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Login\Login.Designer.cs">
+    <Compile Include="Vistas\Login\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Panel\PanelAdmin.cs">
+    <Compile Include="Vistas\Panel\PanelAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Panel\PanelAdmin.Designer.cs">
+    <Compile Include="Vistas\Panel\PanelAdmin.Designer.cs">
       <DependentUpon>PanelAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Panel\PanelCliente.cs">
+    <Compile Include="Vistas\Panel\PanelCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Panel\PanelCliente.Designer.cs">
+    <Compile Include="Vistas\Panel\PanelCliente.Designer.cs">
       <DependentUpon>PanelCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Login\Login.resx">
+    <EmbeddedResource Include="Vistas\Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Panel\PanelAdmin.resx">
+    <EmbeddedResource Include="Vistas\Panel\PanelAdmin.resx">
       <DependentUpon>PanelAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Panel\PanelCliente.resx">
+    <EmbeddedResource Include="Vistas\Panel\PanelCliente.resx">
       <DependentUpon>PanelCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
