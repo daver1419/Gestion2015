@@ -90,9 +90,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Login\Login.resx">
-      <DependentUpon>Login.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Panel\PanelAdmin.resx">
       <DependentUpon>PanelAdmin.cs</DependentUpon>
     </EmbeddedResource>

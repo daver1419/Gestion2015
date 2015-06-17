@@ -152,6 +152,13 @@ namespace PagoElectronico.Panel
 
         }
 
+        private void btnSalir_Admin_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Login.Login login = new Login.Login();
+            login.Show();
+        }
+
 
       
         

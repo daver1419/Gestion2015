@@ -25,6 +25,7 @@ namespace PagoElectronico.Login
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             btnGuardar.Visible = true;
+            btnCancelar.Visible = true;
             btnIngresar.Visible = false;
             btnRegistrar.Visible = false;
 
@@ -75,15 +76,13 @@ namespace PagoElectronico.Login
 
                     if (listaU.First().rol == 1)
                     {
-                        this.Hide();
+                        this.Close();
                         PagoElectronico.Panel.PanelAdmin panelAdmin = new PagoElectronico.Panel.PanelAdmin();
-                        panelAdmin.Show();
                     }
                     else if (listaU.First().rol == 2)
                     {
-                        this.Hide();
+                        this.Close();
                         PagoElectronico.PanelCliente.PanelCliente panelCliente = new PagoElectronico.PanelCliente.PanelCliente();
-                        panelCliente.Show();
                     }
                 }
 
@@ -105,9 +104,9 @@ namespace PagoElectronico.Login
 
         private void btnAdministrador_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Visible = false; 
             PagoElectronico.Panel.PanelAdmin panelAdm = new PagoElectronico.Panel.PanelAdmin();
-
+            panelAdm.ShowDialog();
         
         }
 
@@ -119,7 +118,7 @@ namespace PagoElectronico.Login
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             textUsuario.Text = " ";
-            textContra.Text = " ";
+            textContra.Text = "";
             btnGuardar.Visible = false;
             btnCancelar.Visible = false;
             lblrol.Visible = false;

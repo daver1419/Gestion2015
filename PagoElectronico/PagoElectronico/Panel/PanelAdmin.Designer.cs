@@ -206,6 +206,7 @@ namespace PagoElectronico.Panel
             this.comboBox8 = new System.Windows.Forms.ComboBox();
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
+            this.btnSalir_Admin = new System.Windows.Forms.Button();
             this.tabUsuario.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tab.SuspendLayout();
@@ -1894,11 +1895,23 @@ namespace PagoElectronico.Panel
             this.label32.TabIndex = 0;
             this.label32.Text = "Buscar Cliente ";
             // 
+            // btnSalir_Admin
+            // 
+            this.btnSalir_Admin.Location = new System.Drawing.Point(583, 0);
+            this.btnSalir_Admin.Name = "btnSalir_Admin";
+            this.btnSalir_Admin.Size = new System.Drawing.Size(75, 23);
+            this.btnSalir_Admin.TabIndex = 1;
+            this.btnSalir_Admin.Text = "Salir";
+            this.btnSalir_Admin.UseVisualStyleBackColor = true;
+            this.btnSalir_Admin.Click += new System.EventHandler(this.btnSalir_Admin_Click);
+            // 
             // PanelAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(681, 622);
+            this.ControlBox = false;
+            this.Controls.Add(this.btnSalir_Admin);
             this.Controls.Add(this.tab);
             this.Name = "PanelAdmin";
             this.Text = "PanelAdmin";
@@ -2146,5 +2159,7 @@ namespace PagoElectronico.Panel
                e.Handled = true;
            }
         }
+
+        private Button btnSalir_Admin;
     }
 }

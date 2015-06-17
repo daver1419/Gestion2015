@@ -1,5 +1,4 @@
 C:\Users\RomiVM\Documents\github\PagoElectronico\PagoElectronico\obj\Release\ResolveAssemblyReference.cache
-C:\Users\RomiVM\Documents\github\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.Login.Login.resources
 C:\Users\RomiVM\Documents\github\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.Properties.Resources.resources
 C:\Users\RomiVM\Documents\github\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.csproj.GenerateResource.Cache
 C:\Users\RomiVM\Documents\github\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.PanelCliente.PanelCliente.resources
