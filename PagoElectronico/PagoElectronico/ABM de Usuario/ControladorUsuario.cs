@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using PagoElectronico.Entidad;
+using PagoElectronico.DAO;
 
 namespace PagoElectronico.ABM_de_Usuario
 {
@@ -12,12 +13,12 @@ namespace PagoElectronico.ABM_de_Usuario
         public void crearClientePosible(String usuario, String contrasena, Boolean usuarioPosible)
         {
         }
-        public Usuario buscarUsuario(String usuario, String contrasena)
-
+        public List<Usuario> buscarUsuario(String usuario, String contrasena)
         {
-            Usuario usu = new Usuario();
-
-            return usu;
+            UsuarioDAO usuDAO = new UsuarioDAO();
+           
+            return (usuDAO.login(usuario, contrasena));
+                      
         }
 
 

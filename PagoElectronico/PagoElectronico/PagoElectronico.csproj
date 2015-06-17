@@ -53,6 +53,7 @@
     <Compile Include="DAO\RolDAO.cs" />
     <Compile Include="DAO\BaseDAO.cs" />
     <Compile Include="DAO\SisDAO.cs" />
+    <Compile Include="DAO\UsuarioDAO.cs" />
     <Compile Include="Entidad\Cliente.cs" />
     <Compile Include="Entidad\Cuenta.cs" />
     <Compile Include="Entidad\Funcionalidad.cs" />

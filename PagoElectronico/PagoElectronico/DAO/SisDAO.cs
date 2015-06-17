@@ -67,7 +67,7 @@ namespace PagoElectronico.DAO
                 while (reader.Read())
                 {
                     TipoDoc tipoDoc = new TipoDoc();
-                    tipoDoc.id = reader.GetInt32(0);
+                    tipoDoc.id = reader.GetDecimal(0);
                     tipoDoc.descripcion = reader.GetString(1);
 
                     lista.Add(tipoDoc);

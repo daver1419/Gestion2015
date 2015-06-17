@@ -15,7 +15,7 @@ namespace PagoElectronico.PanelCliente
 
          {
 
-        public Usuario usuario;
+       // public Usuario usuario;
 
         private SisDAO sisDAO;
 
