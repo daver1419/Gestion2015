@@ -19,8 +19,8 @@ namespace PagoElectronico.Panel
        private RolDAO rolDAO;
 
        private SisDAO sisDAO;
-
-
+       private CuentaDao cuentaDao;
+       private string _cliente;
         
         Rol rolSelect = new Rol();
 
@@ -80,7 +80,7 @@ namespace PagoElectronico.Panel
 
 
 
-
+            /*
             List<TipoDoc> tiposDoc = sisDAO.listaTipoDoc();
             cbxCliTipoDoc.DataSource = tiposDoc;
             cbxCliTipoDoc.DisplayMember = "DESCRIPCION";
@@ -100,13 +100,13 @@ namespace PagoElectronico.Panel
             cbxTipoCuenta.DataSource = tiposCuentas;
             cbxTipoCuenta.DisplayMember = "DESCRIPCION";
             cbxTipoCuenta.Text = "Elegir una";
-
+           
             // tab Tarjeta Falta el combo box 
 
             // tab Saldo 
             cbxTipoDocSaldo.DataSource = tiposDoc;
             cbxTipoDocSaldo.DisplayMember = "DESCRIPCION";
-            cbxTipoDocSaldo.Text = "Elegir una";    
+            cbxTipoDocSaldo.Text = "Elegir una";   */
         }
 
         private void cbxRol_SelectedValueChanged(object sender, EventArgs e)
@@ -129,6 +129,26 @@ namespace PagoElectronico.Panel
             lisboxFuncionalidades.DataSource = funcionalidades;
             lisboxFuncionalidades.DisplayMember = "DESCRIPCION";
 
+
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            cuentaDao = new CuentaDao();
+            List<Cuenta> cuentas = cuentaDao.listaCuentas(Convert.ToInt32(_cliente));
+            checkedListBox2.DataSource = cuentas;
+            checkedListBox2.DisplayMember = "Cuentas";
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+            TextBox clienteTextBox = (TextBox)sender;
+            _cliente = clienteTextBox.Text;
+
+        }
+
+        private void checkedListBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
 

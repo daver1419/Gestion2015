@@ -49,10 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ABM de Usuario\ControladorUsuario.cs" />
+    <Compile Include="DAO\CuentaDao.cs" />
     <Compile Include="DAO\RolDAO.cs" />
     <Compile Include="DAO\BaseDAO.cs" />
     <Compile Include="DAO\SisDAO.cs" />
     <Compile Include="Entidad\Cliente.cs" />
+    <Compile Include="Entidad\Cuenta.cs" />
     <Compile Include="Entidad\Funcionalidad.cs" />
     <Compile Include="Entidad\Pais.cs" />
     <Compile Include="Entidad\Rol.cs" />

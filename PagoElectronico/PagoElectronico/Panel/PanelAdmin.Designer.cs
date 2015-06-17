@@ -1,4 +1,6 @@
-﻿namespace PagoElectronico.Panel
+﻿using System;
+using System.Windows.Forms;
+namespace PagoElectronico.Panel
 {
     partial class PanelAdmin
     {
@@ -818,6 +820,7 @@
             this.button15.TabIndex = 3;
             this.button15.Text = "Buscar";
             this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // textBox6
             // 
@@ -826,6 +829,7 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(100, 20);
             this.textBox6.TabIndex = 2;
+            this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             // 
             // label37
             // 
@@ -964,6 +968,7 @@
             this.checkedListBox2.Name = "checkedListBox2";
             this.checkedListBox2.Size = new System.Drawing.Size(496, 94);
             this.checkedListBox2.TabIndex = 0;
+            this.checkedListBox2.SelectedIndexChanged += new System.EventHandler(this.checkedListBox2_SelectedIndexChanged);
             // 
             // label18
             // 
@@ -2121,5 +2126,25 @@
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.Button btnFunRol1;
 
+
+        private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+           }
+           else if (Char.IsSeparator(e.KeyChar))
+           {
+               e.Handled = false;
+           }
+           else
+           {
+               e.Handled = true;
+           }
+        }
     }
 }

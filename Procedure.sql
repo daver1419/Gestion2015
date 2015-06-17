@@ -49,3 +49,11 @@ begin
 	set nocount on;
 	select * from THE_ULTIMATES.Cliente where clie_tipo_doc_id = @tipo_doc_id and clie_nro_doc = @numero_doc
 end
+go
+
+create function THE_ULTIMATES.SP_getCuentasByClieId(@cliente_id int)
+returns TABLE
+as
+return (select * from THE_ULTIMATES.Cuenta where cuen_clie_id = @cliente_id)
+
+go
