@@ -128,6 +128,11 @@ namespace PagoElectronico.Login
 
         }
 
+        private void textUsuario_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
       
        
 

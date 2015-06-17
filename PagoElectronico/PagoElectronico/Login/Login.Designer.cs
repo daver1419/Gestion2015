@@ -150,7 +150,6 @@
             this.lblrol.TabIndex = 10;
             this.lblrol.Text = "Seleccionar con que Rol ingresar";
             this.lblrol.Visible = false;
-          
             // 
             // Login
             // 
