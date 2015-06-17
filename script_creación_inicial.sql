@@ -245,7 +245,6 @@ GO
 create table THE_ULTIMATES.Item_Factura(
 	item_fact_num int not null, /* FK  THE_ULTIMATES.Factura*/
 	item_fact_transac_id int not null,  /* FK  THE_ULTIMATES.Transaccion*/
-	item_fact_cantidad int not null,
 	item_fact_desc varchar(250) not null,
 	item_fact_precio numeric(18,3)not null
 	CONSTRAINT PK_item_factura PRIMARY KEY (item_fact_num, item_fact_transac_id)
@@ -966,8 +965,8 @@ begin
 
 	set @transac_id = SCOPE_IDENTITY();		
 	
-	insert into THE_ULTIMATES.Item_Factura (item_fact_num, item_fact_transac_id, item_fact_cantidad, item_fact_desc, item_fact_precio)
-	values (@factura_numero, @transac_id, 1, @item_factura_descr, @item_factura_importe);
+	insert into THE_ULTIMATES.Item_Factura (item_fact_num, item_fact_transac_id, item_fact_desc, item_fact_precio)
+	values (@factura_numero, @transac_id, @item_factura_descr, @item_factura_importe);
 
 	fetch next from cursor_transferencias 
 	into	@cuenta_numero, 
