@@ -93,7 +93,7 @@ create table THE_ULTIMATES.Cliente(
 	clie_dom_depto varchar(10),
 	clie_fecha_nac datetime not null,
 	clie_pais_id numeric(18,0) not null, /* FK  THE_ULTIMATES.Pais*/
-	clie_usu_id int
+	clie_usu_id int not null
 );
 
 GO
