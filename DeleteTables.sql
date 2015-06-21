@@ -63,6 +63,7 @@ drop function THE_ULTIMATES.getClientId;
 drop function THE_ULTIMATES.getCuentasByClieId;
 drop function THE_ULTIMATES.getClienteByTipoYNumeroDoc;
 drop function THE_ULTIMATES.getSaldoByCuenta;
+drop function THE_ULTIMATES.getUltimos5Depositos;
 
 drop procedure THE_ULTIMATES.SP_CargarCuentas;
 drop procedure THE_ULTIMATES.SP_CargarTransferencias;

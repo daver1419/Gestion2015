@@ -69,6 +69,18 @@ begin
 end
 go
 
+create function THE_ULTIMATES.getUltimos5Depositos(@cuenta_id numeric(18,0))
+returns TABLE
+as
+begin
+	return (select top 5 *
+			from THE_ULTIMATES.Deposito
+			where depo_cuen_id = @cuenta_id
+			order by depo_id desc)
+end
+go
+
+
 CREATE PROCEDURE [THE_ULTIMATES].[Lista_Tipo_Doc]
 AS
 BEGIN
