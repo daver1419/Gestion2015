@@ -48,7 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ABM de Usuario\ControladorUsuario.cs" />
+    <Compile Include="Controladores\ControladorUsuario.cs" />
     <Compile Include="DAO\CuentaDao.cs" />
     <Compile Include="DAO\RolDAO.cs" />
     <Compile Include="DAO\BaseDAO.cs" />
@@ -112,17 +112,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ABM Cliente\" />
-    <Folder Include="ABM Cuenta\" />
-    <Folder Include="ABM Rol\" />
-    <Folder Include="Consulta Saldos\" />
-    <Folder Include="Depositos\" />
-    <Folder Include="Facturacion\" />
-    <Folder Include="Listados\" />
-    <Folder Include="Retiros\" />
-    <Folder Include="Transferencias\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

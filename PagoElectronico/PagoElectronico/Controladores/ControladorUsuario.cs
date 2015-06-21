@@ -19,5 +19,10 @@ namespace PagoElectronico.ABM_de_Usuario
         {
             return usuarioDAO.login(usuario, contraseña);
         }
+
+        internal void guardarCliente(Usuario usuario)
+        {
+            usuarioDAO.guardarCliente(usuario);
+        }
     }
 }

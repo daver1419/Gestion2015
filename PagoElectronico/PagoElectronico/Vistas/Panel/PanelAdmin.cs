@@ -8,16 +8,16 @@ using System.Text;
 using System.Windows.Forms;
 using PagoElectronico.Entidad;
 using PagoElectronico.DAO;
+using PagoElectronico.ABM_de_Usuario;
 
 
 namespace PagoElectronico.Panel
 {
     public partial class PanelAdmin : Form
     {
-     
 
+       private ControladorUsuario controladorUsuario = new ControladorUsuario();
        private RolDAO rolDAO;
-
        private SisDAO sisDAO;
        private CuentaDao cuentaDao;
        private string _cliente;
@@ -68,15 +68,15 @@ namespace PagoElectronico.Panel
             sisDAO = new SisDAO();
             // panel usuario
             List<Rol> dt = rolDAO.listaRol();
-            cbxRol.DataSource = dt;
-            cbxRol.DisplayMember = "DESCRIPCION";
-            cbxRol.Text = "Elegir una";
+            usuRolPicker.DataSource = dt;
+            usuRolPicker.DisplayMember = "DESCRIPCION";
+            usuRolPicker.Text = "Elegir una";
 
             //panel Cliente
             List<Pais> paises = sisDAO.listaPais();
-            cbxCliPais.DataSource = paises;
-            cbxCliPais.DisplayMember = "DESCRIPCION";
-            cbxCliPais.Text = "Elegir una";
+            cliePaisPicker.DataSource = paises;
+            cliePaisPicker.DisplayMember = "DESCRIPCION";
+            cliePaisPicker.Text = "Elegir una";
 
 
 
@@ -118,7 +118,7 @@ namespace PagoElectronico.Panel
 
         private void btnFunRol1_Click(object sender, EventArgs e)
         {
-            rolSelect = (Rol)cbxRol.SelectedValue;
+            rolSelect = (Rol)usuRolPicker.SelectedValue;
 
             rolDAO = new RolDAO();
 
@@ -157,6 +157,15 @@ namespace PagoElectronico.Panel
             this.Close();
             Login.Login login = new Login.Login();
             login.Visible = true;
+        }
+
+        private void btnGuardarUsu_Click(object sender, EventArgs e)
+        {
+            Usuario usuario = new Usuario(0, usuNameTxt.Text, usuContrasenaTxt.Text, 
+                                               usuPreguntaSecTxt.Text, usuRespuestaSecTxt.Text,
+                                               usuCreacionTxt.Value, usuModificacionTxt.Value, 
+                                               (int)usuRolPicker.SelectedItem, false, null);
+            controladorUsuario.guardarCliente(usuario);
         }
 
 

@@ -53,6 +53,22 @@ namespace PagoElectronico.DAO
            
         }
 
+        internal void guardarCliente(Usuario datos)
+        {
 
+
+            using (SqlCommand command = InitializeConnection("guardarCliente"))
+            {
+                command.Parameters.Add("@usuario", System.Data.SqlDbType.NVarChar, 20).Value = datos.usuario;
+                command.Parameters.Add("@password", System.Data.SqlDbType.NVarChar, 64).Value = datos.contrasena;
+                command.Parameters.Add("@fechaAlta", System.Data.SqlDbType.DateTime, 64).Value = datos.fechaCreacion;
+                command.Parameters.Add("@fechaModificacion", System.Data.SqlDbType.NVarChar, 64).Value = datos.fechaModificacion;
+                command.Parameters.Add("@preguntaSecreta", System.Data.SqlDbType.NVarChar, 50).Value = datos.preguntaSec;
+                command.Parameters.Add("@respuestaSecreta", System.Data.SqlDbType.NVarChar, 64).Value = datos.respuestaSec;
+
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                
+                CerrarConexion();
+        }
     }
 }

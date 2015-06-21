@@ -32,15 +32,13 @@ namespace PagoElectronico.Panel
         {
             this.tabUsuario = new System.Windows.Forms.TabPage();
             this.btnFunRol1 = new System.Windows.Forms.Button();
-            this.btnAltaClienteUsu = new System.Windows.Forms.Button();
-            this.txtRespustaSecreta = new System.Windows.Forms.TextBox();
-            this.txtPreguntaSecreta = new System.Windows.Forms.TextBox();
-            this.txtUltMod = new System.Windows.Forms.TextBox();
-            this.txtFechaCreacion = new System.Windows.Forms.TextBox();
-            this.cbxRol = new System.Windows.Forms.ComboBox();
-            this.txtContrasena = new System.Windows.Forms.TextBox();
-            this.txtUsu = new System.Windows.Forms.TextBox();
-            this.btnGuardarUsu = new System.Windows.Forms.Button();
+            this.altaClienteBtn = new System.Windows.Forms.Button();
+            this.usuRespuestaSecTxt = new System.Windows.Forms.TextBox();
+            this.usuPreguntaSecTxt = new System.Windows.Forms.TextBox();
+            this.usuRolPicker = new System.Windows.Forms.ComboBox();
+            this.usuContrasenaTxt = new System.Windows.Forms.TextBox();
+            this.usuNameTxt = new System.Windows.Forms.TextBox();
+            this.guardarUsuarioBtn = new System.Windows.Forms.Button();
             this.lblRespuestaSecreta = new System.Windows.Forms.Label();
             this.lblPreguntaSecreta = new System.Windows.Forms.Label();
             this.lblFechaMod = new System.Windows.Forms.Label();
@@ -53,17 +51,17 @@ namespace PagoElectronico.Panel
             this.lblUsu = new System.Windows.Forms.Label();
             this.tab = new System.Windows.Forms.TabControl();
             this.tabCliente = new System.Windows.Forms.TabPage();
-            this.dateTimeCliFechNac = new System.Windows.Forms.DateTimePicker();
-            this.txtCliNac = new System.Windows.Forms.TextBox();
-            this.TxtCliLoc = new System.Windows.Forms.TextBox();
-            this.txtCliDepto = new System.Windows.Forms.TextBox();
-            this.txtCliPiso = new System.Windows.Forms.TextBox();
-            this.txtCliNum = new System.Windows.Forms.TextBox();
-            this.txtCliCalle = new System.Windows.Forms.TextBox();
-            this.cbxCliPais = new System.Windows.Forms.ComboBox();
-            this.txtCliMail = new System.Windows.Forms.TextBox();
-            this.txtCliApellido = new System.Windows.Forms.TextBox();
-            this.txtCliNombre = new System.Windows.Forms.TextBox();
+            this.clieNacimientoPicker = new System.Windows.Forms.DateTimePicker();
+            this.clieNacionalidadTxt = new System.Windows.Forms.TextBox();
+            this.clieLocalidTxt = new System.Windows.Forms.TextBox();
+            this.clieDepTxt = new System.Windows.Forms.TextBox();
+            this.cliePisoTxt = new System.Windows.Forms.TextBox();
+            this.clieNumTxt = new System.Windows.Forms.TextBox();
+            this.clieCalleTxt = new System.Windows.Forms.TextBox();
+            this.cliePaisPicker = new System.Windows.Forms.ComboBox();
+            this.clieMailTxt = new System.Windows.Forms.TextBox();
+            this.clieApellidoTxt = new System.Windows.Forms.TextBox();
+            this.clieNombreTxt = new System.Windows.Forms.TextBox();
             this.btnCliGuardar = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -74,13 +72,13 @@ namespace PagoElectronico.Panel
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtCliNumDoc = new System.Windows.Forms.TextBox();
+            this.clieDocTxt = new System.Windows.Forms.TextBox();
             this.lblCliNumDoc = new System.Windows.Forms.Label();
-            this.cbxCliTipoDoc = new System.Windows.Forms.ComboBox();
+            this.clieTipoDocPicker = new System.Windows.Forms.ComboBox();
             this.panelBusquedaUsu = new System.Windows.Forms.Panel();
             this.lblErrorBuqUsuCli = new System.Windows.Forms.Label();
-            this.btnBuscarUsu = new System.Windows.Forms.Button();
-            this.txtBusqUsu = new System.Windows.Forms.TextBox();
+            this.clieUsuBuscBtn = new System.Windows.Forms.Button();
+            this.clieUsuBuscTxt = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lbl = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -207,6 +205,8 @@ namespace PagoElectronico.Panel
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.btnAdmSalir = new System.Windows.Forms.Button();
+            this.usuCreacionTxt = new System.Windows.Forms.DateTimePicker();
+            this.usuModificacionTxt = new System.Windows.Forms.DateTimePicker();
             this.tabUsuario.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tab.SuspendLayout();
@@ -236,16 +236,16 @@ namespace PagoElectronico.Panel
             // 
             // tabUsuario
             // 
+            this.tabUsuario.Controls.Add(this.usuModificacionTxt);
+            this.tabUsuario.Controls.Add(this.usuCreacionTxt);
             this.tabUsuario.Controls.Add(this.btnFunRol1);
-            this.tabUsuario.Controls.Add(this.btnAltaClienteUsu);
-            this.tabUsuario.Controls.Add(this.txtRespustaSecreta);
-            this.tabUsuario.Controls.Add(this.txtPreguntaSecreta);
-            this.tabUsuario.Controls.Add(this.txtUltMod);
-            this.tabUsuario.Controls.Add(this.txtFechaCreacion);
-            this.tabUsuario.Controls.Add(this.cbxRol);
-            this.tabUsuario.Controls.Add(this.txtContrasena);
-            this.tabUsuario.Controls.Add(this.txtUsu);
-            this.tabUsuario.Controls.Add(this.btnGuardarUsu);
+            this.tabUsuario.Controls.Add(this.altaClienteBtn);
+            this.tabUsuario.Controls.Add(this.usuRespuestaSecTxt);
+            this.tabUsuario.Controls.Add(this.usuPreguntaSecTxt);
+            this.tabUsuario.Controls.Add(this.usuRolPicker);
+            this.tabUsuario.Controls.Add(this.usuContrasenaTxt);
+            this.tabUsuario.Controls.Add(this.usuNameTxt);
+            this.tabUsuario.Controls.Add(this.guardarUsuarioBtn);
             this.tabUsuario.Controls.Add(this.lblRespuestaSecreta);
             this.tabUsuario.Controls.Add(this.lblPreguntaSecreta);
             this.tabUsuario.Controls.Add(this.lblFechaMod);
@@ -272,74 +272,61 @@ namespace PagoElectronico.Panel
             this.btnFunRol1.UseVisualStyleBackColor = true;
             this.btnFunRol1.Click += new System.EventHandler(this.btnFunRol1_Click);
             // 
-            // btnAltaClienteUsu
+            // altaClienteBtn
             // 
-            this.btnAltaClienteUsu.Location = new System.Drawing.Point(170, 431);
-            this.btnAltaClienteUsu.Name = "btnAltaClienteUsu";
-            this.btnAltaClienteUsu.Size = new System.Drawing.Size(75, 23);
-            this.btnAltaClienteUsu.TabIndex = 16;
-            this.btnAltaClienteUsu.Text = "Alta Cliente";
-            this.btnAltaClienteUsu.UseVisualStyleBackColor = true;
-            this.btnAltaClienteUsu.Click += new System.EventHandler(this.btnAltaClienteUsu_Click);
+            this.altaClienteBtn.Location = new System.Drawing.Point(170, 431);
+            this.altaClienteBtn.Name = "altaClienteBtn";
+            this.altaClienteBtn.Size = new System.Drawing.Size(75, 23);
+            this.altaClienteBtn.TabIndex = 16;
+            this.altaClienteBtn.Text = "Alta Cliente";
+            this.altaClienteBtn.UseVisualStyleBackColor = true;
+            this.altaClienteBtn.Click += new System.EventHandler(this.btnAltaClienteUsu_Click);
             // 
-            // txtRespustaSecreta
+            // usuRespuestaSecTxt
             // 
-            this.txtRespustaSecreta.Location = new System.Drawing.Point(170, 364);
-            this.txtRespustaSecreta.Name = "txtRespustaSecreta";
-            this.txtRespustaSecreta.Size = new System.Drawing.Size(116, 20);
-            this.txtRespustaSecreta.TabIndex = 15;
+            this.usuRespuestaSecTxt.Location = new System.Drawing.Point(170, 364);
+            this.usuRespuestaSecTxt.Name = "usuRespuestaSecTxt";
+            this.usuRespuestaSecTxt.Size = new System.Drawing.Size(116, 20);
+            this.usuRespuestaSecTxt.TabIndex = 15;
             // 
-            // txtPreguntaSecreta
+            // usuPreguntaSecTxt
             // 
-            this.txtPreguntaSecreta.Location = new System.Drawing.Point(170, 342);
-            this.txtPreguntaSecreta.Name = "txtPreguntaSecreta";
-            this.txtPreguntaSecreta.Size = new System.Drawing.Size(116, 20);
-            this.txtPreguntaSecreta.TabIndex = 14;
+            this.usuPreguntaSecTxt.Location = new System.Drawing.Point(170, 342);
+            this.usuPreguntaSecTxt.Name = "usuPreguntaSecTxt";
+            this.usuPreguntaSecTxt.Size = new System.Drawing.Size(116, 20);
+            this.usuPreguntaSecTxt.TabIndex = 14;
             // 
-            // txtUltMod
+            // usuRolPicker
             // 
-            this.txtUltMod.Location = new System.Drawing.Point(170, 319);
-            this.txtUltMod.Name = "txtUltMod";
-            this.txtUltMod.Size = new System.Drawing.Size(116, 20);
-            this.txtUltMod.TabIndex = 13;
+            this.usuRolPicker.FormattingEnabled = true;
+            this.usuRolPicker.Location = new System.Drawing.Point(85, 59);
+            this.usuRolPicker.Name = "usuRolPicker";
+            this.usuRolPicker.Size = new System.Drawing.Size(137, 21);
+            this.usuRolPicker.TabIndex = 11;
             // 
-            // txtFechaCreacion
+            // usuContrasenaTxt
             // 
-            this.txtFechaCreacion.Location = new System.Drawing.Point(170, 293);
-            this.txtFechaCreacion.Name = "txtFechaCreacion";
-            this.txtFechaCreacion.Size = new System.Drawing.Size(116, 20);
-            this.txtFechaCreacion.TabIndex = 12;
+            this.usuContrasenaTxt.Location = new System.Drawing.Point(85, 37);
+            this.usuContrasenaTxt.Name = "usuContrasenaTxt";
+            this.usuContrasenaTxt.Size = new System.Drawing.Size(137, 20);
+            this.usuContrasenaTxt.TabIndex = 10;
             // 
-            // cbxRol
+            // usuNameTxt
             // 
-            this.cbxRol.FormattingEnabled = true;
-            this.cbxRol.Location = new System.Drawing.Point(85, 59);
-            this.cbxRol.Name = "cbxRol";
-            this.cbxRol.Size = new System.Drawing.Size(137, 21);
-            this.cbxRol.TabIndex = 11;
+            this.usuNameTxt.Location = new System.Drawing.Point(85, 15);
+            this.usuNameTxt.Name = "usuNameTxt";
+            this.usuNameTxt.Size = new System.Drawing.Size(137, 20);
+            this.usuNameTxt.TabIndex = 9;
             // 
-            // txtContrasena
+            // guardarUsuarioBtn
             // 
-            this.txtContrasena.Location = new System.Drawing.Point(85, 37);
-            this.txtContrasena.Name = "txtContrasena";
-            this.txtContrasena.Size = new System.Drawing.Size(137, 20);
-            this.txtContrasena.TabIndex = 10;
-            // 
-            // txtUsu
-            // 
-            this.txtUsu.Location = new System.Drawing.Point(85, 15);
-            this.txtUsu.Name = "txtUsu";
-            this.txtUsu.Size = new System.Drawing.Size(137, 20);
-            this.txtUsu.TabIndex = 9;
-            // 
-            // btnGuardarUsu
-            // 
-            this.btnGuardarUsu.Location = new System.Drawing.Point(12, 431);
-            this.btnGuardarUsu.Name = "btnGuardarUsu";
-            this.btnGuardarUsu.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardarUsu.TabIndex = 8;
-            this.btnGuardarUsu.Text = "Guardar ";
-            this.btnGuardarUsu.UseVisualStyleBackColor = true;
+            this.guardarUsuarioBtn.Location = new System.Drawing.Point(12, 431);
+            this.guardarUsuarioBtn.Name = "guardarUsuarioBtn";
+            this.guardarUsuarioBtn.Size = new System.Drawing.Size(75, 23);
+            this.guardarUsuarioBtn.TabIndex = 8;
+            this.guardarUsuarioBtn.Text = "Guardar ";
+            this.guardarUsuarioBtn.UseVisualStyleBackColor = true;
+            this.guardarUsuarioBtn.Click += new System.EventHandler(this.btnGuardarUsu_Click);
             // 
             // lblRespuestaSecreta
             // 
@@ -449,17 +436,17 @@ namespace PagoElectronico.Panel
             // 
             // tabCliente
             // 
-            this.tabCliente.Controls.Add(this.dateTimeCliFechNac);
-            this.tabCliente.Controls.Add(this.txtCliNac);
-            this.tabCliente.Controls.Add(this.TxtCliLoc);
-            this.tabCliente.Controls.Add(this.txtCliDepto);
-            this.tabCliente.Controls.Add(this.txtCliPiso);
-            this.tabCliente.Controls.Add(this.txtCliNum);
-            this.tabCliente.Controls.Add(this.txtCliCalle);
-            this.tabCliente.Controls.Add(this.cbxCliPais);
-            this.tabCliente.Controls.Add(this.txtCliMail);
-            this.tabCliente.Controls.Add(this.txtCliApellido);
-            this.tabCliente.Controls.Add(this.txtCliNombre);
+            this.tabCliente.Controls.Add(this.clieNacimientoPicker);
+            this.tabCliente.Controls.Add(this.clieNacionalidadTxt);
+            this.tabCliente.Controls.Add(this.clieLocalidTxt);
+            this.tabCliente.Controls.Add(this.clieDepTxt);
+            this.tabCliente.Controls.Add(this.cliePisoTxt);
+            this.tabCliente.Controls.Add(this.clieNumTxt);
+            this.tabCliente.Controls.Add(this.clieCalleTxt);
+            this.tabCliente.Controls.Add(this.cliePaisPicker);
+            this.tabCliente.Controls.Add(this.clieMailTxt);
+            this.tabCliente.Controls.Add(this.clieApellidoTxt);
+            this.tabCliente.Controls.Add(this.clieNombreTxt);
             this.tabCliente.Controls.Add(this.btnCliGuardar);
             this.tabCliente.Controls.Add(this.label14);
             this.tabCliente.Controls.Add(this.label13);
@@ -470,9 +457,9 @@ namespace PagoElectronico.Panel
             this.tabCliente.Controls.Add(this.label8);
             this.tabCliente.Controls.Add(this.label7);
             this.tabCliente.Controls.Add(this.label6);
-            this.tabCliente.Controls.Add(this.txtCliNumDoc);
+            this.tabCliente.Controls.Add(this.clieDocTxt);
             this.tabCliente.Controls.Add(this.lblCliNumDoc);
-            this.tabCliente.Controls.Add(this.cbxCliTipoDoc);
+            this.tabCliente.Controls.Add(this.clieTipoDocPicker);
             this.tabCliente.Controls.Add(this.panelBusquedaUsu);
             this.tabCliente.Controls.Add(this.label2);
             this.tabCliente.Controls.Add(this.label1);
@@ -485,83 +472,83 @@ namespace PagoElectronico.Panel
             this.tabCliente.Text = "Cliente";
             this.tabCliente.UseVisualStyleBackColor = true;
             // 
-            // dateTimeCliFechNac
+            // clieNacimientoPicker
             // 
-            this.dateTimeCliFechNac.Location = new System.Drawing.Point(123, 301);
-            this.dateTimeCliFechNac.Name = "dateTimeCliFechNac";
-            this.dateTimeCliFechNac.Size = new System.Drawing.Size(200, 20);
-            this.dateTimeCliFechNac.TabIndex = 29;
+            this.clieNacimientoPicker.Location = new System.Drawing.Point(123, 299);
+            this.clieNacimientoPicker.Name = "clieNacimientoPicker";
+            this.clieNacimientoPicker.Size = new System.Drawing.Size(200, 20);
+            this.clieNacimientoPicker.TabIndex = 29;
             // 
-            // txtCliNac
+            // clieNacionalidadTxt
             // 
-            this.txtCliNac.Location = new System.Drawing.Point(82, 272);
-            this.txtCliNac.Name = "txtCliNac";
-            this.txtCliNac.Size = new System.Drawing.Size(206, 20);
-            this.txtCliNac.TabIndex = 28;
+            this.clieNacionalidadTxt.Location = new System.Drawing.Point(82, 269);
+            this.clieNacionalidadTxt.Name = "clieNacionalidadTxt";
+            this.clieNacionalidadTxt.Size = new System.Drawing.Size(206, 20);
+            this.clieNacionalidadTxt.TabIndex = 28;
             // 
-            // TxtCliLoc
+            // clieLocalidTxt
             // 
-            this.TxtCliLoc.Location = new System.Drawing.Point(82, 239);
-            this.TxtCliLoc.Name = "TxtCliLoc";
-            this.TxtCliLoc.Size = new System.Drawing.Size(206, 20);
-            this.TxtCliLoc.TabIndex = 27;
+            this.clieLocalidTxt.Location = new System.Drawing.Point(82, 244);
+            this.clieLocalidTxt.Name = "clieLocalidTxt";
+            this.clieLocalidTxt.Size = new System.Drawing.Size(206, 20);
+            this.clieLocalidTxt.TabIndex = 27;
             // 
-            // txtCliDepto
+            // clieDepTxt
             // 
-            this.txtCliDepto.Location = new System.Drawing.Point(287, 217);
-            this.txtCliDepto.Name = "txtCliDepto";
-            this.txtCliDepto.Size = new System.Drawing.Size(64, 20);
-            this.txtCliDepto.TabIndex = 26;
+            this.clieDepTxt.Location = new System.Drawing.Point(287, 218);
+            this.clieDepTxt.Name = "clieDepTxt";
+            this.clieDepTxt.Size = new System.Drawing.Size(64, 20);
+            this.clieDepTxt.TabIndex = 26;
             // 
-            // txtCliPiso
+            // cliePisoTxt
             // 
-            this.txtCliPiso.Location = new System.Drawing.Point(82, 217);
-            this.txtCliPiso.Name = "txtCliPiso";
-            this.txtCliPiso.Size = new System.Drawing.Size(100, 20);
-            this.txtCliPiso.TabIndex = 25;
+            this.cliePisoTxt.Location = new System.Drawing.Point(82, 217);
+            this.cliePisoTxt.Name = "cliePisoTxt";
+            this.cliePisoTxt.Size = new System.Drawing.Size(100, 20);
+            this.cliePisoTxt.TabIndex = 25;
             // 
-            // txtCliNum
+            // clieNumTxt
             // 
-            this.txtCliNum.Location = new System.Drawing.Point(344, 184);
-            this.txtCliNum.Name = "txtCliNum";
-            this.txtCliNum.Size = new System.Drawing.Size(86, 20);
-            this.txtCliNum.TabIndex = 24;
+            this.clieNumTxt.Location = new System.Drawing.Point(344, 184);
+            this.clieNumTxt.Name = "clieNumTxt";
+            this.clieNumTxt.Size = new System.Drawing.Size(86, 20);
+            this.clieNumTxt.TabIndex = 24;
             // 
-            // txtCliCalle
+            // clieCalleTxt
             // 
-            this.txtCliCalle.Location = new System.Drawing.Point(82, 184);
-            this.txtCliCalle.Name = "txtCliCalle";
-            this.txtCliCalle.Size = new System.Drawing.Size(206, 20);
-            this.txtCliCalle.TabIndex = 23;
+            this.clieCalleTxt.Location = new System.Drawing.Point(82, 186);
+            this.clieCalleTxt.Name = "clieCalleTxt";
+            this.clieCalleTxt.Size = new System.Drawing.Size(206, 20);
+            this.clieCalleTxt.TabIndex = 23;
             // 
-            // cbxCliPais
+            // cliePaisPicker
             // 
-            this.cbxCliPais.FormattingEnabled = true;
-            this.cbxCliPais.Location = new System.Drawing.Point(82, 162);
-            this.cbxCliPais.Name = "cbxCliPais";
-            this.cbxCliPais.Size = new System.Drawing.Size(121, 21);
-            this.cbxCliPais.TabIndex = 22;
+            this.cliePaisPicker.FormattingEnabled = true;
+            this.cliePaisPicker.Location = new System.Drawing.Point(82, 162);
+            this.cliePaisPicker.Name = "cliePaisPicker";
+            this.cliePaisPicker.Size = new System.Drawing.Size(121, 21);
+            this.cliePaisPicker.TabIndex = 22;
             // 
-            // txtCliMail
+            // clieMailTxt
             // 
-            this.txtCliMail.Location = new System.Drawing.Point(82, 143);
-            this.txtCliMail.Name = "txtCliMail";
-            this.txtCliMail.Size = new System.Drawing.Size(348, 20);
-            this.txtCliMail.TabIndex = 21;
+            this.clieMailTxt.Location = new System.Drawing.Point(82, 140);
+            this.clieMailTxt.Name = "clieMailTxt";
+            this.clieMailTxt.Size = new System.Drawing.Size(348, 20);
+            this.clieMailTxt.TabIndex = 21;
             // 
-            // txtCliApellido
+            // clieApellidoTxt
             // 
-            this.txtCliApellido.Location = new System.Drawing.Point(82, 84);
-            this.txtCliApellido.Name = "txtCliApellido";
-            this.txtCliApellido.Size = new System.Drawing.Size(348, 20);
-            this.txtCliApellido.TabIndex = 20;
+            this.clieApellidoTxt.Location = new System.Drawing.Point(82, 84);
+            this.clieApellidoTxt.Name = "clieApellidoTxt";
+            this.clieApellidoTxt.Size = new System.Drawing.Size(348, 20);
+            this.clieApellidoTxt.TabIndex = 20;
             // 
-            // txtCliNombre
+            // clieNombreTxt
             // 
-            this.txtCliNombre.Location = new System.Drawing.Point(82, 62);
-            this.txtCliNombre.Name = "txtCliNombre";
-            this.txtCliNombre.Size = new System.Drawing.Size(348, 20);
-            this.txtCliNombre.TabIndex = 19;
+            this.clieNombreTxt.Location = new System.Drawing.Point(82, 58);
+            this.clieNombreTxt.Name = "clieNombreTxt";
+            this.clieNombreTxt.Size = new System.Drawing.Size(348, 20);
+            this.clieNombreTxt.TabIndex = 19;
             // 
             // btnCliGuardar
             // 
@@ -629,7 +616,7 @@ namespace PagoElectronico.Panel
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(14, 188);
+            this.label8.Location = new System.Drawing.Point(14, 190);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(30, 13);
             this.label8.TabIndex = 11;
@@ -653,35 +640,35 @@ namespace PagoElectronico.Panel
             this.label6.TabIndex = 9;
             this.label6.Text = "Mail";
             // 
-            // txtCliNumDoc
+            // clieDocTxt
             // 
-            this.txtCliNumDoc.Location = new System.Drawing.Point(408, 114);
-            this.txtCliNumDoc.Name = "txtCliNumDoc";
-            this.txtCliNumDoc.Size = new System.Drawing.Size(100, 20);
-            this.txtCliNumDoc.TabIndex = 8;
+            this.clieDocTxt.Location = new System.Drawing.Point(408, 109);
+            this.clieDocTxt.Name = "clieDocTxt";
+            this.clieDocTxt.Size = new System.Drawing.Size(100, 20);
+            this.clieDocTxt.TabIndex = 8;
             // 
             // lblCliNumDoc
             // 
             this.lblCliNumDoc.AutoSize = true;
-            this.lblCliNumDoc.Location = new System.Drawing.Point(275, 116);
+            this.lblCliNumDoc.Location = new System.Drawing.Point(275, 112);
             this.lblCliNumDoc.Name = "lblCliNumDoc";
             this.lblCliNumDoc.Size = new System.Drawing.Size(117, 13);
             this.lblCliNumDoc.TabIndex = 7;
             this.lblCliNumDoc.Text = "Numero de Documento";
             // 
-            // cbxCliTipoDoc
+            // clieTipoDocPicker
             // 
-            this.cbxCliTipoDoc.FormattingEnabled = true;
-            this.cbxCliTipoDoc.Location = new System.Drawing.Point(120, 113);
-            this.cbxCliTipoDoc.Name = "cbxCliTipoDoc";
-            this.cbxCliTipoDoc.Size = new System.Drawing.Size(121, 21);
-            this.cbxCliTipoDoc.TabIndex = 6;
+            this.clieTipoDocPicker.FormattingEnabled = true;
+            this.clieTipoDocPicker.Location = new System.Drawing.Point(120, 109);
+            this.clieTipoDocPicker.Name = "clieTipoDocPicker";
+            this.clieTipoDocPicker.Size = new System.Drawing.Size(121, 21);
+            this.clieTipoDocPicker.TabIndex = 6;
             // 
             // panelBusquedaUsu
             // 
             this.panelBusquedaUsu.Controls.Add(this.lblErrorBuqUsuCli);
-            this.panelBusquedaUsu.Controls.Add(this.btnBuscarUsu);
-            this.panelBusquedaUsu.Controls.Add(this.txtBusqUsu);
+            this.panelBusquedaUsu.Controls.Add(this.clieUsuBuscBtn);
+            this.panelBusquedaUsu.Controls.Add(this.clieUsuBuscTxt);
             this.panelBusquedaUsu.Controls.Add(this.label3);
             this.panelBusquedaUsu.Controls.Add(this.lbl);
             this.panelBusquedaUsu.Location = new System.Drawing.Point(17, 6);
@@ -700,26 +687,26 @@ namespace PagoElectronico.Panel
             this.lblErrorBuqUsuCli.Text = "No se ha encontrado resultado a su busqueda";
             this.lblErrorBuqUsuCli.Visible = false;
             // 
-            // btnBuscarUsu
+            // clieUsuBuscBtn
             // 
-            this.btnBuscarUsu.Location = new System.Drawing.Point(391, 4);
-            this.btnBuscarUsu.Name = "btnBuscarUsu";
-            this.btnBuscarUsu.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscarUsu.TabIndex = 3;
-            this.btnBuscarUsu.Text = "Buscar";
-            this.btnBuscarUsu.UseVisualStyleBackColor = true;
+            this.clieUsuBuscBtn.Location = new System.Drawing.Point(391, 4);
+            this.clieUsuBuscBtn.Name = "clieUsuBuscBtn";
+            this.clieUsuBuscBtn.Size = new System.Drawing.Size(75, 23);
+            this.clieUsuBuscBtn.TabIndex = 3;
+            this.clieUsuBuscBtn.Text = "Buscar";
+            this.clieUsuBuscBtn.UseVisualStyleBackColor = true;
             // 
-            // txtBusqUsu
+            // clieUsuBuscTxt
             // 
-            this.txtBusqUsu.Location = new System.Drawing.Point(243, 4);
-            this.txtBusqUsu.Name = "txtBusqUsu";
-            this.txtBusqUsu.Size = new System.Drawing.Size(100, 20);
-            this.txtBusqUsu.TabIndex = 2;
+            this.clieUsuBuscTxt.Location = new System.Drawing.Point(243, 6);
+            this.clieUsuBuscTxt.Name = "clieUsuBuscTxt";
+            this.clieUsuBuscTxt.Size = new System.Drawing.Size(100, 20);
+            this.clieUsuBuscTxt.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(172, 4);
+            this.label3.Location = new System.Drawing.Point(172, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 1;
@@ -728,7 +715,7 @@ namespace PagoElectronico.Panel
             // lbl
             // 
             this.lbl.AutoSize = true;
-            this.lbl.Location = new System.Drawing.Point(4, 4);
+            this.lbl.Location = new System.Drawing.Point(4, 10);
             this.lbl.Name = "lbl";
             this.lbl.Size = new System.Drawing.Size(94, 13);
             this.lbl.TabIndex = 0;
@@ -1908,6 +1895,20 @@ namespace PagoElectronico.Panel
             this.btnAdmSalir.UseVisualStyleBackColor = false;
             this.btnAdmSalir.Click += new System.EventHandler(this.btnAdmSalir_Click);
             // 
+            // usuCreacionTxt
+            // 
+            this.usuCreacionTxt.Location = new System.Drawing.Point(170, 293);
+            this.usuCreacionTxt.Name = "usuCreacionTxt";
+            this.usuCreacionTxt.Size = new System.Drawing.Size(116, 20);
+            this.usuCreacionTxt.TabIndex = 18;
+            // 
+            // usuModificacionTxt
+            // 
+            this.usuModificacionTxt.Location = new System.Drawing.Point(170, 318);
+            this.usuModificacionTxt.Name = "usuModificacionTxt";
+            this.usuModificacionTxt.Size = new System.Drawing.Size(116, 20);
+            this.usuModificacionTxt.TabIndex = 19;
+            // 
             // PanelAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1975,17 +1976,15 @@ namespace PagoElectronico.Panel
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckedListBox lisboxFuncionalidades;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtUsu;
-        private System.Windows.Forms.Button btnGuardarUsu;
+        private System.Windows.Forms.TextBox usuNameTxt;
+        private System.Windows.Forms.Button guardarUsuarioBtn;
         private System.Windows.Forms.Label lblRespuestaSecreta;
         private System.Windows.Forms.Label lblPreguntaSecreta;
-        private System.Windows.Forms.TextBox txtContrasena;
-        private System.Windows.Forms.Button btnAltaClienteUsu;
-        private System.Windows.Forms.TextBox txtRespustaSecreta;
-        private System.Windows.Forms.TextBox txtPreguntaSecreta;
-        private System.Windows.Forms.TextBox txtUltMod;
-        private System.Windows.Forms.TextBox txtFechaCreacion;
-        private System.Windows.Forms.ComboBox cbxRol;
+        private System.Windows.Forms.TextBox usuContrasenaTxt;
+        private System.Windows.Forms.Button altaClienteBtn;
+        private System.Windows.Forms.TextBox usuRespuestaSecTxt;
+        private System.Windows.Forms.TextBox usuPreguntaSecTxt;
+        private System.Windows.Forms.ComboBox usuRolPicker;
         private System.Windows.Forms.TabPage tabCliente;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -2000,26 +1999,26 @@ namespace PagoElectronico.Panel
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtCliNumDoc;
+        private System.Windows.Forms.TextBox clieDocTxt;
         private System.Windows.Forms.Label lblCliNumDoc;
-        private System.Windows.Forms.ComboBox cbxCliTipoDoc;
-        private System.Windows.Forms.Button btnBuscarUsu;
-        private System.Windows.Forms.TextBox txtBusqUsu;
+        private System.Windows.Forms.ComboBox clieTipoDocPicker;
+        private System.Windows.Forms.Button clieUsuBuscBtn;
+        private System.Windows.Forms.TextBox clieUsuBuscTxt;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtCliDepto;
-        private System.Windows.Forms.TextBox txtCliPiso;
-        private System.Windows.Forms.TextBox txtCliNum;
-        private System.Windows.Forms.TextBox txtCliCalle;
-        private System.Windows.Forms.ComboBox cbxCliPais;
-        private System.Windows.Forms.TextBox txtCliMail;
-        private System.Windows.Forms.TextBox txtCliApellido;
-        private System.Windows.Forms.TextBox txtCliNombre;
+        private System.Windows.Forms.TextBox clieDepTxt;
+        private System.Windows.Forms.TextBox cliePisoTxt;
+        private System.Windows.Forms.TextBox clieNumTxt;
+        private System.Windows.Forms.TextBox clieCalleTxt;
+        private System.Windows.Forms.ComboBox cliePaisPicker;
+        private System.Windows.Forms.TextBox clieMailTxt;
+        private System.Windows.Forms.TextBox clieApellidoTxt;
+        private System.Windows.Forms.TextBox clieNombreTxt;
         private System.Windows.Forms.Button btnCliGuardar;
-        private System.Windows.Forms.DateTimePicker dateTimeCliFechNac;
-        private System.Windows.Forms.TextBox txtCliNac;
-        private System.Windows.Forms.TextBox TxtCliLoc;
+        private System.Windows.Forms.DateTimePicker clieNacimientoPicker;
+        private System.Windows.Forms.TextBox clieNacionalidadTxt;
+        private System.Windows.Forms.TextBox clieLocalidTxt;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
@@ -2164,5 +2163,7 @@ namespace PagoElectronico.Panel
         }
 
         private Button btnAdmSalir;
+        private DateTimePicker usuCreacionTxt;
+        private DateTimePicker usuModificacionTxt;
     }
 }
