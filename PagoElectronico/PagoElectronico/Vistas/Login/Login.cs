@@ -17,7 +17,7 @@ namespace PagoElectronico.Login
     {
         Boolean posibleCliente;
         Usuario usu;
-        ControladorUsuario controladorUsuario = new ControladorUsuario();
+        ControladorAdmin controladorUsuario = new ControladorAdmin();
         public Login()
         {
             InitializeComponent();

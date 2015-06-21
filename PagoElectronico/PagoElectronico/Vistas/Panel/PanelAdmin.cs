@@ -16,7 +16,7 @@ namespace PagoElectronico.Panel
     public partial class PanelAdmin : Form
     {
 
-       private ControladorUsuario controladorUsuario = new ControladorUsuario();
+       private ControladorAdmin controladorAdmin = new ControladorAdmin();
        private RolDAO rolDAO;
        private SisDAO sisDAO;
        private CuentaDao cuentaDao;
@@ -28,9 +28,7 @@ namespace PagoElectronico.Panel
         public PanelAdmin()
         {
 
-            
             InitializeComponent();
-            
          
         }
         private void Form1_Load(object sender, EventArgs e)
@@ -78,8 +76,6 @@ namespace PagoElectronico.Panel
             cliePaisPicker.DisplayMember = "DESCRIPCION";
             cliePaisPicker.Text = "Elegir una";
 
-
-
             /*
             List<TipoDoc> tiposDoc = sisDAO.listaTipoDoc();
             cbxCliTipoDoc.DataSource = tiposDoc;
@@ -107,13 +103,6 @@ namespace PagoElectronico.Panel
             cbxTipoDocSaldo.DataSource = tiposDoc;
             cbxTipoDocSaldo.DisplayMember = "DESCRIPCION";
             cbxTipoDocSaldo.Text = "Elegir una";   */
-        }
-
-        private void cbxRol_SelectedValueChanged(object sender, EventArgs e)
-        {         
-
-
-                    
         }
 
         private void btnFunRol1_Click(object sender, EventArgs e)
@@ -147,11 +136,6 @@ namespace PagoElectronico.Panel
 
         }
 
-        private void checkedListBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnAdmSalir_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -165,11 +149,18 @@ namespace PagoElectronico.Panel
                                                usuPreguntaSecTxt.Text, usuRespuestaSecTxt.Text,
                                                usuCreacionTxt.Value, usuModificacionTxt.Value, 
                                                (int)usuRolPicker.SelectedItem, false, null);
-            controladorUsuario.guardarCliente(usuario);
+            controladorAdmin.guardarUsuario(usuario);
         }
 
+        private void btnCliGuardar_Click(object sender, EventArgs e)
+        {
+            Cliente cliente = new Cliente(clieNombreTxt.Text, clieApellidoTxt.Text, (int)clieTipoDocPicker.SelectedItem,
+                                           clieDocTxt.Text, clieMailTxt.Text, (String)cliePaisPicker.SelectedItem, clieCalleTxt.Text,
+                                            clieNumTxt.Text, Convert.ToInt32(cliePisoTxt.Text), clieDepTxt.Text, clieLocalidTxt.Text,
+                                            clieNacionalidadTxt.Text, clieNacimientoPicker.Value);
+            controladorAdmin.guardarCliente(cliente);
+        }
 
-      
         
     }
 }

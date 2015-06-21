@@ -31,6 +31,8 @@ namespace PagoElectronico.Panel
         private void InitializeComponent()
         {
             this.tabUsuario = new System.Windows.Forms.TabPage();
+            this.usuModificacionTxt = new System.Windows.Forms.DateTimePicker();
+            this.usuCreacionTxt = new System.Windows.Forms.DateTimePicker();
             this.btnFunRol1 = new System.Windows.Forms.Button();
             this.altaClienteBtn = new System.Windows.Forms.Button();
             this.usuRespuestaSecTxt = new System.Windows.Forms.TextBox();
@@ -205,8 +207,6 @@ namespace PagoElectronico.Panel
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.btnAdmSalir = new System.Windows.Forms.Button();
-            this.usuCreacionTxt = new System.Windows.Forms.DateTimePicker();
-            this.usuModificacionTxt = new System.Windows.Forms.DateTimePicker();
             this.tabUsuario.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tab.SuspendLayout();
@@ -261,6 +261,20 @@ namespace PagoElectronico.Panel
             this.tabUsuario.TabIndex = 1;
             this.tabUsuario.Text = "Usuario";
             this.tabUsuario.UseVisualStyleBackColor = true;
+            // 
+            // usuModificacionTxt
+            // 
+            this.usuModificacionTxt.Location = new System.Drawing.Point(170, 318);
+            this.usuModificacionTxt.Name = "usuModificacionTxt";
+            this.usuModificacionTxt.Size = new System.Drawing.Size(116, 20);
+            this.usuModificacionTxt.TabIndex = 19;
+            // 
+            // usuCreacionTxt
+            // 
+            this.usuCreacionTxt.Location = new System.Drawing.Point(170, 293);
+            this.usuCreacionTxt.Name = "usuCreacionTxt";
+            this.usuCreacionTxt.Size = new System.Drawing.Size(116, 20);
+            this.usuCreacionTxt.TabIndex = 18;
             // 
             // btnFunRol1
             // 
@@ -558,6 +572,7 @@ namespace PagoElectronico.Panel
             this.btnCliGuardar.TabIndex = 18;
             this.btnCliGuardar.Text = "Guardar";
             this.btnCliGuardar.UseVisualStyleBackColor = true;
+            this.btnCliGuardar.Click += new System.EventHandler(this.btnCliGuardar_Click);
             // 
             // label14
             // 
@@ -956,7 +971,6 @@ namespace PagoElectronico.Panel
             this.checkedListBox2.Name = "checkedListBox2";
             this.checkedListBox2.Size = new System.Drawing.Size(496, 94);
             this.checkedListBox2.TabIndex = 0;
-            this.checkedListBox2.SelectedIndexChanged += new System.EventHandler(this.checkedListBox2_SelectedIndexChanged);
             // 
             // label18
             // 
@@ -1894,20 +1908,6 @@ namespace PagoElectronico.Panel
             this.btnAdmSalir.Text = "Salir";
             this.btnAdmSalir.UseVisualStyleBackColor = false;
             this.btnAdmSalir.Click += new System.EventHandler(this.btnAdmSalir_Click);
-            // 
-            // usuCreacionTxt
-            // 
-            this.usuCreacionTxt.Location = new System.Drawing.Point(170, 293);
-            this.usuCreacionTxt.Name = "usuCreacionTxt";
-            this.usuCreacionTxt.Size = new System.Drawing.Size(116, 20);
-            this.usuCreacionTxt.TabIndex = 18;
-            // 
-            // usuModificacionTxt
-            // 
-            this.usuModificacionTxt.Location = new System.Drawing.Point(170, 318);
-            this.usuModificacionTxt.Name = "usuModificacionTxt";
-            this.usuModificacionTxt.Size = new System.Drawing.Size(116, 20);
-            this.usuModificacionTxt.TabIndex = 19;
             // 
             // PanelAdmin
             // 

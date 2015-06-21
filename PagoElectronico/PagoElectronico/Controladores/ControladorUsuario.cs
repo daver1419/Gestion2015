@@ -5,24 +5,27 @@ using System.Text;
 using PagoElectronico.DAO;
 using PagoElectronico.Entidad;
 
+// Controla todos los tabs del Admin
+
 namespace PagoElectronico.ABM_de_Usuario
 {
-    class ControladorUsuario
+    class ControladorAdmin
     {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
-
-        public void crearClientePosible(String usuario, String contraseña)
-        {
-        }
 
         public List<Usuario> login(String usuario,  String contraseña)
         {
             return usuarioDAO.login(usuario, contraseña);
         }
 
-        internal void guardarCliente(Usuario usuario)
+        internal void guardarUsuario(Usuario usuario)
         {
-            usuarioDAO.guardarCliente(usuario);
+            usuarioDAO.guardarUsuario(usuario);
+        }
+
+        internal void guardarCliente(Cliente cliente)
+        {
+            usuarioDAO.guardarCliente(cliente);
         }
     }
 }

@@ -18,6 +18,8 @@ namespace PagoElectronico.Entidad
         public DateTime fechaModificacion { get; set; }
         public Cliente cliente { get; set; }
 
+        public Usuario();
+
         public Usuario(long id, String usuario, String contrasena, String preguntaSec, String respuestaSec,
             DateTime fechaCreacion, DateTime fechaModificacion,
            int rol, Boolean habilitado, Cliente cliente){
