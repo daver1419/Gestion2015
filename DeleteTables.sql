@@ -60,6 +60,10 @@ drop function THE_ULTIMATES.RemoverTildes;
 drop function THE_ULTIMATES.esDelMismoCliente;
 drop function THE_ULTIMATES.esDelMismoCliente2;
 drop function THE_ULTIMATES.getClientId;
+drop function THE_ULTIMATES.getCuentasByClieId;
+drop function THE_ULTIMATES.getClienteByTipoYNumeroDoc;
+drop function THE_ULTIMATES.getSaldoByCuenta;
+
 drop procedure THE_ULTIMATES.SP_CargarCuentas;
 drop procedure THE_ULTIMATES.SP_CargarTransferencias;
 drop procedure THE_ULTIMATES.SP_CargarTransferencias2;
@@ -70,7 +74,6 @@ drop procedure THE_ULTIMATES.SP_CargarFacturas;
 drop procedure THE_ULTIMATES.SP_CargarTarjetas;
 drop procedure THE_ULTIMATES.SP_CargarEmisores;
 drop procedure THE_ULTIMATES.SP_CargarDepositos;
-drop function THE_ULTIMATES.SP_getCuentasByClieId;
 drop procedure THE_ULTIMATES.Lista_Func_Rol;
 drop procedure THE_ULTIMATES.Lista_Pais;
 drop procedure THE_ULTIMATES.Lista_Rol;
@@ -78,7 +81,6 @@ drop procedure THE_ULTIMATES.Lista_Tipo_Cuenta;
 drop procedure THE_ULTIMATES.Lista_Tipo_Doc;
 drop procedure THE_ULTIMATES.Lista_Tipo_Moneda;
 drop procedure THE_ULTIMATES.login;
-drop procedure THE_ULTIMATES.SP_getClienteByTipoYNumeroDoc;
 
 
 

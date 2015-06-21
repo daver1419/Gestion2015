@@ -41,22 +41,34 @@ END
 
 GO
 
-create procedure THE_ULTIMATES.SP_getClienteByTipoYNumeroDoc
+create function THE_ULTIMATES.getClienteByTipoYNumeroDoc(
 @tipo_doc_id numeric(18,0),
-@numero_doc numeric(18,0)
+@numero_doc numeric(18,0))
+returns TABLE
 as
 begin
-	set nocount on;
-	select * from THE_ULTIMATES.Cliente where clie_tipo_doc_id = @tipo_doc_id and clie_nro_doc = @numero_doc
+	return (select * 
+			from THE_ULTIMATES.Cliente 
+			where clie_tipo_doc_id = @tipo_doc_id and clie_nro_doc = @numero_doc)
 end
 go
 
-create function THE_ULTIMATES.SP_getCuentasByClieId(@cliente_id int)
+create function THE_ULTIMATES.getCuentasByClieId(@cliente_id int)
 returns TABLE
 as
 return (select * from THE_ULTIMATES.Cuenta where cuen_clie_id = @cliente_id)
-
 go
+
+create function THE_ULTIMATES.getSaldoByCuenta(@cuenta_id numeric(18,0))
+returns numeric(18,2)
+as
+begin
+	return (select cuen_saldo
+			from THE_ULTIMATES.Cuenta
+			where @cuenta_id = cuen_id)
+end
+go
+
 CREATE PROCEDURE [THE_ULTIMATES].[Lista_Tipo_Doc]
 AS
 BEGIN
