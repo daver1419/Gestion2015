@@ -46,11 +46,9 @@ create function THE_ULTIMATES.getClienteByTipoYNumeroDoc(
 @numero_doc numeric(18,0))
 returns TABLE
 as
-begin
 	return (select * 
 			from THE_ULTIMATES.Cliente 
 			where clie_tipo_doc_id = @tipo_doc_id and clie_nro_doc = @numero_doc)
-end
 go
 
 create function THE_ULTIMATES.getCuentasByClieId(@cliente_id int)
@@ -72,13 +70,30 @@ go
 create function THE_ULTIMATES.getUltimos5Depositos(@cuenta_id numeric(18,0))
 returns TABLE
 as
-begin
 	return (select top 5 *
 			from THE_ULTIMATES.Deposito
 			where depo_cuen_id = @cuenta_id
 			order by depo_id desc)
-end
 go
+
+create function THE_ULTIMATES.getUltimas5Extracciones(@cuenta_id numeric(18,0))
+returns TABLE
+as
+	return (select top 5 *
+			from THE_ULTIMATES.Extraccion
+			where extrac_cuenta_id = @cuenta_id
+			order by extrac_id desc)
+go
+
+create function THE_ULTIMATES.getUltimas10Transferencias(@cuenta_id numeric(18,0))
+returns TABLE
+as
+	return (select top 10 *
+			from THE_ULTIMATES.Transferencia
+			where transf_cuenta_origen = @cuenta_id
+			order by transf_id desc)
+go
+
 
 
 CREATE PROCEDURE [THE_ULTIMATES].[Lista_Tipo_Doc]

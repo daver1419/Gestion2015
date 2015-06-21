@@ -93,7 +93,7 @@ create table THE_ULTIMATES.Cliente(
 	clie_dom_depto varchar(10),
 	clie_fecha_nac datetime not null,
 	clie_pais_id numeric(18,0) not null, /* FK  THE_ULTIMATES.Pais*/
-	clie_usu_id int
+	clie_usu_id int not null
 );
 
 GO
@@ -245,10 +245,10 @@ GO
 create table THE_ULTIMATES.Item_Factura(
 	item_fact_num int not null, /* FK  THE_ULTIMATES.Factura*/
 	item_fact_transac_id int not null,  /* FK  THE_ULTIMATES.Transaccion*/
-	item_fact_cantidad int not null,
+	item_fact_desc varchar(250) not null,
+	item_fact_precio numeric(18,3)not null
 	CONSTRAINT PK_item_factura PRIMARY KEY (item_fact_num, item_fact_transac_id)
 );
-
 
 GO
 
@@ -800,13 +800,14 @@ declare @cuenta_numero numeric(18,0),
 		@transac_id int
 		
 declare cursor_transferencias cursor for 
-	(select Cuenta_Numero,
+	select Cuenta_Numero,
 			Transf_Fecha,
 			Item_Factura_Descr,
 			Item_Factura_Importe,
 			Factura_Numero
 	from gd_esquema.Maestra
-	where Cuenta_Dest_Numero is not null and Factura_Numero is not null)
+	where Cuenta_Dest_Numero is not null and Factura_Numero is not null
+	order by Transf_Fecha
 	
 open cursor_transferencias;
 
@@ -832,8 +833,9 @@ begin
 
 	set @transac_id = SCOPE_IDENTITY();		
 	
-	insert into THE_ULTIMATES.Item_Factura (item_fact_num, item_fact_transac_id, item_fact_cantidad)
-	values (@factura_numero, @transac_id, 1);
+	insert into THE_ULTIMATES.Item_Factura (item_fact_num, item_fact_transac_id, item_fact_desc, item_fact_precio)
+	values (@factura_numero, @transac_id, @item_factura_descr, @item_factura_importe);
+
 
 	fetch next from cursor_transferencias 
 	into	@cuenta_numero, 
