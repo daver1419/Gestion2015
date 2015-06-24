@@ -61,7 +61,9 @@ namespace PagoElectronico.Login
                 MessageBox.Show("No se encontro Resultado para el usuario y contraseña ingresado ");
             }else
             if (listaU.First().habilitado )
-            {           
+
+            {  
+        
                 if (listaU.Count() == 2)
                 {
                     lblrol.Visible = true;
@@ -72,17 +74,22 @@ namespace PagoElectronico.Login
                 }
                 else
                 {
-
+                    usu = listaU.First();
 
                     if (listaU.First().rol == 1)
                     {
-                        this.Close();
+                        this.Visible = false; 
                         PagoElectronico.Panel.PanelAdmin panelAdmin = new PagoElectronico.Panel.PanelAdmin();
+                        panelAdmin.usuario = usu;
+                        panelAdmin.ShowDialog();
+
                     }
                     else if (listaU.First().rol == 2)
                     {
-                        this.Close();
+                        this.Visible = false;
                         PagoElectronico.PanelCliente.PanelCliente panelCliente = new PagoElectronico.PanelCliente.PanelCliente();
+                        panelCliente.usuario = usu;
+                        panelCliente.ShowDialog();
                     }
                 }
 
@@ -96,16 +103,22 @@ namespace PagoElectronico.Login
 
         private void btnCliente_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Visible = false; 
 
             PagoElectronico.PanelCliente.PanelCliente panelCliente = new PagoElectronico.PanelCliente.PanelCliente();
-        
+            usu.rol = 2;
+            panelCliente.usuario = usu;
+
+            panelCliente.ShowDialog();        
+
         }
 
         private void btnAdministrador_Click(object sender, EventArgs e)
         {
             this.Visible = false; 
             PagoElectronico.Panel.PanelAdmin panelAdm = new PagoElectronico.Panel.PanelAdmin();
+            usu.rol = 1;
+            panelAdm.usuario = usu;
             panelAdm.ShowDialog();
         
         }
