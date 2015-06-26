@@ -186,7 +186,8 @@ create table THE_ULTIMATES.Transferencia(
 	transf_cuenta_destino numeric(18,0) not null, /* FK  THE_ULTIMATES.Cuenta*/
 	transf_importe numeric(18,2)not null,
 	transf_costo_transf numeric(18,2)not null,
-	transf_cuenta_propia bit null 
+	transf_cuenta_propia bit null,
+	transf_transac_id int null
 );
 
 GO
@@ -310,8 +311,8 @@ go
 
 alter table THE_ULTIMATES.Transferencia
 add constraint FK_transf_cuenta_origen foreign key (transf_cuenta_origen) references THE_ULTIMATES.Cuenta(cuen_id),
-	constraint FK_transf_cuenta_destino foreign key (transf_cuenta_destino) references THE_ULTIMATES.Cuenta(cuen_id);
-
+	constraint FK_transf_cuenta_destino foreign key (transf_cuenta_destino) references THE_ULTIMATES.Cuenta(cuen_id),
+	constraint FK_transf_transac_id foreign key (transf_transac_id) references THE_ULTIMATES.Transaccion(transac_id);
 go
 
 alter table THE_ULTIMATES.Transaccion
@@ -443,6 +444,7 @@ insert into THE_ULTIMATES.Transferencia (transf_cuenta_origen, transf_cuenta_des
 	and Cuenta_Dest_Numero = c2.cuen_id and c1.cuen_clie_id = c2.cuen_clie_id)
 	from gd_esquema.Maestra
 	where Cuenta_Dest_Numero is not null and Factura_Numero is null
+	order by Transf_Fecha
 	
 update THE_ULTIMATES.Transferencia set transf_cuenta_propia = 0
 where transf_cuenta_propia is null
@@ -791,6 +793,19 @@ go
 
 exec THE_ULTIMATES.SP_CargarFacturas;
 
+/*insert into THE_ULTIMATES.Transaccion (transac_cuen_id,
+											transac_fecha,
+											transac_importe_comision,
+											transac_pendiente,
+											transac_tipo_transac_id)
+		
+	(select Cuenta_Numero,
+			Transf_Fecha,
+			Item_Factura_Importe, 0 ,3
+	from gd_esquema.Maestra
+	where Cuenta_Dest_Numero is not null and Factura_Numero is not null)		
+											
+*/
 
 declare @cuenta_numero numeric(18,0), 
 		@trans_fecha datetime,  
@@ -831,7 +846,11 @@ begin
 											
 	values (@cuenta_numero, @trans_fecha, @item_factura_importe, 0, 3)
 
-	set @transac_id = SCOPE_IDENTITY();		
+	set @transac_id = SCOPE_IDENTITY();	
+	
+	update THE_ULTIMATES.Transferencia 
+	set transf_transac_id = @transac_id
+	where transf_id = @transac_id	
 	
 	insert into THE_ULTIMATES.Item_Factura (item_fact_num, item_fact_transac_id, item_fact_desc, item_fact_precio)
 	values (@factura_numero, @transac_id, @item_factura_descr, @item_factura_importe);

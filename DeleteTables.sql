@@ -22,6 +22,7 @@ alter table THE_ULTIMATES.Deposito drop constraint FK_depo_tipo_moneda_id;
 alter table THE_ULTIMATES.Cheque drop constraint FK_cheque_banco_id;
 alter table THE_ULTIMATES.Transferencia drop constraint FK_transf_cuenta_origen;
 alter table THE_ULTIMATES.Transferencia drop constraint FK_transf_cuenta_destino;
+alter table THE_ULTIMATES.Tannsferencia drop constraint FK_transf_transac_id;
 alter table THE_ULTIMATES.Transaccion drop constraint FK_transac_tipo_transac_id;
 alter table THE_ULTIMATES.Transaccion drop constraint FK_transac_cuen_id;
 alter table THE_ULTIMATES.Extraccion drop constraint FK_extrac_cuenta_id;
@@ -65,6 +66,7 @@ drop function THE_ULTIMATES.getClienteByTipoYNumeroDoc;
 drop function THE_ULTIMATES.getSaldoByCuenta;
 drop function THE_ULTIMATES.getUltimos5Depositos;
 drop function THE_ULTIMATES.getUltimas5Extracciones;
+drop function THE_ULTIMATES.getUltimas10Transferencias;
 
 drop procedure THE_ULTIMATES.SP_CargarCuentas;
 drop procedure THE_ULTIMATES.SP_CargarTransferencias;
