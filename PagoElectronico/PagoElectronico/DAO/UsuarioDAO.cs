@@ -17,16 +17,6 @@ namespace PagoElectronico.DAO
         public List<Usuario> login(String username, String password)
         {
             List<Usuario> list = new List<Usuario>();
-<<<<<<< HEAD
-           using (SqlCommand command = InitializeConnection("login"))
-            {
-                command.Parameters.Add("@usuario", System.Data.SqlDbType.NVarChar, 25).Value = username;
-                command.Parameters.Add("@password", System.Data.SqlDbType.NVarChar, 64).Value = password;
-                SqlDataAdapter da = new SqlDataAdapter(command);
-=======
-
-
-
             using (SqlCommand command = InitializeConnection("login"))
             {
                 command.Parameters.Add("@usuario", System.Data.SqlDbType.NVarChar, 25).Value = username;
@@ -36,8 +26,6 @@ namespace PagoElectronico.DAO
 
                 SqlDataAdapter da = new SqlDataAdapter(command);
 
-
->>>>>>> 127bd5342b40b6e6abb4fad1bb0eef9474bab2cc
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -47,7 +35,6 @@ namespace PagoElectronico.DAO
                     usuario.habilitado = reader.GetBoolean(2);
                     usuario.rol = reader.GetInt32(3);
                     list.Add(usuario);
-<<<<<<< HEAD
                }                
                  CerrarConexion();
                  return list;
@@ -84,21 +71,9 @@ namespace PagoElectronico.DAO
                       
                   }
               }
-=======
-
-                }
-
-                CerrarConexion();
-                return list;
 
 
-
-
-            }
-
-
-
->>>>>>> 127bd5342b40b6e6abb4fad1bb0eef9474bab2cc
+      
         }
 
         internal void guardarUsuario(Usuario datos)
@@ -115,10 +90,6 @@ namespace PagoElectronico.DAO
                 command.Parameters.Add("@usu_respuesta", System.Data.SqlDbType.NVarChar, 64).Value = datos.respuestaSec;
                 // Clie ID? Activo? Intentos fallidos?
                 SqlDataAdapter da = new SqlDataAdapter(command);
-
-<<<<<<< HEAD
-
-=======
                 CerrarConexion();
             }
         }
@@ -148,6 +119,6 @@ namespace PagoElectronico.DAO
                 CerrarConexion();
             }
         }
->>>>>>> 127bd5342b40b6e6abb4fad1bb0eef9474bab2cc
+
     }
 }

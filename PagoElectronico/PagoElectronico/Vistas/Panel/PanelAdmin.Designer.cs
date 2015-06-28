@@ -90,7 +90,7 @@ namespace PagoElectronico.Panel
             this.panel7 = new System.Windows.Forms.Panel();
             this.label40 = new System.Windows.Forms.Label();
             this.button15 = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBusUsuario = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
@@ -796,7 +796,7 @@ namespace PagoElectronico.Panel
             // 
             this.panel7.Controls.Add(this.label40);
             this.panel7.Controls.Add(this.button15);
-            this.panel7.Controls.Add(this.textBox6);
+            this.panel7.Controls.Add(this.textBusUsuario);
             this.panel7.Controls.Add(this.label37);
             this.panel7.Controls.Add(this.label38);
             this.panel7.Location = new System.Drawing.Point(17, 6);
@@ -825,14 +825,14 @@ namespace PagoElectronico.Panel
             this.button15.UseVisualStyleBackColor = true;
             this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
-            // textBox6
+            // textBusUsuario
             // 
-            this.textBox6.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.textBox6.Location = new System.Drawing.Point(243, 4);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 2;
-            this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
+            this.textBusUsuario.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.textBusUsuario.Location = new System.Drawing.Point(243, 4);
+            this.textBusUsuario.Name = "textBusUsuario";
+            this.textBusUsuario.Size = new System.Drawing.Size(100, 20);
+            this.textBusUsuario.TabIndex = 2;
+            this.textBusUsuario.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             // 
             // label37
             // 
@@ -2106,7 +2106,7 @@ namespace PagoElectronico.Panel
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBusUsuario;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.TabPage tabRol;
