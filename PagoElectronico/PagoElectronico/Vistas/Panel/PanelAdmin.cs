@@ -15,6 +15,7 @@ namespace PagoElectronico.Panel
 {
     public partial class PanelAdmin : Form
     {
+         public Usuario usuarioLogeado;
 
        private ControladorAdmin controladorAdmin = new ControladorAdmin();
        private RolDAO rolDAO;
@@ -76,12 +77,12 @@ namespace PagoElectronico.Panel
             cliePaisPicker.DisplayMember = "DESCRIPCION";
             cliePaisPicker.Text = "Elegir una";
 
-            /*
+           
             List<TipoDoc> tiposDoc = sisDAO.listaTipoDoc();
             cbxCliTipoDoc.DataSource = tiposDoc;
             cbxCliTipoDoc.DisplayMember = "DESCRIPCION";
             cbxCliTipoDoc.Text = "Elegir una";
-
+            /*
             // panel Cuenta
             cbxPaisCuenta.DataSource = paises;
             cbxPaisCuenta.DisplayMember = "DESCRIPCION";
@@ -95,14 +96,14 @@ namespace PagoElectronico.Panel
             List<TipoCuenta> tiposCuentas = sisDAO.listaTipoCuenta();
             cbxTipoCuenta.DataSource = tiposCuentas;
             cbxTipoCuenta.DisplayMember = "DESCRIPCION";
-            cbxTipoCuenta.Text = "Elegir una";
+            cbxTipoCuenta.Text = "Elegir una";*/
            
             // tab Tarjeta Falta el combo box 
 
             // tab Saldo 
             cbxTipoDocSaldo.DataSource = tiposDoc;
             cbxTipoDocSaldo.DisplayMember = "DESCRIPCION";
-            cbxTipoDocSaldo.Text = "Elegir una";   */
+            cbxTipoDocSaldo.Text = "Elegir una";  
         }
 
         private void btnFunRol1_Click(object sender, EventArgs e)
@@ -154,7 +155,7 @@ namespace PagoElectronico.Panel
 
         private void btnCliGuardar_Click(object sender, EventArgs e)
         {
-            Cliente cliente = new Cliente(clieNombreTxt.Text, clieApellidoTxt.Text, (int)clieTipoDocPicker.SelectedItem,
+            Cliente cliente = new Cliente(clieNombreTxt.Text, clieApellidoTxt.Text, (int)cbxCliTipoDoc.SelectedItem,
                                            clieDocTxt.Text, clieMailTxt.Text, (String)cliePaisPicker.SelectedItem, clieCalleTxt.Text,
                                             clieNumTxt.Text, Convert.ToInt32(cliePisoTxt.Text), clieDepTxt.Text, clieLocalidTxt.Text,
                                             clieNacionalidadTxt.Text, clieNacimientoPicker.Value);

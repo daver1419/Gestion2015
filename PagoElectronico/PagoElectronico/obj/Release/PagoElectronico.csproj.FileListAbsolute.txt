@@ -19,3 +19,4 @@ C:\Users\RomiVM\Documents\Gestion2015\PagoElectronico\PagoElectronico\bin\Releas
 C:\Users\RomiVM\Documents\Gestion2015\PagoElectronico\PagoElectronico\bin\Release\PagoElectronico.pdb
 C:\Users\RomiVM\Documents\Gestion2015\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.exe
 C:\Users\RomiVM\Documents\Gestion2015\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.pdb
+C:\Users\RomiVM\Documents\github\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.Login.Login.resources

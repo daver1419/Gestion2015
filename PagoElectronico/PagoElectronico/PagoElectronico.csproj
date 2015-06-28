@@ -48,7 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controladores\ControladorCliente.cs" />
     <Compile Include="Controladores\ControladorUsuario.cs" />
+    <Compile Include="DAO\ClienteDAO.cs" />
     <Compile Include="DAO\CuentaDao.cs" />
     <Compile Include="DAO\RolDAO.cs" />
     <Compile Include="DAO\BaseDAO.cs" />

@@ -49,12 +49,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.listCuentaCuentas = new System.Windows.Forms.CheckedListBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
-            this.btnCuentaBuscarUsu = new System.Windows.Forms.Button();
-            this.textCuentaUsuBusq = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panelAgregarTarjeta = new System.Windows.Forms.Panel();
             this.txtTarjetaCodSeguridad = new System.Windows.Forms.TextBox();
@@ -349,7 +343,6 @@
             this.tabPanelCliente.SuspendLayout();
             this.tabCuenta.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panelAgregarTarjeta.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -395,7 +388,6 @@
             this.tabPanelCliente.Size = new System.Drawing.Size(661, 611);
             this.tabPanelCliente.TabIndex = 0;
             this.tabPanelCliente.TabStop = false;
-            this.tabPanelCliente.Visible = false;
             // 
             // tabCuenta
             // 
@@ -417,7 +409,6 @@
             this.tabCuenta.Controls.Add(this.btnCuentaAddCuenta);
             this.tabCuenta.Controls.Add(this.label13);
             this.tabCuenta.Controls.Add(this.panel5);
-            this.tabCuenta.Controls.Add(this.panel4);
             this.tabCuenta.Location = new System.Drawing.Point(4, 22);
             this.tabCuenta.Name = "tabCuenta";
             this.tabCuenta.Padding = new System.Windows.Forms.Padding(3);
@@ -566,7 +557,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(7, 64);
+            this.label13.Location = new System.Drawing.Point(9, 21);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(46, 13);
             this.label13.TabIndex = 25;
@@ -575,7 +566,7 @@
             // panel5
             // 
             this.panel5.Controls.Add(this.listCuentaCuentas);
-            this.panel5.Location = new System.Drawing.Point(3, 83);
+            this.panel5.Location = new System.Drawing.Point(12, 58);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(602, 100);
             this.panel5.TabIndex = 24;
@@ -587,63 +578,6 @@
             this.listCuentaCuentas.Name = "listCuentaCuentas";
             this.listCuentaCuentas.Size = new System.Drawing.Size(496, 94);
             this.listCuentaCuentas.TabIndex = 0;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.label10);
-            this.panel4.Controls.Add(this.btnCuentaBuscarUsu);
-            this.panel4.Controls.Add(this.textCuentaUsuBusq);
-            this.panel4.Controls.Add(this.label11);
-            this.panel4.Controls.Add(this.label12);
-            this.panel4.Location = new System.Drawing.Point(6, 15);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(554, 44);
-            this.panel4.TabIndex = 23;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.Color.Red;
-            this.label10.Location = new System.Drawing.Point(41, 27);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(226, 13);
-            this.label10.TabIndex = 5;
-            this.label10.Text = "No se ha encontrado resultado a su busqueda";
-            this.label10.Visible = false;
-            // 
-            // btnCuentaBuscarUsu
-            // 
-            this.btnCuentaBuscarUsu.Location = new System.Drawing.Point(391, 4);
-            this.btnCuentaBuscarUsu.Name = "btnCuentaBuscarUsu";
-            this.btnCuentaBuscarUsu.Size = new System.Drawing.Size(75, 23);
-            this.btnCuentaBuscarUsu.TabIndex = 3;
-            this.btnCuentaBuscarUsu.Text = "Buscar";
-            this.btnCuentaBuscarUsu.UseVisualStyleBackColor = true;
-            // 
-            // textCuentaUsuBusq
-            // 
-            this.textCuentaUsuBusq.Location = new System.Drawing.Point(243, 4);
-            this.textCuentaUsuBusq.Name = "textCuentaUsuBusq";
-            this.textCuentaUsuBusq.Size = new System.Drawing.Size(100, 20);
-            this.textCuentaUsuBusq.TabIndex = 2;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(172, 4);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(43, 13);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "Usuario";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(4, 4);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(94, 13);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "Busqueda Usuario";
             // 
             // tabPage1
             // 
@@ -3281,8 +3215,6 @@
             this.tabCuenta.ResumeLayout(false);
             this.tabCuenta.PerformLayout();
             this.panel5.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.panelAgregarTarjeta.ResumeLayout(false);
@@ -3388,12 +3320,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button btnCuentaBuscarUsu;
-        private System.Windows.Forms.TextBox textCuentaUsuBusq;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.CheckedListBox listCuentaCuentas;

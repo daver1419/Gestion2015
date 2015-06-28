@@ -13,7 +13,7 @@ namespace PagoElectronico.DAO
         public List<Cuenta> listaCuentas(Int32 cliente)
         {
             List<Cuenta> cuentas = new List<Cuenta>();
-            using (SqlCommand command = QueryPura("select * from THE_ULTIMATES.SP_getCuentasByClieId(" + cliente + ")"))
+            using (SqlCommand command = QueryPura("select * from THE_ULTIMATES.getCuentasByClieId(" + cliente + ")"))
             {
                 SqlDataAdapter da = new SqlDataAdapter(command);
 
@@ -22,7 +22,7 @@ namespace PagoElectronico.DAO
                 while (reader.Read())
                 {
                     Cuenta cuenta = new Cuenta();
-                    cuenta.numero = reader.GetDecimal(0);
+                    cuenta.idCuenta= reader.GetDecimal(0);
 
                     cuentas.Add(cuenta);
                 }

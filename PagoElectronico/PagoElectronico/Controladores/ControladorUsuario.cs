@@ -28,9 +28,12 @@ namespace PagoElectronico.ABM_de_Usuario
             usuarioDAO.guardarCliente(cliente);
         }
 
-        internal void crearClientePosible(string p, string p_2)
+        internal void crearClientePosible(string nombre, string password)
         {
-            throw new NotImplementedException();
+            Boolean usuPosible = true;
+            usuarioDAO.crearUsuarioPosible( nombre , password ,usuPosible);
+
         }
     }
 }
+

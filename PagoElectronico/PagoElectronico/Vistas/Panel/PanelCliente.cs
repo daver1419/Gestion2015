@@ -8,16 +8,20 @@ using System.Text;
 using System.Windows.Forms;
 using PagoElectronico.Entidad;
 using PagoElectronico.DAO;
+using PagoElectronico.Controladores;
 
 namespace PagoElectronico.PanelCliente
 {
     public partial class PanelCliente : Form
 
+
          {
 
-       // public Usuario usuario;
+            public Usuario usuarioLogeado;
+            public Cliente cliente;
 
         private SisDAO sisDAO;
+        private ControladorCliente controladorCliente = new ControladorCliente();
 
         public PanelCliente()
         {
@@ -25,6 +29,7 @@ namespace PagoElectronico.PanelCliente
         }
         private void Cliente_Load(object sender, EventArgs e)
         {
+            cliente = controladorCliente.buscarCliente(usuarioLogeado.id);
             loadCombo();
 
         }
@@ -33,9 +38,17 @@ namespace PagoElectronico.PanelCliente
         {
             sisDAO = new SisDAO();
             
+            
             //tab Cuenta
 
-            List<Pais> paises = paises=sisDAO.listaPais();
+            List<Cuenta> cuentas = new List<Cuenta>();
+              cuentas = controladorCliente.buscarCuentaPorCliente(cliente.idCliente);
+   
+              listCuentaCuentas.DataSource = cuentas;
+              listCuentaCuentas.DisplayMember = "IDCUENTA";
+
+
+             List<Pais> paises = paises=sisDAO.listaPais();
            
 
             cbxCuentaPais.DataSource = paises;

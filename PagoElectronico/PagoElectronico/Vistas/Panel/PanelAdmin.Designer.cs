@@ -76,7 +76,7 @@ namespace PagoElectronico.Panel
             this.label6 = new System.Windows.Forms.Label();
             this.clieDocTxt = new System.Windows.Forms.TextBox();
             this.lblCliNumDoc = new System.Windows.Forms.Label();
-            this.clieTipoDocPicker = new System.Windows.Forms.ComboBox();
+            this.cbxCliTipoDoc = new System.Windows.Forms.ComboBox();
             this.panelBusquedaUsu = new System.Windows.Forms.Panel();
             this.lblErrorBuqUsuCli = new System.Windows.Forms.Label();
             this.clieUsuBuscBtn = new System.Windows.Forms.Button();
@@ -473,7 +473,7 @@ namespace PagoElectronico.Panel
             this.tabCliente.Controls.Add(this.label6);
             this.tabCliente.Controls.Add(this.clieDocTxt);
             this.tabCliente.Controls.Add(this.lblCliNumDoc);
-            this.tabCliente.Controls.Add(this.clieTipoDocPicker);
+            this.tabCliente.Controls.Add(this.cbxCliTipoDoc);
             this.tabCliente.Controls.Add(this.panelBusquedaUsu);
             this.tabCliente.Controls.Add(this.label2);
             this.tabCliente.Controls.Add(this.label1);
@@ -671,13 +671,13 @@ namespace PagoElectronico.Panel
             this.lblCliNumDoc.TabIndex = 7;
             this.lblCliNumDoc.Text = "Numero de Documento";
             // 
-            // clieTipoDocPicker
+            // cbxCliTipoDoc
             // 
-            this.clieTipoDocPicker.FormattingEnabled = true;
-            this.clieTipoDocPicker.Location = new System.Drawing.Point(120, 109);
-            this.clieTipoDocPicker.Name = "clieTipoDocPicker";
-            this.clieTipoDocPicker.Size = new System.Drawing.Size(121, 21);
-            this.clieTipoDocPicker.TabIndex = 6;
+            this.cbxCliTipoDoc.FormattingEnabled = true;
+            this.cbxCliTipoDoc.Location = new System.Drawing.Point(120, 109);
+            this.cbxCliTipoDoc.Name = "cbxCliTipoDoc";
+            this.cbxCliTipoDoc.Size = new System.Drawing.Size(121, 21);
+            this.cbxCliTipoDoc.TabIndex = 6;
             // 
             // panelBusquedaUsu
             // 
@@ -2001,7 +2001,7 @@ namespace PagoElectronico.Panel
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox clieDocTxt;
         private System.Windows.Forms.Label lblCliNumDoc;
-        private System.Windows.Forms.ComboBox clieTipoDocPicker;
+        private System.Windows.Forms.ComboBox cbxCliTipoDoc;
         private System.Windows.Forms.Button clieUsuBuscBtn;
         private System.Windows.Forms.TextBox clieUsuBuscTxt;
         private System.Windows.Forms.Label label14;

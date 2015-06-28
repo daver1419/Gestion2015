@@ -8,6 +8,7 @@ namespace PagoElectronico.Entidad
     public class Cliente
     {
 
+        public int idCliente { get; set; }
         public String nombre { get; set; }
         public String apellido { get; set; }
         public int dni { get; set; }
@@ -21,7 +22,8 @@ namespace PagoElectronico.Entidad
         public String localidad { get; set; }
         public String nacionalidad { get; set; }
         public DateTime fechaDeNacimiento { get; set; }
-     
+        public Boolean activo { get; set; }
+
 
     public Cliente(String nombre, String apellido,
          int dni,String tipoDoc, String mail, String pais, String calle, String numero, int piso,
@@ -39,6 +41,10 @@ namespace PagoElectronico.Entidad
     this.nacionalidad = nacionalidad;
     this.fechaDeNacimiento = fechaDeNacimiento;
 
+    }
+
+    public Cliente()
+    {
     }
 
     }

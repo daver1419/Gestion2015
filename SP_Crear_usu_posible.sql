@@ -28,3 +28,8 @@ as
 GO
 
 
+create function THE_ULTIMATES.getClienteByUsuario(@idUsuario int)
+returns TABLE
+as
+return (select * from THE_ULTIMATES.Cliente where clie_usu_id = @idUsuario)
+go
