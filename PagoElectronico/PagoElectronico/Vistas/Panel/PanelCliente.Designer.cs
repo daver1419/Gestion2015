@@ -345,6 +345,7 @@
             this.label67 = new System.Windows.Forms.Label();
             this.label68 = new System.Windows.Forms.Label();
             this.label69 = new System.Windows.Forms.Label();
+            this.btnCliSalir = new System.Windows.Forms.Button();
             this.tabPanelCliente.SuspendLayout();
             this.tabCuenta.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -395,7 +396,6 @@
             this.tabPanelCliente.TabIndex = 0;
             this.tabPanelCliente.TabStop = false;
             this.tabPanelCliente.Visible = false;
-            this.Load += new System.EventHandler(this.Cliente_Load);
             // 
             // tabCuenta
             // 
@@ -3253,14 +3253,30 @@
             this.label69.TabIndex = 3;
             this.label69.Text = "Número de Cuenta";
             // 
+            // btnCliSalir
+            // 
+            this.btnCliSalir.BackColor = System.Drawing.Color.Red;
+            this.btnCliSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCliSalir.ForeColor = System.Drawing.Color.White;
+            this.btnCliSalir.Location = new System.Drawing.Point(634, 3);
+            this.btnCliSalir.Name = "btnCliSalir";
+            this.btnCliSalir.Size = new System.Drawing.Size(75, 23);
+            this.btnCliSalir.TabIndex = 1;
+            this.btnCliSalir.Text = "Salir";
+            this.btnCliSalir.UseVisualStyleBackColor = false;
+            this.btnCliSalir.Click += new System.EventHandler(this.btnAdmSalir_Click);
+            // 
             // PanelCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(736, 622);
+            this.ControlBox = false;
+            this.Controls.Add(this.btnCliSalir);
             this.Controls.Add(this.tabPanelCliente);
             this.Name = "PanelCliente";
             this.Text = "PanelCliente";
+            this.Load += new System.EventHandler(this.Cliente_Load);
             this.tabPanelCliente.ResumeLayout(false);
             this.tabCuenta.ResumeLayout(false);
             this.tabCuenta.PerformLayout();
@@ -3637,6 +3653,7 @@
         private System.Windows.Forms.Button btnConfGuardar;
         private System.Windows.Forms.Panel panelTransferencia;
         private System.Windows.Forms.Button btnTransSalir;
+        private System.Windows.Forms.Button btnCliSalir;
 
 
     }

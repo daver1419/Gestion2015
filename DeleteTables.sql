@@ -22,6 +22,7 @@ alter table THE_ULTIMATES.Deposito drop constraint FK_depo_tipo_moneda_id;
 alter table THE_ULTIMATES.Cheque drop constraint FK_cheque_banco_id;
 alter table THE_ULTIMATES.Transferencia drop constraint FK_transf_cuenta_origen;
 alter table THE_ULTIMATES.Transferencia drop constraint FK_transf_cuenta_destino;
+alter table THE_ULTIMATES.Transferencia drop constraint FK_transf_transac_id;
 alter table THE_ULTIMATES.Transaccion drop constraint FK_transac_tipo_transac_id;
 alter table THE_ULTIMATES.Transaccion drop constraint FK_transac_cuen_id;
 alter table THE_ULTIMATES.Extraccion drop constraint FK_extrac_cuenta_id;
@@ -60,6 +61,13 @@ drop function THE_ULTIMATES.RemoverTildes;
 drop function THE_ULTIMATES.esDelMismoCliente;
 drop function THE_ULTIMATES.esDelMismoCliente2;
 drop function THE_ULTIMATES.getClientId;
+drop function THE_ULTIMATES.getCuentasByClieId;
+drop function THE_ULTIMATES.getClienteByTipoYNumeroDoc;
+drop function THE_ULTIMATES.getSaldoByCuenta;
+drop function THE_ULTIMATES.getUltimos5Depositos;
+drop function THE_ULTIMATES.getUltimas5Extracciones;
+drop function THE_ULTIMATES.getUltimas10Transferencias;
+
 drop procedure THE_ULTIMATES.SP_CargarCuentas;
 drop procedure THE_ULTIMATES.SP_CargarTransferencias;
 drop procedure THE_ULTIMATES.SP_CargarTransferencias2;
@@ -70,3 +78,14 @@ drop procedure THE_ULTIMATES.SP_CargarFacturas;
 drop procedure THE_ULTIMATES.SP_CargarTarjetas;
 drop procedure THE_ULTIMATES.SP_CargarEmisores;
 drop procedure THE_ULTIMATES.SP_CargarDepositos;
+drop procedure THE_ULTIMATES.Lista_Func_Rol;
+drop procedure THE_ULTIMATES.Lista_Pais;
+drop procedure THE_ULTIMATES.Lista_Rol;
+drop procedure THE_ULTIMATES.Lista_Tipo_Cuenta;
+drop procedure THE_ULTIMATES.Lista_Tipo_Doc;
+drop procedure THE_ULTIMATES.Lista_Tipo_Moneda;
+drop procedure THE_ULTIMATES.login;
+
+
+
+
