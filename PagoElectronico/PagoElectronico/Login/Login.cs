@@ -24,6 +24,11 @@ namespace PagoElectronico.Login
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
+            textUsuario.Text = "";
+            textContra.Text= "";
+            lblUsuario.Text = "Nombre";
+            lblContrasena.Text = "Apellido";
+            textContra.UseSystemPasswordChar = false;
             btnGuardar.Visible = true;
             btnCancelar.Visible = true;
             btnIngresar.Visible = false;
@@ -41,7 +46,11 @@ namespace PagoElectronico.Login
                 MessageBox.Show("Debe ingresar Usuario y Contraseña", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             } else{
-              controladorUsuario.crearClientePosible(textUsuario.Text , textContra.Text, posibleCliente); 
+                String usuarioP = textUsuario.Text + '.' + textContra.Text;
+                String passP = textUsuario.Text + '.' + textContra.Text;
+                Boolean esUsuP = true;
+                String passwordEncriptado = Utilitario.Util.GetSHA256Encriptado(passP);
+                controladorUsuario.crearClientePosible(usuarioP, passwordEncriptado, esUsuP); 
             } 
         }
 
@@ -130,6 +139,9 @@ namespace PagoElectronico.Login
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            lblUsuario.Text = "Usuario:";
+            lblContrasena.Text="Contraseña:";
+            textContra.UseSystemPasswordChar = true;
             textUsuario.Text = " ";
             textContra.Text = "";
             btnGuardar.Visible = false;
@@ -142,11 +154,7 @@ namespace PagoElectronico.Login
 
         }
 
-        private void textUsuario_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        
       
        
 
