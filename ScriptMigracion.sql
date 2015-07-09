@@ -186,8 +186,7 @@ create table THE_ULTIMATES.Transferencia(
 	transf_cuenta_destino numeric(18,0) not null, /* FK  THE_ULTIMATES.Cuenta*/
 	transf_importe numeric(18,2)not null,
 	transf_costo_transf numeric(18,2)not null,
-	transf_cuenta_propia bit null,
-	transf_transac_id int null
+	transf_cuenta_propia bit null
 );
 
 GO
@@ -198,7 +197,8 @@ create table THE_ULTIMATES.Transaccion(
 	transac_cuen_id numeric(18,0) not null, /* FK  THE_ULTIMATES.Cuenta*/
 	transac_tipo_transac_id int not null, /* FK  THE_ULTIMATES.Tipo_Transaccion*/
 	transac_importe_comision numeric(18,3)not null,
-	transac_pendiente bit not null	
+	transac_pendiente bit not null,
+	transac_transf_id int null /* FK  THE_ULTIMATES.Transferencia*/
 );
 
 GO
@@ -245,7 +245,7 @@ GO
 
 create table THE_ULTIMATES.Item_Factura(
 	item_fact_num int not null, /* FK  THE_ULTIMATES.Factura*/
-	item_fact_transac_id int not null,  /* FK  THE_ULTIMATES.Transaccion*/
+	item_fact_transac_id int not null IDENTITY(1,1),  /* FK  THE_ULTIMATES.Transaccion*/
 	item_fact_desc varchar(250) not null,
 	item_fact_precio numeric(18,3)not null
 	CONSTRAINT PK_item_factura PRIMARY KEY (item_fact_num, item_fact_transac_id)
@@ -311,13 +311,13 @@ go
 
 alter table THE_ULTIMATES.Transferencia
 add constraint FK_transf_cuenta_origen foreign key (transf_cuenta_origen) references THE_ULTIMATES.Cuenta(cuen_id),
-	constraint FK_transf_cuenta_destino foreign key (transf_cuenta_destino) references THE_ULTIMATES.Cuenta(cuen_id),
-	constraint FK_transf_transac_id foreign key (transf_transac_id) references THE_ULTIMATES.Transaccion(transac_id);
+	constraint FK_transf_cuenta_destino foreign key (transf_cuenta_destino) references THE_ULTIMATES.Cuenta(cuen_id);
 go
 
 alter table THE_ULTIMATES.Transaccion
 add constraint FK_transac_cuen_id foreign key (transac_cuen_id) references THE_ULTIMATES.Cuenta(cuen_id),
-	constraint FK_transac_tipo_transac_id foreign key (transac_tipo_transac_id) references THE_ULTIMATES.Tipo_Transaccion(tipo_transac_id);
+	constraint FK_transac_tipo_transac_id foreign key (transac_tipo_transac_id) references THE_ULTIMATES.Tipo_Transaccion(tipo_transac_id),
+	constraint FK_transac_transf_id foreign key (transac_transf_id) references THE_ULTIMATES.Transferencia(transf_id);
 
 go
 
@@ -508,6 +508,7 @@ begin
 		select distinct Factura_Numero, Factura_Fecha, THE_ULTIMATES.getClientId(Cuenta_Numero)
 		from gd_esquema.Maestra
 		where Factura_Numero is not null
+		order by Factura_Numero
 		
 	set identity_insert THE_ULTIMATES.Factura off;
 
@@ -558,6 +559,41 @@ begin
 		where Deposito_Codigo is not null
 
 	set identity_insert THE_ULTIMATES.Deposito off;
+end
+go
+
+create procedure THE_ULTIMATES.SP_CargarTransacciones
+as
+begin
+	
+	insert into THE_ULTIMATES.Transaccion (transac_cuen_id, transac_fecha, transac_importe_comision, 
+											transac_pendiente , transac_tipo_transac_id)
+											
+	select Cuenta_Numero,
+			Transf_Fecha,
+			Item_Factura_Importe, 0 ,3
+	from gd_esquema.Maestra
+	where Cuenta_Dest_Numero is not null and Factura_Numero is not null
+	order by Transf_Fecha
+	
+	update THE_ULTIMATES.Transaccion set transac_transf_id = transac_id
+	
+end
+go
+
+create procedure THE_ULTIMATES.SP_CargarItemsFactura
+as 
+begin
+	insert into THE_ULTIMATES.Item_Factura (item_fact_num, item_fact_desc, item_fact_precio)
+	select Factura_Numero,
+			Item_Factura_Descr,
+			Item_Factura_Importe
+	from gd_esquema.Maestra
+	where Cuenta_Dest_Numero is not null and Factura_Numero is not null
+	order by Transf_Fecha
+	
+	alter table THE_ULTIMATES.Item_Factura
+	alter column item_fact_transac_id int not null
 end
 go
 /******************************************** FIN - CREACION DE STORED PROCEDURES, FUNCIONES Y VISTAS *************/
@@ -792,21 +828,10 @@ insert into THE_ULTIMATES.Tipo_Transaccion values ('Deposito', 0),
 go
 
 exec THE_ULTIMATES.SP_CargarFacturas;
+exec THE_ULTIMATES.SP_CargarTransacciones;
+exec THE_ULTIMATES.SP_CargarItemsFactura;
 
-/*insert into THE_ULTIMATES.Transaccion (transac_cuen_id,
-											transac_fecha,
-											transac_importe_comision,
-											transac_pendiente,
-											transac_tipo_transac_id)
-		
-	(select Cuenta_Numero,
-			Transf_Fecha,
-			Item_Factura_Importe, 0 ,3
-	from gd_esquema.Maestra
-	where Cuenta_Dest_Numero is not null and Factura_Numero is not null)		
-											
-*/
-
+/*
 declare @cuenta_numero numeric(18,0), 
 		@trans_fecha datetime,  
 		@item_factura_descr varchar(255),
@@ -866,7 +891,7 @@ end
 
 close cursor_transferencias;
 deallocate cursor_transferencias;
-
+*/
 /******************************************** FIN - LLENADO DE TABLAS *********************************************/
 
 /******************************************** INICIO - TRIGGERS *****************************************/
