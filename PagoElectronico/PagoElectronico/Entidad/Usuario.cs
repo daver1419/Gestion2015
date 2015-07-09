@@ -7,7 +7,7 @@ namespace PagoElectronico.Entidad
 {
     public class Usuario
     {
-        public long id { get; set; }
+        public int id { get; set; }
         public String usuario { get; set; }
         public String contrasena { get; set; }
         public String preguntaSec { get; set; }
@@ -17,10 +17,11 @@ namespace PagoElectronico.Entidad
         public DateTime fechaCreacion { get; set; }
         public DateTime fechaModificacion { get; set; }
         public Cliente cliente { get; set; }
+        public int idCliente { get; set; }
 
         public Usuario(){}
 
-        public Usuario(long id, String usuario, String contrasena, String preguntaSec, String respuestaSec,
+        public Usuario(int id, String usuario, String contrasena, String preguntaSec, String respuestaSec,
             DateTime fechaCreacion, DateTime fechaModificacion,
            int rol, Boolean habilitado, Cliente cliente){
                this.id = id;

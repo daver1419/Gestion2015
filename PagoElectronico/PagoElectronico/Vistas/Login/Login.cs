@@ -15,7 +15,7 @@ namespace PagoElectronico.Login
 {
     public partial class Login : Form
     {
-        Boolean posibleCliente;
+        
         Usuario usu;
         ControladorAdmin controladorUsuario = new ControladorAdmin();
         public Login()
@@ -26,12 +26,17 @@ namespace PagoElectronico.Login
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
+            textUsuario.Text = " ";
+            textContra.Text = "";
+            lblContrasena.Text = "Apellido:";
+            lblUsuario.Text = "Nombre:";
+            textContra.UseSystemPasswordChar = false;
             btnGuardar.Visible = true;
             btnCancelar.Visible = true;
             btnIngresar.Visible = false;
             btnRegistrar.Visible = false;
 
-            posibleCliente = true;
+           
 
 
         }
@@ -43,7 +48,10 @@ namespace PagoElectronico.Login
                 MessageBox.Show("Debe ingresar Usuario y Contraseña", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             } else{
-                controladorUsuario.crearClientePosible(textUsuario.Text, textContra.Text); 
+
+                String username = textUsuario.Text + "." + textContra.Text;
+                String password = Utilitario.Util.GetSHA256Encriptado(username);
+                controladorUsuario.crearClientePosible(username,password); 
             } 
         }
 
@@ -66,6 +74,7 @@ namespace PagoElectronico.Login
             {           
                 if (listaU.Count() == 2)
                 {
+                    usu = listaU.First();
                     lblrol.Visible = true;
                     btnCliente.Visible = true;
                     btnAdministrador.Visible = true;
@@ -74,18 +83,23 @@ namespace PagoElectronico.Login
                 }
                 else
                 {
-
+                    usu = listaU.First();
 
                     if (listaU.First().rol == 1)
                     {
                         this.Visible = false;
+                        
+                        usu.rol = 1;
                         PanelAdmin panelAdmin = new PagoElectronico.Panel.PanelAdmin();
+                        panelAdmin.usuarioLogeado = usu;
                         panelAdmin.ShowDialog();
                     }
                     else if (listaU.First().rol == 2)
                     {
                         this.Visible = false;
+                        usu.rol = 2;  
                         PanelCliente.PanelCliente panelCliente = new PanelCliente.PanelCliente();
+                        panelCliente.usuarioLogeado = usu;
                         panelCliente.ShowDialog();
                     }
                 }
@@ -102,15 +116,20 @@ namespace PagoElectronico.Login
         {
 
            this.Visible = false;
+           usu.rol = 2;
            PanelCliente.PanelCliente panelCliente = new PanelCliente.PanelCliente();
+           panelCliente.usuarioLogeado = usu;
            panelCliente.ShowDialog();
+
         
         }
 
         private void btnAdministrador_Click(object sender, EventArgs e)
         {
             this.Visible = false;
+            usu.rol = 1;
             PanelAdmin panelAdmin = new PanelAdmin();
+            panelAdmin.usuarioLogeado = usu;
             panelAdmin.ShowDialog();
         }
 
@@ -123,6 +142,10 @@ namespace PagoElectronico.Login
         {
             textUsuario.Text = " ";
             textContra.Text = "";
+            lblUsuario.Text = "Usuario:";
+            lblContrasena.Text = "Contraseña";
+            textContra.UseSystemPasswordChar = true;
+
             btnGuardar.Visible = false;
             btnCancelar.Visible = false;
             lblrol.Visible = false;

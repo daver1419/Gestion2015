@@ -14,7 +14,7 @@ namespace PagoElectronico.Panel
 {
     public partial class PanelAdmin : Form
     {
-     
+       public Usuario usuario;
 
        private RolDAO rolDAO;
 
@@ -150,6 +150,13 @@ namespace PagoElectronico.Panel
         private void checkedListBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnSalir_Admin_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Login.Login login = new Login.Login();
+            login.Show();
         }
 
 

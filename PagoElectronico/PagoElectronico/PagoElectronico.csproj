@@ -48,7 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controladores\ControladorCliente.cs" />
     <Compile Include="Controladores\ControladorUsuario.cs" />
+    <Compile Include="DAO\ClienteDAO.cs" />
     <Compile Include="DAO\CuentaDao.cs" />
     <Compile Include="DAO\RolDAO.cs" />
     <Compile Include="DAO\BaseDAO.cs" />
@@ -63,6 +65,7 @@
     <Compile Include="Entidad\TipoCuenta.cs" />
     <Compile Include="Entidad\TipoDoc.cs" />
     <Compile Include="Entidad\TipoMoneda.cs" />
+    <Compile Include="Entidad\UsuApp.cs" />
     <Compile Include="Entidad\Usuario.cs" />
     <Compile Include="Vistas\Login\Login.cs">
       <SubType>Form</SubType>
@@ -112,6 +115,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Utilitario\Util.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

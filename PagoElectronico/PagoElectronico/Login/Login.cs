@@ -24,7 +24,13 @@ namespace PagoElectronico.Login
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
+            textUsuario.Text = "";
+            textContra.Text= "";
+            lblUsuario.Text = "Nombre";
+            lblContrasena.Text = "Apellido";
+            textContra.UseSystemPasswordChar = false;
             btnGuardar.Visible = true;
+            btnCancelar.Visible = true;
             btnIngresar.Visible = false;
             btnRegistrar.Visible = false;
 
@@ -40,7 +46,11 @@ namespace PagoElectronico.Login
                 MessageBox.Show("Debe ingresar Usuario y Contraseña", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             } else{
-              controladorUsuario.crearClientePosible(textUsuario.Text , textContra.Text, posibleCliente); 
+                String usuarioP = textUsuario.Text + '.' + textContra.Text;
+                String passP = textUsuario.Text + '.' + textContra.Text;
+                Boolean esUsuP = true;
+                String passwordEncriptado = Utilitario.Util.GetSHA256Encriptado(passP);
+                controladorUsuario.crearClientePosible(usuarioP, passwordEncriptado, esUsuP); 
             } 
         }
 
@@ -60,7 +70,9 @@ namespace PagoElectronico.Login
                 MessageBox.Show("No se encontro Resultado para el usuario y contraseña ingresado ");
             }else
             if (listaU.First().habilitado )
-            {           
+
+            {  
+        
                 if (listaU.Count() == 2)
                 {
                     lblrol.Visible = true;
@@ -71,19 +83,22 @@ namespace PagoElectronico.Login
                 }
                 else
                 {
-
+                    usu = listaU.First();
 
                     if (listaU.First().rol == 1)
                     {
-                        this.Hide();
+                        this.Visible = false; 
                         PagoElectronico.Panel.PanelAdmin panelAdmin = new PagoElectronico.Panel.PanelAdmin();
-                        panelAdmin.Show();
+                        panelAdmin.usuario = usu;
+                        panelAdmin.ShowDialog();
+
                     }
                     else if (listaU.First().rol == 2)
                     {
-                        this.Hide();
+                        this.Visible = false;
                         PagoElectronico.PanelCliente.PanelCliente panelCliente = new PagoElectronico.PanelCliente.PanelCliente();
-                        panelCliente.Show();
+                        panelCliente.usuario = usu;
+                        panelCliente.ShowDialog();
                     }
                 }
 
@@ -97,17 +112,23 @@ namespace PagoElectronico.Login
 
         private void btnCliente_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Visible = false; 
 
             PagoElectronico.PanelCliente.PanelCliente panelCliente = new PagoElectronico.PanelCliente.PanelCliente();
-        
+            usu.rol = 2;
+            panelCliente.usuario = usu;
+
+            panelCliente.ShowDialog();        
+
         }
 
         private void btnAdministrador_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Visible = false; 
             PagoElectronico.Panel.PanelAdmin panelAdm = new PagoElectronico.Panel.PanelAdmin();
-
+            usu.rol = 1;
+            panelAdm.usuario = usu;
+            panelAdm.ShowDialog();
         
         }
 
@@ -118,8 +139,11 @@ namespace PagoElectronico.Login
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            lblUsuario.Text = "Usuario:";
+            lblContrasena.Text="Contraseña:";
+            textContra.UseSystemPasswordChar = true;
             textUsuario.Text = " ";
-            textContra.Text = " ";
+            textContra.Text = "";
             btnGuardar.Visible = false;
             btnCancelar.Visible = false;
             lblrol.Visible = false;
@@ -130,11 +154,7 @@ namespace PagoElectronico.Login
 
         }
 
-        private void textUsuario_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        
       
        
 
