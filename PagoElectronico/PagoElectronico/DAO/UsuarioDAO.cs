@@ -76,16 +76,13 @@ namespace PagoElectronico.DAO
       
         }
 
-        internal void guardarUsuario(Usuario datos)
+        internal void crearUsuario(Usuario datos)
         {
 
-
-            using (SqlCommand command = InitializeConnection("guardarUsuario"))
+            using (SqlCommand command = InitializeConnection("SP_crearUsuario"))
             {
                 command.Parameters.Add("@usu_username", System.Data.SqlDbType.NVarChar, 20).Value = datos.usuario;
                 command.Parameters.Add("@usu_password", System.Data.SqlDbType.NVarChar, 64).Value = datos.contrasena;
-                command.Parameters.Add("@usu_fecha_alta", System.Data.SqlDbType.DateTime, 64).Value = datos.fechaCreacion;
-                command.Parameters.Add("@usu_fecha_mod", System.Data.SqlDbType.NVarChar, 64).Value = datos.fechaModificacion;
                 command.Parameters.Add("@usu_pregunta", System.Data.SqlDbType.NVarChar, 50).Value = datos.preguntaSec;
                 command.Parameters.Add("@usu_respuesta", System.Data.SqlDbType.NVarChar, 64).Value = datos.respuestaSec;
                 // Clie ID? Activo? Intentos fallidos?

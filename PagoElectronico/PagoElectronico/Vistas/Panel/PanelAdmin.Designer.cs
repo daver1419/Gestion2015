@@ -31,27 +31,17 @@ namespace PagoElectronico.Panel
         private void InitializeComponent()
         {
             this.tabUsuarioNueva = new System.Windows.Forms.TabPage();
+            this.altaUsuarioButton = new System.Windows.Forms.Button();
             this.tabUsuario = new System.Windows.Forms.TabPage();
             this.usuModificacionTxt = new System.Windows.Forms.DateTimePicker();
             this.usuCreacionTxt = new System.Windows.Forms.DateTimePicker();
             this.btnFunRol1 = new System.Windows.Forms.Button();
             this.altaClienteBtn = new System.Windows.Forms.Button();
-            this.usuRespuestaSecTxt = new System.Windows.Forms.TextBox();
-            this.usuPreguntaSecTxt = new System.Windows.Forms.TextBox();
-            this.usuRolPicker = new System.Windows.Forms.ComboBox();
-            this.usuContrasenaTxt = new System.Windows.Forms.TextBox();
-            this.usuNameTxt = new System.Windows.Forms.TextBox();
-            this.guardarUsuarioBtn = new System.Windows.Forms.Button();
-            this.lblRespuestaSecreta = new System.Windows.Forms.Label();
-            this.lblPreguntaSecreta = new System.Windows.Forms.Label();
             this.lblFechaMod = new System.Windows.Forms.Label();
             this.lblFechaCreacion = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lisboxFuncionalidades = new System.Windows.Forms.CheckedListBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.lblRol = new System.Windows.Forms.Label();
-            this.lblContrasena = new System.Windows.Forms.Label();
-            this.lblUsu = new System.Windows.Forms.Label();
             this.tab = new System.Windows.Forms.TabControl();
             this.tabCliente = new System.Windows.Forms.TabPage();
             this.clieNacimientoPicker = new System.Windows.Forms.DateTimePicker();
@@ -208,7 +198,6 @@ namespace PagoElectronico.Panel
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.btnAdmSalir = new System.Windows.Forms.Button();
-            this.altaUsuarioButton = new System.Windows.Forms.Button();
             this.tabUsuarioNueva.SuspendLayout();
             this.tabUsuario.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -248,26 +237,25 @@ namespace PagoElectronico.Panel
             this.tabUsuarioNueva.Text = "Usuario";
             this.tabUsuarioNueva.UseVisualStyleBackColor = true;
             // 
+            // altaUsuarioButton
+            // 
+            this.altaUsuarioButton.Location = new System.Drawing.Point(24, 26);
+            this.altaUsuarioButton.Name = "altaUsuarioButton";
+            this.altaUsuarioButton.Size = new System.Drawing.Size(75, 23);
+            this.altaUsuarioButton.TabIndex = 0;
+            this.altaUsuarioButton.Text = "Alta";
+            this.altaUsuarioButton.UseVisualStyleBackColor = true;
+            this.altaUsuarioButton.Click += new System.EventHandler(this.altaUsuarioButton_Click);
+            // 
             // tabUsuario
             // 
             this.tabUsuario.Controls.Add(this.usuModificacionTxt);
             this.tabUsuario.Controls.Add(this.usuCreacionTxt);
             this.tabUsuario.Controls.Add(this.btnFunRol1);
             this.tabUsuario.Controls.Add(this.altaClienteBtn);
-            this.tabUsuario.Controls.Add(this.usuRespuestaSecTxt);
-            this.tabUsuario.Controls.Add(this.usuPreguntaSecTxt);
-            this.tabUsuario.Controls.Add(this.usuRolPicker);
-            this.tabUsuario.Controls.Add(this.usuContrasenaTxt);
-            this.tabUsuario.Controls.Add(this.usuNameTxt);
-            this.tabUsuario.Controls.Add(this.guardarUsuarioBtn);
-            this.tabUsuario.Controls.Add(this.lblRespuestaSecreta);
-            this.tabUsuario.Controls.Add(this.lblPreguntaSecreta);
             this.tabUsuario.Controls.Add(this.lblFechaMod);
             this.tabUsuario.Controls.Add(this.lblFechaCreacion);
             this.tabUsuario.Controls.Add(this.panel1);
-            this.tabUsuario.Controls.Add(this.lblRol);
-            this.tabUsuario.Controls.Add(this.lblContrasena);
-            this.tabUsuario.Controls.Add(this.lblUsu);
             this.tabUsuario.Location = new System.Drawing.Point(4, 22);
             this.tabUsuario.Name = "tabUsuario";
             this.tabUsuario.Padding = new System.Windows.Forms.Padding(3);
@@ -310,70 +298,6 @@ namespace PagoElectronico.Panel
             this.altaClienteBtn.UseVisualStyleBackColor = true;
             this.altaClienteBtn.Click += new System.EventHandler(this.btnAltaClienteUsu_Click);
             // 
-            // usuRespuestaSecTxt
-            // 
-            this.usuRespuestaSecTxt.Location = new System.Drawing.Point(170, 364);
-            this.usuRespuestaSecTxt.Name = "usuRespuestaSecTxt";
-            this.usuRespuestaSecTxt.Size = new System.Drawing.Size(116, 20);
-            this.usuRespuestaSecTxt.TabIndex = 15;
-            // 
-            // usuPreguntaSecTxt
-            // 
-            this.usuPreguntaSecTxt.Location = new System.Drawing.Point(170, 342);
-            this.usuPreguntaSecTxt.Name = "usuPreguntaSecTxt";
-            this.usuPreguntaSecTxt.Size = new System.Drawing.Size(116, 20);
-            this.usuPreguntaSecTxt.TabIndex = 14;
-            // 
-            // usuRolPicker
-            // 
-            this.usuRolPicker.FormattingEnabled = true;
-            this.usuRolPicker.Location = new System.Drawing.Point(85, 59);
-            this.usuRolPicker.Name = "usuRolPicker";
-            this.usuRolPicker.Size = new System.Drawing.Size(137, 21);
-            this.usuRolPicker.TabIndex = 11;
-            // 
-            // usuContrasenaTxt
-            // 
-            this.usuContrasenaTxt.Location = new System.Drawing.Point(85, 37);
-            this.usuContrasenaTxt.Name = "usuContrasenaTxt";
-            this.usuContrasenaTxt.Size = new System.Drawing.Size(137, 20);
-            this.usuContrasenaTxt.TabIndex = 10;
-            // 
-            // usuNameTxt
-            // 
-            this.usuNameTxt.Location = new System.Drawing.Point(85, 15);
-            this.usuNameTxt.Name = "usuNameTxt";
-            this.usuNameTxt.Size = new System.Drawing.Size(137, 20);
-            this.usuNameTxt.TabIndex = 9;
-            // 
-            // guardarUsuarioBtn
-            // 
-            this.guardarUsuarioBtn.Location = new System.Drawing.Point(12, 431);
-            this.guardarUsuarioBtn.Name = "guardarUsuarioBtn";
-            this.guardarUsuarioBtn.Size = new System.Drawing.Size(75, 23);
-            this.guardarUsuarioBtn.TabIndex = 8;
-            this.guardarUsuarioBtn.Text = "Guardar ";
-            this.guardarUsuarioBtn.UseVisualStyleBackColor = true;
-            this.guardarUsuarioBtn.Click += new System.EventHandler(this.btnGuardarUsu_Click);
-            // 
-            // lblRespuestaSecreta
-            // 
-            this.lblRespuestaSecreta.AutoSize = true;
-            this.lblRespuestaSecreta.Location = new System.Drawing.Point(9, 364);
-            this.lblRespuestaSecreta.Name = "lblRespuestaSecreta";
-            this.lblRespuestaSecreta.Size = new System.Drawing.Size(98, 13);
-            this.lblRespuestaSecreta.TabIndex = 7;
-            this.lblRespuestaSecreta.Text = "Respuesta Secreta";
-            // 
-            // lblPreguntaSecreta
-            // 
-            this.lblPreguntaSecreta.AutoSize = true;
-            this.lblPreguntaSecreta.Location = new System.Drawing.Point(9, 342);
-            this.lblPreguntaSecreta.Name = "lblPreguntaSecreta";
-            this.lblPreguntaSecreta.Size = new System.Drawing.Size(90, 13);
-            this.lblPreguntaSecreta.TabIndex = 6;
-            this.lblPreguntaSecreta.Text = "Pregunta Secreta";
-            // 
             // lblFechaMod
             // 
             this.lblFechaMod.AutoSize = true;
@@ -410,6 +334,7 @@ namespace PagoElectronico.Panel
             this.lisboxFuncionalidades.Name = "lisboxFuncionalidades";
             this.lisboxFuncionalidades.Size = new System.Drawing.Size(335, 154);
             this.lisboxFuncionalidades.TabIndex = 1;
+            this.lisboxFuncionalidades.SelectedIndexChanged += new System.EventHandler(this.lisboxFuncionalidades_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -419,33 +344,6 @@ namespace PagoElectronico.Panel
             this.label4.Size = new System.Drawing.Size(84, 13);
             this.label4.TabIndex = 0;
             this.label4.Text = "Funcionalidades";
-            // 
-            // lblRol
-            // 
-            this.lblRol.AutoSize = true;
-            this.lblRol.Location = new System.Drawing.Point(9, 59);
-            this.lblRol.Name = "lblRol";
-            this.lblRol.Size = new System.Drawing.Size(23, 13);
-            this.lblRol.TabIndex = 2;
-            this.lblRol.Text = "Rol";
-            // 
-            // lblContrasena
-            // 
-            this.lblContrasena.AutoSize = true;
-            this.lblContrasena.Location = new System.Drawing.Point(9, 40);
-            this.lblContrasena.Name = "lblContrasena";
-            this.lblContrasena.Size = new System.Drawing.Size(61, 13);
-            this.lblContrasena.TabIndex = 1;
-            this.lblContrasena.Text = "Contraseña";
-            // 
-            // lblUsu
-            // 
-            this.lblUsu.AutoSize = true;
-            this.lblUsu.Location = new System.Drawing.Point(9, 18);
-            this.lblUsu.Name = "lblUsu";
-            this.lblUsu.Size = new System.Drawing.Size(43, 13);
-            this.lblUsu.TabIndex = 0;
-            this.lblUsu.Text = "Usuario";
             // 
             // tab
             // 
@@ -1923,16 +1821,6 @@ namespace PagoElectronico.Panel
             this.btnAdmSalir.UseVisualStyleBackColor = false;
             this.btnAdmSalir.Click += new System.EventHandler(this.btnAdmSalir_Click);
             // 
-            // altaUsuarioButton
-            // 
-            this.altaUsuarioButton.Location = new System.Drawing.Point(24, 26);
-            this.altaUsuarioButton.Name = "altaUsuarioButton";
-            this.altaUsuarioButton.Size = new System.Drawing.Size(75, 23);
-            this.altaUsuarioButton.TabIndex = 0;
-            this.altaUsuarioButton.Text = "Alta";
-            this.altaUsuarioButton.UseVisualStyleBackColor = true;
-            this.altaUsuarioButton.Click += new System.EventHandler(this.button2_Click);
-            // 
             // PanelAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1994,23 +1882,12 @@ namespace PagoElectronico.Panel
         private System.Windows.Forms.TabPage tabUsuarioNueva;
         private System.Windows.Forms.TabPage tabUsuario;
         private System.Windows.Forms.TabControl tab;
-        private System.Windows.Forms.Label lblContrasena;
-        private System.Windows.Forms.Label lblUsu;
-        private System.Windows.Forms.Label lblRol;
         private System.Windows.Forms.Label lblFechaMod;
         private System.Windows.Forms.Label lblFechaCreacion;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckedListBox lisboxFuncionalidades;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox usuNameTxt;
-        private System.Windows.Forms.Button guardarUsuarioBtn;
-        private System.Windows.Forms.Label lblRespuestaSecreta;
-        private System.Windows.Forms.Label lblPreguntaSecreta;
-        private System.Windows.Forms.TextBox usuContrasenaTxt;
         private System.Windows.Forms.Button altaClienteBtn;
-        private System.Windows.Forms.TextBox usuRespuestaSecTxt;
-        private System.Windows.Forms.TextBox usuPreguntaSecTxt;
-        private System.Windows.Forms.ComboBox usuRolPicker;
         private System.Windows.Forms.TabPage tabCliente;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;

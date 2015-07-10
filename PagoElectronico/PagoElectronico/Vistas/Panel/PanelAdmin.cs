@@ -8,7 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using PagoElectronico.Entidad;
 using PagoElectronico.DAO;
-using PagoElectronico.ABM_de_Usuario;
+using PagoElectronico.Controladores;
+using PagoElectronico.Vistas.Abm.Usuario;
 
 
 namespace PagoElectronico.Panel
@@ -18,7 +19,7 @@ namespace PagoElectronico.Panel
          public Usuario usuarioLogeado;
 
        private ControladorAdmin controladorAdmin = new ControladorAdmin();
-       private RolDAO rolDAO;
+      
        private SisDAO sisDAO;
        private CuentaDao cuentaDao;
        private string _cliente;
@@ -63,13 +64,8 @@ namespace PagoElectronico.Panel
 
         private void loadCombo()
         {
-            rolDAO = new RolDAO();
             sisDAO = new SisDAO();
-            // panel usuario
-            List<Rol> dt = rolDAO.listaRol();
-            usuRolPicker.DataSource = dt;
-            usuRolPicker.DisplayMember = "DESCRIPCION";
-            usuRolPicker.Text = "Elegir una";
+            
 
             //panel Cliente
             List<Pais> paises = sisDAO.listaPais();
@@ -77,7 +73,7 @@ namespace PagoElectronico.Panel
             cliePaisPicker.DisplayMember = "DESCRIPCION";
             cliePaisPicker.Text = "Elegir una";
 
-           
+
             List<TipoDoc> tiposDoc = sisDAO.listaTipoDoc();
             cbxCliTipoDoc.DataSource = tiposDoc;
             cbxCliTipoDoc.DisplayMember = "DESCRIPCION";
@@ -97,26 +93,26 @@ namespace PagoElectronico.Panel
             cbxTipoCuenta.DataSource = tiposCuentas;
             cbxTipoCuenta.DisplayMember = "DESCRIPCION";
             cbxTipoCuenta.Text = "Elegir una";*/
-           
+
             // tab Tarjeta Falta el combo box 
 
             // tab Saldo 
             cbxTipoDocSaldo.DataSource = tiposDoc;
             cbxTipoDocSaldo.DisplayMember = "DESCRIPCION";
-            cbxTipoDocSaldo.Text = "Elegir una";  
+            cbxTipoDocSaldo.Text = "Elegir una";
         }
 
         private void btnFunRol1_Click(object sender, EventArgs e)
         {
-            rolSelect = (Rol)usuRolPicker.SelectedValue;
+            //rolSelect = (Rol)usuRolPicker.SelectedValue;
 
-            rolDAO = new RolDAO();
+            //rolDAO = new RolDAO();
 
-            List<Funcionalidad> funcionalidades = new List<Funcionalidad>();
+            //List<Funcionalidad> funcionalidades = new List<Funcionalidad>();
 
-            funcionalidades = rolDAO.listaFuncionalidad(rolSelect.id);
+            //funcionalidades = rolDAO.listaFuncionalidad(rolSelect.id);
 
-            lisboxFuncionalidades.DataSource = funcionalidades;
+            //lisboxFuncionalidades.DataSource = funcionalidades;
             lisboxFuncionalidades.DisplayMember = "DESCRIPCION";
 
 
@@ -153,11 +149,7 @@ namespace PagoElectronico.Panel
 
         private void btnGuardarUsu_Click(object sender, EventArgs e)
         {
-            Usuario usuario = new Usuario(0, usuNameTxt.Text, usuContrasenaTxt.Text, 
-                                               usuPreguntaSecTxt.Text, usuRespuestaSecTxt.Text,
-                                               usuCreacionTxt.Value, usuModificacionTxt.Value, 
-                                               (int)usuRolPicker.SelectedItem, false, null);
-            controladorAdmin.guardarUsuario(usuario);
+            
         }
 
         private void btnCliGuardar_Click(object sender, EventArgs e)
@@ -174,7 +166,14 @@ namespace PagoElectronico.Panel
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void altaUsuarioButton_Click(object sender, EventArgs e)
+        {
+            AltaUsuario altaUsuarioForm = new AltaUsuario();
+            altaUsuarioForm.Show();
+
+        }
+
+        private void lisboxFuncionalidades_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

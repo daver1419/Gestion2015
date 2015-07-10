@@ -7,7 +7,7 @@ using PagoElectronico.Entidad;
 
 // Controla todos los tabs del Admin
 
-namespace PagoElectronico.ABM_de_Usuario
+namespace PagoElectronico.Controladores
 {
     class ControladorAdmin
     {
@@ -18,9 +18,9 @@ namespace PagoElectronico.ABM_de_Usuario
             return usuarioDAO.login(usuario, contraseña);
         }
 
-        internal void guardarUsuario(Usuario usuario)
+        internal void crearUsuario(Usuario usuario)
         {
-            usuarioDAO.guardarUsuario(usuario);
+            usuarioDAO.crearUsuario(usuario);
         }
 
         internal void guardarCliente(Cliente cliente)

@@ -8,8 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using PagoElectronico.Entidad;
 using PagoElectronico.PanelCliente;
-using PagoElectronico.ABM_de_Usuario;
 using PagoElectronico.Panel;
+using PagoElectronico.Controladores;
 
 namespace PagoElectronico.Login
 {

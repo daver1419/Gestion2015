@@ -34,9 +34,19 @@ namespace PagoElectronico.Entidad
                this.rol = rol;
                this.habilitado = habilitado;
                this.cliente = cliente;
-    }
+        }
 
-
+        public Usuario(String usuario, String contrasena, String preguntaSec, String respuestaSec,
+           int rol, Boolean habilitado, Cliente cliente)
+        {
+            this.usuario = usuario;
+            this.contrasena = contrasena;
+            this.preguntaSec = preguntaSec;
+            this.respuestaSec = respuestaSec;
+            this.rol = rol;
+            this.habilitado = habilitado;
+            this.cliente = cliente;
+        }
 
     }
       
