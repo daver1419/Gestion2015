@@ -30,6 +30,7 @@ namespace PagoElectronico.Panel
         /// </summary>
         private void InitializeComponent()
         {
+            this.tabUsuarioNueva = new System.Windows.Forms.TabPage();
             this.tabUsuario = new System.Windows.Forms.TabPage();
             this.usuModificacionTxt = new System.Windows.Forms.DateTimePicker();
             this.usuCreacionTxt = new System.Windows.Forms.DateTimePicker();
@@ -113,6 +114,7 @@ namespace PagoElectronico.Panel
             this.label15 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tabTarjeta = new System.Windows.Forms.TabPage();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panelAgregarTarjeta = new System.Windows.Forms.Panel();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
@@ -130,7 +132,6 @@ namespace PagoElectronico.Panel
             this.panel3 = new System.Windows.Forms.Panel();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.lblNcuentaTar = new System.Windows.Forms.Label();
             this.lblClienteTar = new System.Windows.Forms.Label();
             this.Saldo = new System.Windows.Forms.TabPage();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -207,6 +208,8 @@ namespace PagoElectronico.Panel
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.btnAdmSalir = new System.Windows.Forms.Button();
+            this.altaUsuarioButton = new System.Windows.Forms.Button();
+            this.tabUsuarioNueva.SuspendLayout();
             this.tabUsuario.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tab.SuspendLayout();
@@ -233,6 +236,17 @@ namespace PagoElectronico.Panel
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // tabUsuarioNueva
+            // 
+            this.tabUsuarioNueva.Controls.Add(this.altaUsuarioButton);
+            this.tabUsuarioNueva.Location = new System.Drawing.Point(4, 22);
+            this.tabUsuarioNueva.Name = "tabUsuarioNueva";
+            this.tabUsuarioNueva.Padding = new System.Windows.Forms.Padding(3);
+            this.tabUsuarioNueva.Size = new System.Drawing.Size(634, 575);
+            this.tabUsuarioNueva.TabIndex = 8;
+            this.tabUsuarioNueva.Text = "Usuario";
+            this.tabUsuarioNueva.UseVisualStyleBackColor = true;
             // 
             // tabUsuario
             // 
@@ -435,6 +449,7 @@ namespace PagoElectronico.Panel
             // 
             // tab
             // 
+            this.tab.Controls.Add(this.tabUsuarioNueva);
             this.tab.Controls.Add(this.tabUsuario);
             this.tab.Controls.Add(this.tabCliente);
             this.tab.Controls.Add(this.tabCuenta);
@@ -446,7 +461,7 @@ namespace PagoElectronico.Panel
             this.tab.Name = "tab";
             this.tab.SelectedIndex = 0;
             this.tab.Size = new System.Drawing.Size(642, 601);
-            this.tab.TabIndex = 0;
+            this.tab.TabIndex = 8;
             // 
             // tabCliente
             // 
@@ -1019,11 +1034,11 @@ namespace PagoElectronico.Panel
             // 
             // tabTarjeta
             // 
+            this.tabTarjeta.Controls.Add(this.textBox1);
             this.tabTarjeta.Controls.Add(this.panelAgregarTarjeta);
             this.tabTarjeta.Controls.Add(this.button5);
             this.tabTarjeta.Controls.Add(this.button4);
             this.tabTarjeta.Controls.Add(this.panel3);
-            this.tabTarjeta.Controls.Add(this.lblNcuentaTar);
             this.tabTarjeta.Controls.Add(this.lblClienteTar);
             this.tabTarjeta.Location = new System.Drawing.Point(4, 22);
             this.tabTarjeta.Name = "tabTarjeta";
@@ -1032,6 +1047,14 @@ namespace PagoElectronico.Panel
             this.tabTarjeta.TabIndex = 4;
             this.tabTarjeta.Text = "Tarjeta";
             this.tabTarjeta.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(75, 19);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 6;
             // 
             // panelAgregarTarjeta
             // 
@@ -1185,19 +1208,10 @@ namespace PagoElectronico.Panel
             this.label19.TabIndex = 1;
             this.label19.Text = "Tarjetas de Credito Asociado ";
             // 
-            // lblNcuentaTar
-            // 
-            this.lblNcuentaTar.AutoSize = true;
-            this.lblNcuentaTar.Location = new System.Drawing.Point(272, 22);
-            this.lblNcuentaTar.Name = "lblNcuentaTar";
-            this.lblNcuentaTar.Size = new System.Drawing.Size(48, 13);
-            this.lblNcuentaTar.TabIndex = 1;
-            this.lblNcuentaTar.Text = "Ncuenta";
-            // 
             // lblClienteTar
             // 
             this.lblClienteTar.AutoSize = true;
-            this.lblClienteTar.Location = new System.Drawing.Point(23, 22);
+            this.lblClienteTar.Location = new System.Drawing.Point(26, 22);
             this.lblClienteTar.Name = "lblClienteTar";
             this.lblClienteTar.Size = new System.Drawing.Size(38, 13);
             this.lblClienteTar.TabIndex = 0;
@@ -1909,17 +1923,27 @@ namespace PagoElectronico.Panel
             this.btnAdmSalir.UseVisualStyleBackColor = false;
             this.btnAdmSalir.Click += new System.EventHandler(this.btnAdmSalir_Click);
             // 
+            // altaUsuarioButton
+            // 
+            this.altaUsuarioButton.Location = new System.Drawing.Point(24, 26);
+            this.altaUsuarioButton.Name = "altaUsuarioButton";
+            this.altaUsuarioButton.Size = new System.Drawing.Size(75, 23);
+            this.altaUsuarioButton.TabIndex = 0;
+            this.altaUsuarioButton.Text = "Alta";
+            this.altaUsuarioButton.UseVisualStyleBackColor = true;
+            this.altaUsuarioButton.Click += new System.EventHandler(this.button2_Click);
+            // 
             // PanelAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(681, 622);
-            this.ControlBox = false;
             this.Controls.Add(this.btnAdmSalir);
             this.Controls.Add(this.tab);
             this.Name = "PanelAdmin";
             this.Text = "PanelAdmin";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.tabUsuarioNueva.ResumeLayout(false);
             this.tabUsuario.ResumeLayout(false);
             this.tabUsuario.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -1966,6 +1990,8 @@ namespace PagoElectronico.Panel
 
         #endregion
 
+
+        private System.Windows.Forms.TabPage tabUsuarioNueva;
         private System.Windows.Forms.TabPage tabUsuario;
         private System.Windows.Forms.TabControl tab;
         private System.Windows.Forms.Label lblContrasena;
@@ -2038,7 +2064,6 @@ namespace PagoElectronico.Panel
         private System.Windows.Forms.TabPage tabTarjeta;
         private System.Windows.Forms.TabPage Saldo;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label lblNcuentaTar;
         private System.Windows.Forms.Label lblClienteTar;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button button5;
@@ -2165,5 +2190,7 @@ namespace PagoElectronico.Panel
         private Button btnAdmSalir;
         private DateTimePicker usuCreacionTxt;
         private DateTimePicker usuModificacionTxt;
+        private TextBox textBox1;
+        private Button altaUsuarioButton;
     }
 }

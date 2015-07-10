@@ -9,7 +9,7 @@ namespace PagoElectronico.Entidad
     {
         public decimal idCuenta { get; set; }
         public int idCliente { get; set; }
-        public  int tipoCuenta {get; set;}
+        public int tipoCuenta {get; set;}
         public DateTime fechaCreacion { get; set; }
         public DateTime FechaCierre { get; set; }
         public int estadoId { get; set; }

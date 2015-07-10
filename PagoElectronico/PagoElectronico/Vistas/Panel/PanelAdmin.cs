@@ -50,7 +50,7 @@ namespace PagoElectronico.Panel
             tab.SelectedTab = tabTarjeta;
             // llenar los label para cliente y  numero de cuenta 
 
-            lblNcuentaTar.Text = txtNumeroCuenta.Text;
+           // lblNcuentaTar.Text = txtNumeroCuenta.Text;
            
 
 
@@ -139,9 +139,16 @@ namespace PagoElectronico.Panel
 
         private void btnAdmSalir_Click(object sender, EventArgs e)
         {
+            System.Threading.Thread t = new System.Threading.Thread(
+                            new System.Threading.ThreadStart(loginForm));
+            t.Start();
             this.Close();
+        }
+
+        private void loginForm()
+        {
             Login.Login login = new Login.Login();
-            login.Visible = true;
+            Application.Run(login);
         }
 
         private void btnGuardarUsu_Click(object sender, EventArgs e)
@@ -160,6 +167,16 @@ namespace PagoElectronico.Panel
                                             clieNumTxt.Text, Convert.ToInt32(cliePisoTxt.Text), clieDepTxt.Text, clieLocalidTxt.Text,
                                             clieNacionalidadTxt.Text, clieNacimientoPicker.Value);
             controladorAdmin.guardarCliente(cliente);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
 
         

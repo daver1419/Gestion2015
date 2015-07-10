@@ -26,7 +26,7 @@ namespace PagoElectronico.Login
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            textUsuario.Text = " ";
+            textUsuario.Text = "";
             textContra.Text = "";
             lblContrasena.Text = "Apellido:";
             lblUsuario.Text = "Nombre:";
@@ -69,8 +69,8 @@ namespace PagoElectronico.Login
             if (listaU.Count()== 0)
             {  
                 MessageBox.Show("No se encontro Resultado para el usuario y contraseña ingresado ");
-            }else
-            if (listaU.First().habilitado )
+            }
+            else if (listaU.First().habilitado )
             {           
                 if (listaU.Count() == 2)
                 {
@@ -84,24 +84,16 @@ namespace PagoElectronico.Login
                 else
                 {
                     usu = listaU.First();
-
+                    
                     if (listaU.First().rol == 1)
                     {
-                        this.Visible = false;
-                        
-                        usu.rol = 1;
-                        PanelAdmin panelAdmin = new PagoElectronico.Panel.PanelAdmin();
-                        panelAdmin.usuarioLogeado = usu;
-                        panelAdmin.ShowDialog();
+                        lanzarAdminForm();                        
                     }
                     else if (listaU.First().rol == 2)
                     {
-                        this.Visible = false;
-                        usu.rol = 2;  
-                        PanelCliente.PanelCliente panelCliente = new PanelCliente.PanelCliente();
-                        panelCliente.usuarioLogeado = usu;
-                        panelCliente.ShowDialog();
+                        lanzarClienteForm();
                     }
+                    
                 }
 
 
@@ -112,25 +104,53 @@ namespace PagoElectronico.Login
             }
         }
 
+        public void lanzarForm()
+        {
+            
+            
+        }
+
+        public void lanzarAdminForm()
+        {
+            System.Threading.Thread t = new System.Threading.Thread(
+                            new System.Threading.ThreadStart(adminForm));
+            t.Start();
+            this.Close();
+        }
+
+        public void adminForm()
+        {         
+            PanelAdmin panelAdmin = new PagoElectronico.Panel.PanelAdmin();
+            panelAdmin.usuarioLogeado = usu;
+            Application.Run(panelAdmin);
+        }
+
+        public void lanzarClienteForm()
+        {
+            System.Threading.Thread t = new System.Threading.Thread(
+                            new System.Threading.ThreadStart(clienteForm));
+            t.Start();
+            this.Close();         
+        }
+
+        public void clienteForm()
+        {
+            PanelCliente.PanelCliente panelCliente = new PanelCliente.PanelCliente();
+            panelCliente.usuarioLogeado = usu;
+            Application.Run(panelCliente);
+        }
+
+
         private void btnCliente_Click(object sender, EventArgs e)
         {
-
-           this.Visible = false;
            usu.rol = 2;
-           PanelCliente.PanelCliente panelCliente = new PanelCliente.PanelCliente();
-           panelCliente.usuarioLogeado = usu;
-           panelCliente.ShowDialog();
-
-        
+           lanzarClienteForm();
         }
 
         private void btnAdministrador_Click(object sender, EventArgs e)
         {
-            this.Visible = false;
             usu.rol = 1;
-            PanelAdmin panelAdmin = new PanelAdmin();
-            panelAdmin.usuarioLogeado = usu;
-            panelAdmin.ShowDialog();
+            lanzarAdminForm();
         }
 
         private void Login_Load(object sender, EventArgs e)
@@ -140,7 +160,7 @@ namespace PagoElectronico.Login
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            textUsuario.Text = " ";
+            textUsuario.Text = "";
             textContra.Text = "";
             lblUsuario.Text = "Usuario:";
             lblContrasena.Text = "Contraseña";
