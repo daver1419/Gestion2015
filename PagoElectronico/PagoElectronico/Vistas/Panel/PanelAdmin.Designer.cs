@@ -155,7 +155,7 @@ namespace PagoElectronico.Panel
             this.txtDescripción = new System.Windows.Forms.TextBox();
             this.panelBusqRol = new System.Windows.Forms.Panel();
             this.lblErrorBusqRol = new System.Windows.Forms.Label();
-            this.btnAddRol = new System.Windows.Forms.Button();
+            this.altaRolButton = new System.Windows.Forms.Button();
             this.btnBuscarRol = new System.Windows.Forms.Button();
             this.txtRolBusqueda = new System.Windows.Forms.TextBox();
             this.label39 = new System.Windows.Forms.Label();
@@ -1314,6 +1314,7 @@ namespace PagoElectronico.Panel
             // tabRol
             // 
             this.tabRol.Controls.Add(this.panelRol);
+            this.tabRol.Controls.Add(this.altaRolButton);
             this.tabRol.Controls.Add(this.panelBusqRol);
             this.tabRol.Location = new System.Drawing.Point(4, 22);
             this.tabRol.Name = "tabRol";
@@ -1332,7 +1333,7 @@ namespace PagoElectronico.Panel
             this.panelRol.Controls.Add(this.listboxFuncPanelRol);
             this.panelRol.Controls.Add(this.lblDescripcion);
             this.panelRol.Controls.Add(this.txtDescripción);
-            this.panelRol.Location = new System.Drawing.Point(6, 101);
+            this.panelRol.Location = new System.Drawing.Point(6, 201);
             this.panelRol.Name = "panelRol";
             this.panelRol.Size = new System.Drawing.Size(572, 275);
             this.panelRol.TabIndex = 3;
@@ -1399,11 +1400,10 @@ namespace PagoElectronico.Panel
             // panelBusqRol
             // 
             this.panelBusqRol.Controls.Add(this.lblErrorBusqRol);
-            this.panelBusqRol.Controls.Add(this.btnAddRol);
             this.panelBusqRol.Controls.Add(this.btnBuscarRol);
             this.panelBusqRol.Controls.Add(this.txtRolBusqueda);
             this.panelBusqRol.Controls.Add(this.label39);
-            this.panelBusqRol.Location = new System.Drawing.Point(6, 6);
+            this.panelBusqRol.Location = new System.Drawing.Point(6, 115);
             this.panelBusqRol.Name = "panelBusqRol";
             this.panelBusqRol.Size = new System.Drawing.Size(572, 64);
             this.panelBusqRol.TabIndex = 0;
@@ -1421,12 +1421,13 @@ namespace PagoElectronico.Panel
             // 
             // btnAddRol
             // 
-            this.btnAddRol.Location = new System.Drawing.Point(346, 7);
-            this.btnAddRol.Name = "btnAddRol";
-            this.btnAddRol.Size = new System.Drawing.Size(99, 23);
-            this.btnAddRol.TabIndex = 3;
-            this.btnAddRol.Text = "Crear Rol";
-            this.btnAddRol.UseVisualStyleBackColor = true;
+            this.altaRolButton.Location = new System.Drawing.Point(20, 24);
+            this.altaRolButton.Name = "Alta Rol";
+            this.altaRolButton.Size = new System.Drawing.Size(99, 23);
+            this.altaRolButton.TabIndex = 3;
+            this.altaRolButton.Text = "Alta Rol";
+            this.altaRolButton.UseVisualStyleBackColor = true;
+            this.altaRolButton.Click += new System.EventHandler(this.altaRolButton_Click);
             // 
             // btnBuscarRol
             // 
@@ -2015,7 +2016,7 @@ namespace PagoElectronico.Panel
         private System.Windows.Forms.TextBox txtDescripción;
         private System.Windows.Forms.Label lblDescripcion;
         private System.Windows.Forms.Panel panelBusqRol;
-        private System.Windows.Forms.Button btnAddRol;
+        private System.Windows.Forms.Button altaRolButton;
         private System.Windows.Forms.Button btnBuscarRol;
         private System.Windows.Forms.TextBox txtRolBusqueda;
         private System.Windows.Forms.Label label39;

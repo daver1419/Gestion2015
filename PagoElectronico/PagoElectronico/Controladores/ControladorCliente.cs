@@ -7,7 +7,7 @@ using PagoElectronico.Entidad;
 
 namespace PagoElectronico.Controladores
 {
-    class ControladorCliente
+    class ControladorCliente : Controlador
     {
         public CuentaDao cuentaDao;
         public ClienteDAO clienteDao;

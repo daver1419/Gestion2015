@@ -10,6 +10,7 @@ using PagoElectronico.Entidad;
 using PagoElectronico.DAO;
 using PagoElectronico.Controladores;
 using PagoElectronico.Vistas.Abm.Usuario;
+using PagoElectronico.Vistas.Abm.Rol;
 
 
 namespace PagoElectronico.Panel
@@ -176,6 +177,12 @@ namespace PagoElectronico.Panel
         private void lisboxFuncionalidades_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void altaRolButton_Click(object sender, EventArgs e)
+        {
+            AltaRol altaRolForm = new AltaRol();
+            altaRolForm.Show();
         }
 
         

@@ -11,13 +11,8 @@ using PagoElectronico.Entidad;
 
 namespace PagoElectronico.Vistas.Abm.Usuario
 {
-    public interface UsuarioListener
-    {
-        void onCreateUserFinished(int code, String msg);
-        void onCreateUserError(int code, String msg);
-    }
-
-    public partial class AltaUsuario : Form , UsuarioListener
+    
+    public partial class AltaUsuario : Form , PagoElectronico.Controladores.Controlador.Listener
     {
         private Controladores.ControladorAdmin controladorAdmin = new PagoElectronico.Controladores.ControladorAdmin();
 
@@ -34,7 +29,7 @@ namespace PagoElectronico.Vistas.Abm.Usuario
         private void loadCombo()
         {   
             // panel usuario
-            List<Rol> dt = controladorAdmin.getRoles();
+            List<PagoElectronico.Entidad.Rol> dt = controladorAdmin.getRoles();
             rolComboBox.DataSource = dt;
             rolComboBox.DisplayMember = "DESCRIPCION";
             rolComboBox.Text = "Elegir una";
@@ -46,10 +41,10 @@ namespace PagoElectronico.Vistas.Abm.Usuario
                                         passwordTextBox.Text,
                                         preguntaSecretaTextBox.Text,
                                         respuestaSecretaTextBox.Text,
-                                        (int)((Rol)rolComboBox.SelectedValue).id, this);
+                                        (int)((PagoElectronico.Entidad.Rol)rolComboBox.SelectedValue).id, this);
         }
 
-        public void onCreateUserFinished(int code, String msg)
+        public void onCreateFinished(int code, String msg)
         {
             if (code == 1)
             {   //Usuario creado
@@ -63,7 +58,7 @@ namespace PagoElectronico.Vistas.Abm.Usuario
            
         }
 
-        public void onCreateUserError(int code, String msg)
+        public void onCreateError(int code, String msg)
         {
             MessageBox.Show(msg);
             this.Close();

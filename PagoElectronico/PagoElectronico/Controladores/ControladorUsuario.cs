@@ -9,8 +9,9 @@ using PagoElectronico.Entidad;
 
 namespace PagoElectronico.Controladores
 {
-    class ControladorAdmin
+    class ControladorAdmin : Controlador
     {
+       
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         RolDAO rolDAO = new RolDAO();
 
@@ -20,7 +21,7 @@ namespace PagoElectronico.Controladores
         }
 
         internal void crearUsuario(String username, String contrasena,
-            String preguntaSec, String respuestaSec, int rolId, PagoElectronico.Vistas.Abm.Usuario.UsuarioListener listener)
+            String preguntaSec, String respuestaSec, int rolId, Listener listener)
         {
              usuarioDAO.crearUsuario(username, 
                 Utilitario.Util.GetSHA256Encriptado(contrasena), preguntaSec,

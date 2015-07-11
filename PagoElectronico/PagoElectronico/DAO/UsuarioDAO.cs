@@ -65,19 +65,17 @@ namespace PagoElectronico.DAO
                   }
                   catch (Exception e)
                   {
-                      MessageBox.Show( "Ya existe el usuario: " +username);
+                     
+                      MessageBox.Show( "Ya existe el usuario: " + username);
                       CerrarConexion();
-                      
-                      
+              
                   }
               }
-
-
-      
+     
         }
 
         internal void crearUsuario(String username, String contrasena, String preguntaSec, 
-            String respuestaSec, int rolId, PagoElectronico.Vistas.Abm.Usuario.UsuarioListener listener)
+            String respuestaSec, int rolId, PagoElectronico.Controladores.Controlador.Listener listener)
         {
 
             using (SqlCommand command = InitializeConnection("SP_crearUsuario"))
@@ -104,14 +102,14 @@ namespace PagoElectronico.DAO
                      command.ExecuteNonQuery();
                      int code = (int)parm1.Value;
                      String msg = (String)parm2.Value;
-                     listener.onCreateUserFinished(code, msg);
+                     listener.onCreateFinished(code, msg);
                              
                 }
                 catch(Exception exec)
                 {
                     int code = (int)parm1.Value;
                     String msg = (String)parm2.Value;
-                    listener.onCreateUserError(code, msg);
+                    listener.onCreateError(code, msg);
                 }
                 finally
                 {

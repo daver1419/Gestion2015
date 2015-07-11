@@ -230,10 +230,12 @@ begin
 	begin catch
 		set @code = 0;
 		set @msg = 'Error al crear el usuario'
+		rollback;
 	end catch
 		
 	return;
 end
+go
 
 /*declare @code int, 
 		@msg varchar(100)
@@ -242,3 +244,52 @@ exec  THE_ULTIMATES.SP_crearUsuario  "hola5","E6B87050BFCB8143FCB8DB170A4DC9ED0D
 
 SELECT	'Return Value' = @code
 select 'Mensaje' = @msg*/
+
+CREATE TYPE Funcionalidades AS TABLE 
+(func_id int);
+go
+
+create procedure THE_ULTIMATES.SP_crearRol
+@rol_descripcion varchar(15),
+@funcionalidades Funcionalidades readonly,
+@estado bit,
+@code int output,
+@msg varchar(100) output
+as
+begin
+	if exists (select 1 from Rol where rol_desc = @rol_descripcion)
+	begin
+		set @code = 3
+		set @msg = 'El rol ya existe'
+		return;
+	end
+	
+	begin try
+	
+		insert into Rol values (@rol_descripcion, @estado)
+		declare @rol_id int = scope_identity();
+		
+		declare @func_id int
+		
+		declare cursor_func cursor for select * from @funcionalidades
+		open cursor_func
+		
+		fetch next from cursor_func into @func_id
+		
+		while(@@FETCH_STATUS = 0)
+		begin
+			insert into Funcionalidad_Rol values (@rol_id, @func_id)
+			fetch next from cursor_func into @func_id
+		end
+		
+		set @code = 1;
+		set @msg = 'Se ha creado el rol '
+	end try
+	begin catch
+		set @code = 0;
+		set @msg = 'Error al crear el rol '
+		RollBack;
+	end catch
+		
+	return;
+end

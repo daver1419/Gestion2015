@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Collections;
@@ -93,8 +94,54 @@ namespace PagoElectronico.DAO
 
 
 
-        }     
+        }
 
+
+        internal void crearRol(string nombreRol, List<Funcionalidad> funcionalidades,
+            int estado, PagoElectronico.Controladores.Controlador.Listener listener)
+        {
+            using (SqlCommand command = InitializeConnection("SP_crearRol"))
+            {
+                DataTable dt = new DataTable();
+                dt.Columns.Add("func_id", typeof(int));
+
+                foreach (Funcionalidad func in funcionalidades){
+                    dt.Rows.Add(func.id);
+                }
+
+                command.Parameters.Add("@rol_descripcion", System.Data.SqlDbType.NVarChar, 15).Value = nombreRol;
+                command.Parameters.Add("@funcionalidades", System.Data.SqlDbType.Structured).Value = dt;
+                command.Parameters.Add("@estado", System.Data.SqlDbType.Bit).Value = estado;
+
+                SqlParameter parm1 = new SqlParameter("@code", SqlDbType.Int);
+                parm1.Direction = ParameterDirection.Output;
+                command.Parameters.Add(parm1);
+
+                SqlParameter parm2 = new SqlParameter("@msg", SqlDbType.NVarChar, 100);
+                parm2.Direction = ParameterDirection.Output;
+                command.Parameters.Add(parm2);
+
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                try
+                {
+                    command.ExecuteNonQuery();
+                    int code = (int)parm1.Value;
+                    String msg = (String)parm2.Value;
+                    listener.onCreateFinished(code, msg);
+
+                }
+                catch (Exception exec)
+                {
+                    int code = (int)parm1.Value;
+                    String msg = (String)parm2.Value;
+                    listener.onCreateError(code, msg);
+                }
+                finally
+                {
+                    CerrarConexion();
+                }
+            }  
+        }
     }
 
 
