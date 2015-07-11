@@ -47,9 +47,9 @@
             this.usuarioLabel.AutoSize = true;
             this.usuarioLabel.Location = new System.Drawing.Point(12, 23);
             this.usuarioLabel.Name = "usuarioLabel";
-            this.usuarioLabel.Size = new System.Drawing.Size(43, 13);
+            this.usuarioLabel.Size = new System.Drawing.Size(55, 13);
             this.usuarioLabel.TabIndex = 1;
-            this.usuarioLabel.Text = "Usuario";
+            this.usuarioLabel.Text = "Username";
             // 
             // usuarioTextBox
             // 
@@ -73,6 +73,7 @@
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.Size = new System.Drawing.Size(137, 20);
             this.passwordTextBox.TabIndex = 12;
+            this.passwordTextBox.UseSystemPasswordChar = true;
             // 
             // rolLabel
             // 
@@ -90,6 +91,7 @@
             this.rolComboBox.Name = "rolComboBox";
             this.rolComboBox.Size = new System.Drawing.Size(137, 21);
             this.rolComboBox.TabIndex = 14;
+            this.rolComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             // 
             // preguntaSecretaLabel
             // 
@@ -114,7 +116,7 @@
             this.respuestaSecretaLabel.Name = "respuestaSecretaLabel";
             this.respuestaSecretaLabel.Size = new System.Drawing.Size(98, 13);
             this.respuestaSecretaLabel.TabIndex = 17;
-            this.respuestaSecretaLabel.Text = "Respuesta Secreta";
+            this.respuestaSecretaLabel.Text = "Respuesta Secreta";        
             // 
             // respuestaSecretaTextBox
             // 
@@ -122,6 +124,7 @@
             this.respuestaSecretaTextBox.Name = "respuestaSecretaTextBox";
             this.respuestaSecretaTextBox.Size = new System.Drawing.Size(137, 20);
             this.respuestaSecretaTextBox.TabIndex = 18;
+            this.respuestaSecretaTextBox.UseSystemPasswordChar = true;
             // 
             // guardarButton
             // 
@@ -141,6 +144,7 @@
             this.limpiarButton.TabIndex = 20;
             this.limpiarButton.Text = "Limpiar";
             this.limpiarButton.UseVisualStyleBackColor = true;
+            this.limpiarButton.Click += new System.EventHandler(this.limpiarButton_Click);
             // 
             // AltaUsuario
             // 

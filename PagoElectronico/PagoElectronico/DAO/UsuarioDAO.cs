@@ -31,7 +31,7 @@ namespace PagoElectronico.DAO
                 {
                    Usuario usuario = new Usuario();
                     usuario.id = reader.GetInt32(0);
-                    usuario.usuario = reader.GetString(1);
+                    usuario.username = reader.GetString(1);
                     usuario.habilitado = reader.GetBoolean(2);
                     usuario.rol = reader.GetInt32(3);
                     list.Add(usuario);
@@ -76,18 +76,49 @@ namespace PagoElectronico.DAO
       
         }
 
-        internal void crearUsuario(Usuario datos)
+        internal void crearUsuario(String username, String contrasena, String preguntaSec, 
+            String respuestaSec, int rolId, PagoElectronico.Vistas.Abm.Usuario.UsuarioListener listener)
         {
 
             using (SqlCommand command = InitializeConnection("SP_crearUsuario"))
             {
-                command.Parameters.Add("@usu_username", System.Data.SqlDbType.NVarChar, 20).Value = datos.usuario;
-                command.Parameters.Add("@usu_password", System.Data.SqlDbType.NVarChar, 64).Value = datos.contrasena;
-                command.Parameters.Add("@usu_pregunta", System.Data.SqlDbType.NVarChar, 50).Value = datos.preguntaSec;
-                command.Parameters.Add("@usu_respuesta", System.Data.SqlDbType.NVarChar, 64).Value = datos.respuestaSec;
-                // Clie ID? Activo? Intentos fallidos?
+                
+
+                command.Parameters.Add("@usu_username", System.Data.SqlDbType.NVarChar, 25).Value = username;
+                command.Parameters.Add("@usu_password", System.Data.SqlDbType.NVarChar, 64).Value = contrasena;
+                command.Parameters.Add("@usu_pregunta", System.Data.SqlDbType.NVarChar, 50).Value = preguntaSec;
+                command.Parameters.Add("@usu_respuesta", System.Data.SqlDbType.NVarChar, 64).Value = respuestaSec;
+                command.Parameters.Add("@rol_id", System.Data.SqlDbType.Int).Value = rolId;
+
+                SqlParameter parm1 = new SqlParameter("@code", SqlDbType.Int);
+                parm1.Direction = ParameterDirection.Output;
+                command.Parameters.Add(parm1);
+
+                SqlParameter parm2 = new SqlParameter("@msg", SqlDbType.NVarChar, 100);
+                parm2.Direction = ParameterDirection.Output;
+                command.Parameters.Add(parm2);
+
                 SqlDataAdapter da = new SqlDataAdapter(command);
-                CerrarConexion();
+                try
+                {
+                     command.ExecuteNonQuery();
+                     int code = (int)parm1.Value;
+                     String msg = (String)parm2.Value;
+                     listener.onCreateUserFinished(code, msg);
+                             
+                }
+                catch(Exception exec)
+                {
+                    int code = (int)parm1.Value;
+                    String msg = (String)parm2.Value;
+                    listener.onCreateUserError(code, msg);
+                }
+                finally
+                {
+                    CerrarConexion();
+                }
+               
+                
             }
         }
 

@@ -12,15 +12,19 @@ namespace PagoElectronico.Controladores
     class ControladorAdmin
     {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
+        RolDAO rolDAO = new RolDAO();
 
         public List<Usuario> login(String usuario,  String contraseña)
         {
             return usuarioDAO.login(usuario, contraseña);
         }
 
-        internal void crearUsuario(Usuario usuario)
+        internal void crearUsuario(String username, String contrasena,
+            String preguntaSec, String respuestaSec, int rolId, PagoElectronico.Vistas.Abm.Usuario.UsuarioListener listener)
         {
-            usuarioDAO.crearUsuario(usuario);
+             usuarioDAO.crearUsuario(username, 
+                Utilitario.Util.GetSHA256Encriptado(contrasena), preguntaSec,
+                Utilitario.Util.GetSHA256Encriptado(respuestaSec), rolId, listener);
         }
 
         internal void guardarCliente(Cliente cliente)
@@ -34,6 +38,13 @@ namespace PagoElectronico.Controladores
             usuarioDAO.crearUsuarioPosible( nombre , password ,usuPosible);
 
         }
+
+        internal List<Rol> getRoles()
+        {
+            return rolDAO.listaRol();        
+        }
+
+       
     }
 }
 

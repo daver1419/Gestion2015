@@ -87,6 +87,7 @@ drop procedure THE_ULTIMATES.Lista_Tipo_Cuenta;
 drop procedure THE_ULTIMATES.Lista_Tipo_Doc;
 drop procedure THE_ULTIMATES.Lista_Tipo_Moneda;
 drop procedure THE_ULTIMATES.login;
+drop procedure THE_ULTIMATES.SP_crearUsuario;
 
 
 

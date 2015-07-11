@@ -11,10 +11,15 @@ using PagoElectronico.Entidad;
 
 namespace PagoElectronico.Vistas.Abm.Usuario
 {
-    public partial class AltaUsuario : Form
+    public interface UsuarioListener
     {
-        private RolDAO rolDAO;
-        private Controladores.ControladorAdmin controladorAdmin;
+        void onCreateUserFinished(int code, String msg);
+        void onCreateUserError(int code, String msg);
+    }
+
+    public partial class AltaUsuario : Form , UsuarioListener
+    {
+        private Controladores.ControladorAdmin controladorAdmin = new PagoElectronico.Controladores.ControladorAdmin();
 
         public AltaUsuario()
         {
@@ -27,26 +32,52 @@ namespace PagoElectronico.Vistas.Abm.Usuario
         }
 
         private void loadCombo()
-        {
-            rolDAO = new RolDAO();
-            
+        {   
             // panel usuario
-            List<Rol> dt = rolDAO.listaRol();
+            List<Rol> dt = controladorAdmin.getRoles();
             rolComboBox.DataSource = dt;
             rolComboBox.DisplayMember = "DESCRIPCION";
             rolComboBox.Text = "Elegir una";
-
         }
 
         private void guardarButton_Click(object sender, EventArgs e)
         {
-
-            PagoElectronico.Entidad.Usuario usuario = new PagoElectronico.Entidad.Usuario(usuarioTextBox.Text, passwordTextBox.Text,
-                                               preguntaSecretaTextBox.Text, respuestaSecretaTextBox.Text, 
-                                               (int)rolComboBox.SelectedItem, false, null);
-            controladorAdmin.crearUsuario(usuario);
+           controladorAdmin.crearUsuario(usuarioTextBox.Text, 
+                                        passwordTextBox.Text,
+                                        preguntaSecretaTextBox.Text,
+                                        respuestaSecretaTextBox.Text,
+                                        (int)((Rol)rolComboBox.SelectedValue).id, this);
         }
 
+        public void onCreateUserFinished(int code, String msg)
+        {
+            if (code == 1)
+            {   //Usuario creado
+                MessageBox.Show(msg + usuarioTextBox.Text);
+                this.Close();
+            }
+            else
+            {   
+                MessageBox.Show(msg);
+            }
+           
+        }
+
+        public void onCreateUserError(int code, String msg)
+        {
+            MessageBox.Show(msg);
+            this.Close();
+        }
+
+        private void limpiarButton_Click(object sender, EventArgs e)
+        {
+            usuarioTextBox.Text = "";
+            passwordTextBox.Text = "";
+            rolComboBox.ResetText();
+            preguntaSecretaTextBox.Text = "";
+            respuestaSecretaTextBox.Text = "";
+            
+        }
         
     }
 }

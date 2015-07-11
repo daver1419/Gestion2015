@@ -167,10 +167,6 @@ BEGIN
  
 END
 
-
-
-
-
 GO
 
 
@@ -197,3 +193,52 @@ returns TABLE
 as
 return (select * from THE_ULTIMATES.Cliente where clie_usu_id = @idUsuario)
 go
+
+create procedure THE_ULTIMATES.SP_crearUsuario
+@usu_username varchar(25),
+@usu_password char(64),
+@usu_pregunta varchar(50),
+@usu_respuesta char(64),
+@rol_id int,
+@code int output,
+@msg varchar(100) output
+as 
+begin
+	
+	if exists (select 1 from Usuario where usu_username = @usu_username)
+	begin
+		set @code = 3
+		set @msg = 'El usuario ya existe'
+		return;
+	end
+	
+	begin try
+	
+		insert into Usuario values (@usu_username,
+									@usu_password,
+									GETDATE(),
+									GETDATE(),
+									@usu_pregunta,
+									@usu_respuesta,
+									0,
+									0)
+									
+		insert into Rol_Usuario values (@rol_id, scope_identity())
+		set @code = 1;
+		set @msg = 'Se ha creado el usuario '
+	end try
+	begin catch
+		set @code = 0;
+		set @msg = 'Error al crear el usuario'
+	end catch
+		
+	return;
+end
+
+/*declare @code int, 
+		@msg varchar(100)
+exec  THE_ULTIMATES.SP_crearUsuario  "hola5","E6B87050BFCB8143FCB8DB170A4DC9ED0D904DDD3E2A4AD1B1E8DCFDC9BE7   ",
+"mierda","E6B87050BFCB8143FCB8DB170A4DC9ED0D904DDD3E2A4AD1B1E8DCFDC9BE7   ",2,  @code = @code OUTPUT, @msg = @msg output
+
+SELECT	'Return Value' = @code
+select 'Mensaje' = @msg*/

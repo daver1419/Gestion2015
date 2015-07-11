@@ -7,7 +7,7 @@ namespace PagoElectronico.Entidad
 {
     class Rol
     {
-        public long id{get; set; }
+        public int id{get; set; }
         public string descripcion{get; set; }
         
  
