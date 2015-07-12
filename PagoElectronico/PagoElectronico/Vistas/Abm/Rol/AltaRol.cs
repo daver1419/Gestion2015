@@ -34,7 +34,7 @@ namespace PagoElectronico.Vistas.Abm.Rol
 
             estadoComboBox.Items.Add("Activo");
             estadoComboBox.Items.Add("Inactivo");
-            estadoComboBox.SelectedItem = 0;
+            estadoComboBox.SelectedItem = 1;
         }
 
         private void guardarButton_Click(object sender, EventArgs e)
