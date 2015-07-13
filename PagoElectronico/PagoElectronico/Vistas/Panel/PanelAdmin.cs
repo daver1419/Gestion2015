@@ -19,7 +19,7 @@ namespace PagoElectronico.Panel
     {
          public Usuario usuarioLogeado;
 
-       private ControladorAdmin controladorAdmin = new ControladorAdmin();
+       private ControladorUsuario controladorAdmin = new ControladorUsuario();
       
        private SisDAO sisDAO;
        private CuentaDao cuentaDao;
@@ -115,7 +115,7 @@ namespace PagoElectronico.Panel
 
             //lisboxFuncionalidades.DataSource = funcionalidades;
             lisboxFuncionalidades.DisplayMember = "DESCRIPCION";
-
+            
 
         }
 
@@ -184,6 +184,27 @@ namespace PagoElectronico.Panel
             AltaRol altaRolForm = new AltaRol();
             altaRolForm.Show();
         }
+
+        private void buscarRolButton_Click(object sender, EventArgs e)
+        {
+            ListadoRol listadoRolForm = new ListadoRol("Buscar");
+
+            listadoRolForm.Show();
+        }
+
+        private void modificarRolButton_Click(object sender, EventArgs e)
+        {
+            ListadoRol listadoRolForm = new ListadoRol("Modificar");
+            listadoRolForm.Show();
+        }
+
+        private void eliminarRolButton_Click(object sender, EventArgs e)
+        {
+            ListadoRol listadoRolForm = new ListadoRol("Eliminar");
+            listadoRolForm.Show();
+        }
+
+
 
         
     }

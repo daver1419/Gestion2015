@@ -35,6 +35,7 @@
             this.guardarButton = new System.Windows.Forms.Button();
             this.limpiarButton = new System.Windows.Forms.Button();
             this.estadoComboBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // nombreRolLabel
@@ -73,7 +74,7 @@
             // 
             // guardarButton
             // 
-            this.guardarButton.Location = new System.Drawing.Point(144, 231);
+            this.guardarButton.Location = new System.Drawing.Point(122, 231);
             this.guardarButton.Name = "guardarButton";
             this.guardarButton.Size = new System.Drawing.Size(75, 23);
             this.guardarButton.TabIndex = 6;
@@ -89,21 +90,32 @@
             this.limpiarButton.TabIndex = 7;
             this.limpiarButton.Text = "Limpiar";
             this.limpiarButton.UseVisualStyleBackColor = true;
+            this.limpiarButton.Click += new System.EventHandler(this.limpiarButton_Click);
             // 
             // estadoComboBox
             // 
             this.estadoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.estadoComboBox.FormattingEnabled = true;
-            this.estadoComboBox.Location = new System.Drawing.Point(12, 178);
+            this.estadoComboBox.Location = new System.Drawing.Point(97, 177);
             this.estadoComboBox.Name = "estadoComboBox";
-            this.estadoComboBox.Size = new System.Drawing.Size(121, 21);
+            this.estadoComboBox.Size = new System.Drawing.Size(100, 21);
             this.estadoComboBox.TabIndex = 8;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 180);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Estado";
             // 
             // AltaRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(231, 266);
+            this.ClientSize = new System.Drawing.Size(212, 265);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.estadoComboBox);
             this.Controls.Add(this.limpiarButton);
             this.Controls.Add(this.guardarButton);
@@ -128,5 +140,6 @@
         private System.Windows.Forms.Button guardarButton;
         private System.Windows.Forms.Button limpiarButton;
         private System.Windows.Forms.ComboBox estadoComboBox;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -293,3 +293,13 @@ begin
 		
 	return;
 end
+go
+
+CREATE function THE_ULTIMATES.getFuncionalidadesByRolId(
+@id numeric(18,0))
+returns TABLE
+AS
+return
+SELECT func_desc DESCRIPCION FROM THE_ULTIMATES.Funcionalidad func ,THE_ULTIMATES.Funcionalidad_Rol funcRol 
+WHERE funcRol.func_rol_rol_id = @id and func.func_id = func_rol_func_id;
+go

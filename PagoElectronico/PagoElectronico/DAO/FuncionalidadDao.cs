@@ -45,5 +45,41 @@ namespace PagoElectronico.DAO
             return list;
         }
 
+        public List<Funcionalidad> getFuncionalidadesByRolId(int rolId)
+        {
+            List<Funcionalidad> list = new List<Funcionalidad>();
+            using (SqlCommand command = QueryPura("select * from THE_ULTIMATES.getFuncionalidadesByRolId(@rolId)"))
+            {
+                try
+                {
+                    command.Parameters.Add("@rolId", SqlDbType.Int).Value = rolId;
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            Funcionalidad funcionalidadAux = new Funcionalidad();
+
+                            funcionalidadAux.id = (int)reader.GetValue(0);
+                            funcionalidadAux.descripcion = (String)reader.GetValue(1);
+
+                            list.Add(funcionalidadAux);
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                }
+                finally
+                {
+                    CerrarConexion();
+                }
+
+            }
+
+            return list;
+        }
+
     }
 }

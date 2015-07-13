@@ -9,7 +9,7 @@ using PagoElectronico.Entidad;
 
 namespace PagoElectronico.Controladores
 {
-    class ControladorAdmin : Controlador
+    class ControladorUsuario : Controlador
     {
        
         UsuarioDAO usuarioDAO = new UsuarioDAO();
@@ -40,10 +40,8 @@ namespace PagoElectronico.Controladores
 
         }
 
-        internal List<Rol> getRoles()
-        {
-            return rolDAO.listaRol();        
-        }
+       
+
 
        
     }

@@ -145,20 +145,10 @@ namespace PagoElectronico.Panel
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.tabRol = new System.Windows.Forms.TabPage();
-            this.panelRol = new System.Windows.Forms.Panel();
-            this.btnGuardarModRol = new System.Windows.Forms.Button();
-            this.cbxEstado = new System.Windows.Forms.ComboBox();
-            this.label42 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.listboxFuncPanelRol = new System.Windows.Forms.CheckedListBox();
-            this.lblDescripcion = new System.Windows.Forms.Label();
-            this.txtDescripción = new System.Windows.Forms.TextBox();
-            this.panelBusqRol = new System.Windows.Forms.Panel();
-            this.lblErrorBusqRol = new System.Windows.Forms.Label();
+            this.eliminarRolButton = new System.Windows.Forms.Button();
+            this.modificarRolButton = new System.Windows.Forms.Button();
+            this.buscarRolButton = new System.Windows.Forms.Button();
             this.altaRolButton = new System.Windows.Forms.Button();
-            this.btnBuscarRol = new System.Windows.Forms.Button();
-            this.txtRolBusqueda = new System.Windows.Forms.TextBox();
-            this.label39 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataGridTotalTipoCuenta = new System.Windows.Forms.DataGridView();
             this.label48 = new System.Windows.Forms.Label();
@@ -214,8 +204,6 @@ namespace PagoElectronico.Panel
             this.panel6.SuspendLayout();
             this.panelBusqCliSaldo.SuspendLayout();
             this.tabRol.SuspendLayout();
-            this.panelRol.SuspendLayout();
-            this.panelBusqRol.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTotalTipoCuenta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPaisCantMov)).BeginInit();
@@ -1313,9 +1301,10 @@ namespace PagoElectronico.Panel
             // 
             // tabRol
             // 
-            this.tabRol.Controls.Add(this.panelRol);
+            this.tabRol.Controls.Add(this.eliminarRolButton);
+            this.tabRol.Controls.Add(this.modificarRolButton);
+            this.tabRol.Controls.Add(this.buscarRolButton);
             this.tabRol.Controls.Add(this.altaRolButton);
-            this.tabRol.Controls.Add(this.panelBusqRol);
             this.tabRol.Location = new System.Drawing.Point(4, 22);
             this.tabRol.Name = "tabRol";
             this.tabRol.Padding = new System.Windows.Forms.Padding(3);
@@ -1324,135 +1313,45 @@ namespace PagoElectronico.Panel
             this.tabRol.Text = "Rol";
             this.tabRol.UseVisualStyleBackColor = true;
             // 
-            // panelRol
+            // eliminarRolButton
             // 
-            this.panelRol.Controls.Add(this.btnGuardarModRol);
-            this.panelRol.Controls.Add(this.cbxEstado);
-            this.panelRol.Controls.Add(this.label42);
-            this.panelRol.Controls.Add(this.label41);
-            this.panelRol.Controls.Add(this.listboxFuncPanelRol);
-            this.panelRol.Controls.Add(this.lblDescripcion);
-            this.panelRol.Controls.Add(this.txtDescripción);
-            this.panelRol.Location = new System.Drawing.Point(6, 201);
-            this.panelRol.Name = "panelRol";
-            this.panelRol.Size = new System.Drawing.Size(572, 275);
-            this.panelRol.TabIndex = 3;
+            this.eliminarRolButton.Location = new System.Drawing.Point(333, 24);
+            this.eliminarRolButton.Name = "eliminarRolButton";
+            this.eliminarRolButton.Size = new System.Drawing.Size(93, 23);
+            this.eliminarRolButton.TabIndex = 6;
+            this.eliminarRolButton.Text = "Eliminar Rol";
+            this.eliminarRolButton.UseVisualStyleBackColor = true;
+            this.eliminarRolButton.Click += new System.EventHandler(this.eliminarRolButton_Click);
             // 
-            // btnGuardarModRol
+            // modificarRolButton
             // 
-            this.btnGuardarModRol.Location = new System.Drawing.Point(14, 231);
-            this.btnGuardarModRol.Name = "btnGuardarModRol";
-            this.btnGuardarModRol.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardarModRol.TabIndex = 7;
-            this.btnGuardarModRol.Text = "Guardar";
-            this.btnGuardarModRol.UseVisualStyleBackColor = true;
+            this.modificarRolButton.Location = new System.Drawing.Point(229, 24);
+            this.modificarRolButton.Name = "modificarRolButton";
+            this.modificarRolButton.Size = new System.Drawing.Size(98, 23);
+            this.modificarRolButton.TabIndex = 5;
+            this.modificarRolButton.Text = "Modificar Rol";
+            this.modificarRolButton.UseVisualStyleBackColor = true;
+            this.modificarRolButton.Click += new System.EventHandler(this.modificarRolButton_Click);
             // 
-            // cbxEstado
+            // buscarRolButton
             // 
-            this.cbxEstado.FormattingEnabled = true;
-            this.cbxEstado.Location = new System.Drawing.Point(72, 42);
-            this.cbxEstado.Name = "cbxEstado";
-            this.cbxEstado.Size = new System.Drawing.Size(140, 21);
-            this.cbxEstado.TabIndex = 6;
+            this.buscarRolButton.Location = new System.Drawing.Point(125, 24);
+            this.buscarRolButton.Name = "buscarRolButton";
+            this.buscarRolButton.Size = new System.Drawing.Size(98, 23);
+            this.buscarRolButton.TabIndex = 4;
+            this.buscarRolButton.Text = "Buscar Rol";
+            this.buscarRolButton.UseVisualStyleBackColor = true;
+            this.buscarRolButton.Click += new System.EventHandler(this.buscarRolButton_Click);
             // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(3, 44);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(40, 13);
-            this.label42.TabIndex = 5;
-            this.label42.Text = "Estado";
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(3, 75);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(84, 13);
-            this.label41.TabIndex = 4;
-            this.label41.Text = "Funcionalidades";
-            // 
-            // listboxFuncPanelRol
-            // 
-            this.listboxFuncPanelRol.FormattingEnabled = true;
-            this.listboxFuncPanelRol.Location = new System.Drawing.Point(3, 94);
-            this.listboxFuncPanelRol.Name = "listboxFuncPanelRol";
-            this.listboxFuncPanelRol.Size = new System.Drawing.Size(474, 94);
-            this.listboxFuncPanelRol.TabIndex = 3;
-            // 
-            // lblDescripcion
-            // 
-            this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(3, 18);
-            this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(63, 13);
-            this.lblDescripcion.TabIndex = 1;
-            this.lblDescripcion.Text = "Descripción";
-            // 
-            // txtDescripción
-            // 
-            this.txtDescripción.Location = new System.Drawing.Point(72, 15);
-            this.txtDescripción.Name = "txtDescripción";
-            this.txtDescripción.Size = new System.Drawing.Size(140, 20);
-            this.txtDescripción.TabIndex = 2;
-            // 
-            // panelBusqRol
-            // 
-            this.panelBusqRol.Controls.Add(this.lblErrorBusqRol);
-            this.panelBusqRol.Controls.Add(this.btnBuscarRol);
-            this.panelBusqRol.Controls.Add(this.txtRolBusqueda);
-            this.panelBusqRol.Controls.Add(this.label39);
-            this.panelBusqRol.Location = new System.Drawing.Point(6, 115);
-            this.panelBusqRol.Name = "panelBusqRol";
-            this.panelBusqRol.Size = new System.Drawing.Size(572, 64);
-            this.panelBusqRol.TabIndex = 0;
-            // 
-            // lblErrorBusqRol
-            // 
-            this.lblErrorBusqRol.AutoSize = true;
-            this.lblErrorBusqRol.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorBusqRol.Location = new System.Drawing.Point(127, 42);
-            this.lblErrorBusqRol.Name = "lblErrorBusqRol";
-            this.lblErrorBusqRol.Size = new System.Drawing.Size(250, 13);
-            this.lblErrorBusqRol.TabIndex = 4;
-            this.lblErrorBusqRol.Text = "No se ha encontrado  Resultado para su Busqueda";
-            this.lblErrorBusqRol.Visible = false;
-            // 
-            // btnAddRol
+            // altaRolButton
             // 
             this.altaRolButton.Location = new System.Drawing.Point(20, 24);
-            this.altaRolButton.Name = "Alta Rol";
+            this.altaRolButton.Name = "altaRolButton";
             this.altaRolButton.Size = new System.Drawing.Size(99, 23);
             this.altaRolButton.TabIndex = 3;
             this.altaRolButton.Text = "Alta Rol";
             this.altaRolButton.UseVisualStyleBackColor = true;
             this.altaRolButton.Click += new System.EventHandler(this.altaRolButton_Click);
-            // 
-            // btnBuscarRol
-            // 
-            this.btnBuscarRol.Location = new System.Drawing.Point(208, 7);
-            this.btnBuscarRol.Name = "btnBuscarRol";
-            this.btnBuscarRol.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscarRol.TabIndex = 2;
-            this.btnBuscarRol.Text = "Buscar";
-            this.btnBuscarRol.UseVisualStyleBackColor = true;
-            // 
-            // txtRolBusqueda
-            // 
-            this.txtRolBusqueda.Location = new System.Drawing.Point(85, 9);
-            this.txtRolBusqueda.Name = "txtRolBusqueda";
-            this.txtRolBusqueda.Size = new System.Drawing.Size(100, 20);
-            this.txtRolBusqueda.TabIndex = 1;
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(3, 12);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(62, 13);
-            this.label39.TabIndex = 0;
-            this.label39.Text = "Buscar Rol ";
             // 
             // tabPage1
             // 
@@ -1859,10 +1758,6 @@ namespace PagoElectronico.Panel
             this.panelBusqCliSaldo.ResumeLayout(false);
             this.panelBusqCliSaldo.PerformLayout();
             this.tabRol.ResumeLayout(false);
-            this.panelRol.ResumeLayout(false);
-            this.panelRol.PerformLayout();
-            this.panelBusqRol.ResumeLayout(false);
-            this.panelBusqRol.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTotalTipoCuenta)).EndInit();
@@ -2013,20 +1908,7 @@ namespace PagoElectronico.Panel
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.TabPage tabRol;
-        private System.Windows.Forms.TextBox txtDescripción;
-        private System.Windows.Forms.Label lblDescripcion;
-        private System.Windows.Forms.Panel panelBusqRol;
         private System.Windows.Forms.Button altaRolButton;
-        private System.Windows.Forms.Button btnBuscarRol;
-        private System.Windows.Forms.TextBox txtRolBusqueda;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Panel panelRol;
-        private System.Windows.Forms.Button btnGuardarModRol;
-        private System.Windows.Forms.ComboBox cbxEstado;
-        private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.CheckedListBox listboxFuncPanelRol;
-        private System.Windows.Forms.Label lblErrorBusqRol;
         private System.Windows.Forms.Label lblErrorBuqUsuCli;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.TabPage tabPage1;
@@ -2070,5 +1952,8 @@ namespace PagoElectronico.Panel
         private DateTimePicker usuModificacionTxt;
         private TextBox textBox1;
         private Button altaUsuarioButton;
+        private Button eliminarRolButton;
+        private Button modificarRolButton;
+        private Button buscarRolButton;
     }
 }

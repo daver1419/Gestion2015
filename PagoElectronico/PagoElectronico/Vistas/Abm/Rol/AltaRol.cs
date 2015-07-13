@@ -32,13 +32,14 @@ namespace PagoElectronico.Vistas.Abm.Rol
             List<PagoElectronico.Entidad.Funcionalidad> funcionalidades = controladorRol.getFuncionalidades();
             funcionalidadesCheckedListBox.DataSource = funcionalidades;
 
-            estadoComboBox.Items.Add("Activo");
-            estadoComboBox.Items.Add("Inactivo");
-            estadoComboBox.SelectedItem = 1;
+            estadoComboBox.Items.Add(new Estado("Activo"));
+            estadoComboBox.Items.Add(new Estado("Inactivo"));
+            estadoComboBox.SelectedIndex = 0;
         }
 
         private void guardarButton_Click(object sender, EventArgs e)
         {
+            
             List<Funcionalidad> list = new List<Funcionalidad>();
             for (int i = 0; i < funcionalidadesCheckedListBox.Items.Count; i++)
             {
@@ -49,7 +50,26 @@ namespace PagoElectronico.Vistas.Abm.Rol
                 }
             }
 
-            controladorRol.crearRol(nombreRolTextBox.Text, list, estadoComboBox.SelectedIndex + 1, this);
+            if (nombreRolTextBox.Text.Equals(""))
+            {
+                if (list.Count == 0)
+                {
+                    MessageBox.Show("El rol no puede ser vacio y debe seleccionar al menos una funcionaidad.");
+                }
+                else
+                {
+                    MessageBox.Show("El rol no puede ser vacio");
+                }
+
+                return;
+            }
+            else if (list.Count == 0)
+            {
+                MessageBox.Show("Debe seleccionar al menos una funcionaidad.");
+                return;    
+            }
+
+            controladorRol.crearRol(nombreRolTextBox.Text, list, (Estado)estadoComboBox.SelectedItem, this);
         }
 
         public void onCreateFinished(int code, String msg)
@@ -69,6 +89,18 @@ namespace PagoElectronico.Vistas.Abm.Rol
         {
             MessageBox.Show(msg);
             this.Close();
+        }
+
+        private void limpiarButton_Click(object sender, EventArgs e)
+        {
+            nombreRolTextBox.Text = "";
+                	
+            foreach(int i in funcionalidadesCheckedListBox.CheckedIndices)
+            {
+                funcionalidadesCheckedListBox.SetItemCheckState(i, CheckState.Unchecked);
+            }
+
+            estadoComboBox.SelectedIndex = 0;
         }
 
 

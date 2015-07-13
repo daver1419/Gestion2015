@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Collections;
 using PagoElectronico.Entidad;
+using System.Text;
 
 namespace PagoElectronico.DAO  
 {
@@ -58,47 +59,8 @@ namespace PagoElectronico.DAO
        
         }
 
-
-
-        public List<Funcionalidad> listaFuncionalidad(long idRol)
-        {
-            List<Funcionalidad> lista = new List<Funcionalidad>();
-            using (SqlCommand command = InitializeConnection("Lista_Func_Rol"))
-
-            {
-                command.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = idRol;
-              
-
-                SqlDataAdapter da = new SqlDataAdapter(command);
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    Funcionalidad funcionalidad = new Funcionalidad();
-
-                    funcionalidad.descripcion = reader.GetString(0);
-
-                    lista.Add(funcionalidad);
-
-
-                }
-                CerrarConexion();
-                return lista;
-
-
-
-            }
-
-
-
-
-
-        }
-
-
         internal void crearRol(string nombreRol, List<Funcionalidad> funcionalidades,
-            int estado, PagoElectronico.Controladores.Controlador.Listener listener)
+            Estado estado, PagoElectronico.Controladores.Controlador.Listener listener)
         {
             using (SqlCommand command = InitializeConnection("SP_crearRol"))
             {
@@ -111,7 +73,7 @@ namespace PagoElectronico.DAO
 
                 command.Parameters.Add("@rol_descripcion", System.Data.SqlDbType.NVarChar, 15).Value = nombreRol;
                 command.Parameters.Add("@funcionalidades", System.Data.SqlDbType.Structured).Value = dt;
-                command.Parameters.Add("@estado", System.Data.SqlDbType.Bit).Value = estado;
+                command.Parameters.Add("@estado", System.Data.SqlDbType.Bit).Value = estado.getEstado();
 
                 SqlParameter parm1 = new SqlParameter("@code", SqlDbType.Int);
                 parm1.Direction = ParameterDirection.Output;
@@ -141,6 +103,74 @@ namespace PagoElectronico.DAO
                     CerrarConexion();
                 }
             }  
+            
+        }
+
+        internal List<Rol> getRoles(int codigoRol, string nombreRol, Funcionalidad funcionalidad, Estado estadoRol)
+        {
+            List<Rol> lista = new List<Rol>();
+
+            StringBuilder query = new StringBuilder("select distinct R.rol_id, R.rol_desc, R.rol_activo from THE_ULTIMATES.Rol R");
+            
+            if(codigoRol != -1 || !String.IsNullOrEmpty(nombreRol) || funcionalidad != null || estadoRol != null){
+
+
+                if (funcionalidad != null)
+                {
+                    query.Append(", THE_ULTIMATES.Funcionalidad_Rol F");
+                }
+
+                query.Append(" where ");
+
+                if (codigoRol != -1)
+                {
+                    query.Append(" R.rol_id = ").Append(codigoRol);
+                }
+
+                if (!String.IsNullOrEmpty(nombreRol)) 
+                {
+                    if (codigoRol != -1)
+                    {
+                        query.Append(" and ");
+                    }
+                    query.Append(" R.rol_desc = '").Append(nombreRol).Append("'");
+                }
+                if (funcionalidad != null)
+                {
+                    if (codigoRol != -1 || !String.IsNullOrEmpty(nombreRol))
+                    {
+                        query.Append(" and ");
+                    }
+                    query.Append(" R.rol_id = F.func_rol_rol_id and F.func_rol_func_id = ").Append(funcionalidad.id);
+                }
+                if (estadoRol != null)
+                {
+                    if (codigoRol != -1 || !String.IsNullOrEmpty(nombreRol) || funcionalidad != null)
+                    {
+                        query.Append(" and ");
+                    }
+                    query.Append(" R.rol_activo = ").Append(estadoRol.getEstado());
+                }
+            }
+
+            SqlCommand command = QueryPura(query.ToString());
+        
+            SqlDataAdapter da = new SqlDataAdapter(command);
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Rol rol = new Rol();
+                rol.id = (int)reader["rol_id"];
+                rol.descripcion = (string)reader["rol_desc"];
+                rol.estado = (bool)reader["rol_activo"];
+
+                lista.Add(rol);
+            }
+            CerrarConexion();
+            return lista;
+            
         }
     }
 

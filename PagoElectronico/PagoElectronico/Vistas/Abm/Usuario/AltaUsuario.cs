@@ -14,7 +14,10 @@ namespace PagoElectronico.Vistas.Abm.Usuario
     
     public partial class AltaUsuario : Form , PagoElectronico.Controladores.Controlador.Listener
     {
-        private Controladores.ControladorAdmin controladorAdmin = new PagoElectronico.Controladores.ControladorAdmin();
+        private Controladores.ControladorUsuario controladorUsuario = 
+            new PagoElectronico.Controladores.ControladorUsuario();
+        private Controladores.ControladorRol controladorRol = 
+            new PagoElectronico.Controladores.ControladorRol();
 
         public AltaUsuario()
         {
@@ -29,7 +32,7 @@ namespace PagoElectronico.Vistas.Abm.Usuario
         private void loadCombo()
         {   
             // panel usuario
-            List<PagoElectronico.Entidad.Rol> dt = controladorAdmin.getRoles();
+            List<PagoElectronico.Entidad.Rol> dt = controladorRol.getRoles();
             rolComboBox.DataSource = dt;
             rolComboBox.DisplayMember = "DESCRIPCION";
             rolComboBox.Text = "Elegir una";
@@ -37,7 +40,7 @@ namespace PagoElectronico.Vistas.Abm.Usuario
 
         private void guardarButton_Click(object sender, EventArgs e)
         {
-           controladorAdmin.crearUsuario(usuarioTextBox.Text, 
+           controladorUsuario.crearUsuario(usuarioTextBox.Text, 
                                         passwordTextBox.Text,
                                         preguntaSecretaTextBox.Text,
                                         respuestaSecretaTextBox.Text,

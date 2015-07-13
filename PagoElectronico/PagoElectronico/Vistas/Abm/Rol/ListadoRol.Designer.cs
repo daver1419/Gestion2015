@@ -28,158 +28,202 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rolDataGridView = new System.Windows.Forms.DataGridView();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Funcionalidades = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Seleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.buscarButton = new System.Windows.Forms.Button();
+            this.rolLabel = new System.Windows.Forms.Label();
+            this.limpiarButton = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.codigoTextBox = new System.Windows.Forms.TextBox();
+            this.codigoLabel = new System.Windows.Forms.Label();
+            this.funcionaliadadLabel = new System.Windows.Forms.Label();
+            this.funcComboBox = new System.Windows.Forms.ComboBox();
+            this.estadoLabel = new System.Windows.Forms.Label();
+            this.estadoComboBox = new System.Windows.Forms.ComboBox();
+            this.rolTextBox = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.rolDataGridView)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // rolDataGridView
             // 
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Nombre,
+            this.rolDataGridView.AllowUserToDeleteRows = false;
+            this.rolDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.rolDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.rolDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.rolDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Codigo,
+            this.Rol,
             this.Estado,
-            this.Funcionalidades,
-            this.Seleccionar});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 175);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(453, 162);
-            this.dataGridView1.TabIndex = 1;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.Seleccionar,
+            this.Eliminar});
+            this.rolDataGridView.Location = new System.Drawing.Point(12, 205);
+            this.rolDataGridView.Name = "rolDataGridView";
+            this.rolDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.rolDataGridView.Size = new System.Drawing.Size(356, 162);
+            this.rolDataGridView.TabIndex = 1;
             // 
-            // button1
+            // Codigo
             // 
-            this.button1.Location = new System.Drawing.Point(390, 134);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Buscar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.Codigo.HeaderText = "Codigo";
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            this.Codigo.Width = 65;
             // 
-            // label1
+            // Rol
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(23, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Rol";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(12, 134);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Limpiar";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(453, 116);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Filtro de Busqueda";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(94, 28);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 20);
-            this.textBox1.TabIndex = 4;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(94, 52);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 5;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 55);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Estado";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(94, 79);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 7;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 82);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Funcionalidad";
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Rol";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
+            this.Rol.HeaderText = "Rol";
+            this.Rol.Name = "Rol";
+            this.Rol.ReadOnly = true;
+            this.Rol.Width = 48;
             // 
             // Estado
             // 
             this.Estado.HeaderText = "Estado";
             this.Estado.Name = "Estado";
             this.Estado.ReadOnly = true;
-            // 
-            // Funcionalidades
-            // 
-            this.Funcionalidades.HeaderText = "Funcionalidades";
-            this.Funcionalidades.Name = "Funcionalidades";
-            this.Funcionalidades.ReadOnly = true;
+            this.Estado.Width = 65;
             // 
             // Seleccionar
             // 
             this.Seleccionar.HeaderText = "Seleccionar";
             this.Seleccionar.Name = "Seleccionar";
             this.Seleccionar.ReadOnly = true;
+            this.Seleccionar.Visible = false;
+            this.Seleccionar.Width = 69;
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.Visible = false;
+            this.Eliminar.Width = 49;
+            // 
+            // buscarButton
+            // 
+            this.buscarButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buscarButton.Location = new System.Drawing.Point(293, 160);
+            this.buscarButton.Name = "buscarButton";
+            this.buscarButton.Size = new System.Drawing.Size(75, 23);
+            this.buscarButton.TabIndex = 2;
+            this.buscarButton.Text = "Buscar";
+            this.buscarButton.UseVisualStyleBackColor = true;
+            this.buscarButton.Click += new System.EventHandler(this.buscarButton_Click);
+            // 
+            // rolLabel
+            // 
+            this.rolLabel.AutoSize = true;
+            this.rolLabel.Location = new System.Drawing.Point(15, 55);
+            this.rolLabel.Name = "rolLabel";
+            this.rolLabel.Size = new System.Drawing.Size(23, 13);
+            this.rolLabel.TabIndex = 3;
+            this.rolLabel.Text = "Rol";
+            // 
+            // limpiarButton
+            // 
+            this.limpiarButton.Location = new System.Drawing.Point(12, 160);
+            this.limpiarButton.Name = "limpiarButton";
+            this.limpiarButton.Size = new System.Drawing.Size(75, 23);
+            this.limpiarButton.TabIndex = 4;
+            this.limpiarButton.Text = "Limpiar";
+            this.limpiarButton.UseVisualStyleBackColor = true;
+            this.limpiarButton.Click += new System.EventHandler(this.limpiarButton_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.codigoTextBox);
+            this.groupBox1.Controls.Add(this.codigoLabel);
+            this.groupBox1.Controls.Add(this.funcionaliadadLabel);
+            this.groupBox1.Controls.Add(this.funcComboBox);
+            this.groupBox1.Controls.Add(this.estadoLabel);
+            this.groupBox1.Controls.Add(this.estadoComboBox);
+            this.groupBox1.Controls.Add(this.rolTextBox);
+            this.groupBox1.Controls.Add(this.rolLabel);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(356, 142);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Filtro de Busqueda";
+            // 
+            // codigoTextBox
+            // 
+            this.codigoTextBox.Location = new System.Drawing.Point(94, 27);
+            this.codigoTextBox.Name = "codigoTextBox";
+            this.codigoTextBox.Size = new System.Drawing.Size(120, 20);
+            this.codigoTextBox.TabIndex = 10;
+            this.codigoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.codigoTextBox_KeyPress);
+            // 
+            // codigoLabel
+            // 
+            this.codigoLabel.AutoSize = true;
+            this.codigoLabel.Location = new System.Drawing.Point(15, 30);
+            this.codigoLabel.Name = "codigoLabel";
+            this.codigoLabel.Size = new System.Drawing.Size(40, 13);
+            this.codigoLabel.TabIndex = 9;
+            this.codigoLabel.Text = "Codigo";
+            // 
+            // funcionaliadadLabel
+            // 
+            this.funcionaliadadLabel.AutoSize = true;
+            this.funcionaliadadLabel.Location = new System.Drawing.Point(15, 106);
+            this.funcionaliadadLabel.Name = "funcionaliadadLabel";
+            this.funcionaliadadLabel.Size = new System.Drawing.Size(73, 13);
+            this.funcionaliadadLabel.TabIndex = 8;
+            this.funcionaliadadLabel.Text = "Funcionalidad";
+            // 
+            // funcComboBox
+            // 
+            this.funcComboBox.FormattingEnabled = true;
+            this.funcComboBox.Location = new System.Drawing.Point(94, 103);
+            this.funcComboBox.Name = "funcComboBox";
+            this.funcComboBox.Size = new System.Drawing.Size(121, 21);
+            this.funcComboBox.TabIndex = 7;
+            // 
+            // estadoLabel
+            // 
+            this.estadoLabel.AutoSize = true;
+            this.estadoLabel.Location = new System.Drawing.Point(15, 79);
+            this.estadoLabel.Name = "estadoLabel";
+            this.estadoLabel.Size = new System.Drawing.Size(40, 13);
+            this.estadoLabel.TabIndex = 6;
+            this.estadoLabel.Text = "Estado";
+            // 
+            // estadoComboBox
+            // 
+            this.estadoComboBox.FormattingEnabled = true;
+            this.estadoComboBox.Location = new System.Drawing.Point(94, 76);
+            this.estadoComboBox.Name = "estadoComboBox";
+            this.estadoComboBox.Size = new System.Drawing.Size(121, 21);
+            this.estadoComboBox.TabIndex = 5;
+            // 
+            // rolTextBox
+            // 
+            this.rolTextBox.Location = new System.Drawing.Point(94, 52);
+            this.rolTextBox.Name = "rolTextBox";
+            this.rolTextBox.Size = new System.Drawing.Size(121, 20);
+            this.rolTextBox.TabIndex = 4;
             // 
             // ListadoRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(477, 349);
+            this.ClientSize = new System.Drawing.Size(380, 379);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.limpiarButton);
+            this.Controls.Add(this.buscarButton);
+            this.Controls.Add(this.rolDataGridView);
             this.Name = "ListadoRol";
             this.Text = "Listado de Roles";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.ListadoRol_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.rolDataGridView)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -188,19 +232,22 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridView rolDataGridView;
+        private System.Windows.Forms.Button buscarButton;
+        private System.Windows.Forms.Label rolLabel;
+        private System.Windows.Forms.Button limpiarButton;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.TextBox rolTextBox;
+        private System.Windows.Forms.Label funcionaliadadLabel;
+        private System.Windows.Forms.ComboBox funcComboBox;
+        private System.Windows.Forms.Label estadoLabel;
+        private System.Windows.Forms.ComboBox estadoComboBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Rol;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Funcionalidades;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.DataGridViewButtonColumn Seleccionar;
+        private System.Windows.Forms.DataGridViewButtonColumn Eliminar;
+        private System.Windows.Forms.TextBox codigoTextBox;
+        private System.Windows.Forms.Label codigoLabel;
     }
 }

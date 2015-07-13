@@ -61,6 +61,7 @@
     <Compile Include="DAO\UsuarioDAO.cs" />
     <Compile Include="Entidad\Cliente.cs" />
     <Compile Include="Entidad\Cuenta.cs" />
+    <Compile Include="Entidad\Estado.cs" />
     <Compile Include="Entidad\Funcionalidad.cs" />
     <Compile Include="Entidad\Pais.cs" />
     <Compile Include="Entidad\Rol.cs" />
@@ -75,6 +76,18 @@
     </Compile>
     <Compile Include="Vistas\Abm\Rol\AltaRol.Designer.cs">
       <DependentUpon>AltaRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Abm\Rol\ListadoRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Abm\Rol\ListadoRol.Designer.cs">
+      <DependentUpon>ListadoRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Abm\Rol\ModificarRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Abm\Rol\ModificarRol.Designer.cs">
+      <DependentUpon>ModificarRol.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\Abm\Usuario\AltaUsuario.cs">
       <SubType>Form</SubType>
@@ -104,6 +117,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Vistas\Abm\Rol\AltaRol.resx">
       <DependentUpon>AltaRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Abm\Rol\ListadoRol.resx">
+      <DependentUpon>ListadoRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Abm\Rol\ModificarRol.resx">
+      <DependentUpon>ModificarRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Abm\Usuario\AltaUsuario.resx">
       <DependentUpon>AltaUsuario.cs</DependentUpon>
