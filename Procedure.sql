@@ -303,3 +303,189 @@ return
 SELECT func_desc DESCRIPCION FROM THE_ULTIMATES.Funcionalidad func ,THE_ULTIMATES.Funcionalidad_Rol funcRol 
 WHERE funcRol.func_rol_rol_id = @id and func.func_id = func_rol_func_id;
 go
+
+-- Cuenta 
+
+CREATE procedure  [THE_ULTIMATES].[SP_Alta_Cuentas_Cliente]
+@idTipoDoc  decimal ,
+@numeroDoc decimal,
+@id_cuenta_tipo  int,
+@fech_creacion datetime,
+@id_estado int,
+@id_pais numeric (18,0),
+@saldo numeric (18,0),
+@id_tipo_moneda int ,
+@cantPeriodo int
+ 
+as 
+
+begin 
+   declare @fechaCierre datetime 
+   declare @cantDia int
+   declare @cli int 
+   
+   set @cli = (select clie_id from THE_ULTIMATES.Cliente where clie_tipo_doc_id = @idTipoDoc and clie_nro_doc = @numeroDoc)
+   
+    if (@cli is  null )
+    begin
+    RAISERROR ('No exite un cliente con el tipo y número de doc ingresado', 1,1)
+    end 
+    else
+    begin
+    set @cantDia = (select tipo_cuenta_duracion from Tipo_Cuenta where tipo_cuenta_id = @id_cuenta_tipo)
+   
+   
+    set @fechaCierre =  Dateadd ( DAY, (@cantPeriodo * @cantDia),@fech_creacion) 
+   
+   
+    insert into THE_ULTIMATES.Cuenta (cuen_clie_id , cuen_tipo_cuenta_id , cuen_fecha_creacion , cuen_fecha_cierre , cuen_estado_id,cuen_pais_id , cuen_saldo ,cuen_tipo_mon_id) 
+    values (@cli,@id_cuenta_tipo ,@fech_creacion ,@fechaCierre,@id_estado,@id_pais,@saldo, @id_tipo_moneda )  
+     end
+
+end 
+
+
+
+
+
+GO
+
+-- cuenta alta
+CREATE procedure  [THE_ULTIMATES].[SP_Alta_Cuentas_Cliente]
+@idTipoDoc  decimal ,
+@numeroDoc decimal,
+@id_cuenta_tipo  int,
+@fech_creacion datetime,
+@id_estado int,
+@id_pais numeric (18,0),
+@saldo numeric (18,0),
+@id_tipo_moneda int ,
+@cantPeriodo int
+ 
+as 
+
+begin 
+   declare @fechaCierre datetime 
+   declare @cantDia int
+   declare @cli int 
+   
+   set @cli = (select clie_id from THE_ULTIMATES.Cliente where clie_tipo_doc_id = @idTipoDoc and clie_nro_doc = @numeroDoc)
+   
+    if (@cli is  null )
+    begin
+    RAISERROR ('No exite un cliente con el tipo y número de doc ingresado', 1,1)
+    end 
+    else
+    begin
+    set @cantDia = (select tipo_cuenta_duracion from Tipo_Cuenta where tipo_cuenta_id = @id_cuenta_tipo)
+   
+   
+    set @fechaCierre =  Dateadd ( DAY, (@cantPeriodo * @cantDia),@fech_creacion) 
+   
+   
+    insert into THE_ULTIMATES.Cuenta (cuen_clie_id , cuen_tipo_cuenta_id , cuen_fecha_creacion , cuen_fecha_cierre , cuen_estado_id,cuen_pais_id , cuen_saldo ,cuen_tipo_mon_id) 
+    values (@cli,@id_cuenta_tipo ,@fech_creacion ,@fechaCierre,@id_estado,@id_pais,@saldo, @id_tipo_moneda )  
+     end
+
+end 
+
+
+
+
+
+GO
+
+
+-- cuenta baja 
+
+create procedure [THE_ULTIMATES].[SP_Baja_Cuenta]
+
+@idCuenta numeric (18,0)
+
+
+as 
+
+begin 
+    
+  declare @saldo int 
+  
+  set @saldo = (select cuen_saldo from Cuenta where  cuen_id= @idCuenta )
+  
+  if ( @saldo != 0)
+  begin 
+    RAISERROR('Cuenta posee un saldo superior  a $ 0',1,1)
+  
+  end
+  
+  else 
+  
+  begin 
+   delete  THE_ULTIMATES.Cuenta where cuen_clie_id = @idCuenta
+  end 
+  
+   
+end         
+          
+
+
+GO
+-- lista Cuenta 
+
+create procedure  [THE_ULTIMATES].[SP_Cuentas_Cliente]
+@idTipoDoc  decimal ,
+@numeroDoc  decimal 
+as 
+
+begin 
+   
+   declare @idCliente  int 
+   
+  set  @idCliente = (select clie_id from THE_ULTIMATES.Cliente where clie_nro_doc = @numeroDoc and clie_tipo_doc_id= @idTipoDoc)
+   
+   
+   if ( @idCliente is not null) 
+  begin 
+   select * from THE_ULTIMATES.Cuenta where cuen_clie_id = @idCliente
+  
+  end 
+  else 
+  begin
+    RAISERROR('No se encontro un cliente para el tipo y número de Doc ingresado',16,1)
+  end
+ 
+end 
+
+
+
+GO
+
+-- mod cuenta 
+
+create procedure [THE_ULTIMATES].[SP_Mod_Cuenta]
+
+@idCuenta numeric (18,0),
+@idpais numeric (18,0),
+@tipocuenta int ,
+@fechaCierre datetime,
+@periodo int 
+
+as 
+
+begin 
+ 
+    declare @fechaCierreAc datetime 
+    declare @cantDia int 
+    
+    set @cantDia = (select tipo_cuenta_duracion from THE_ULTIMATES.Tipo_Cuenta where tipo_cuenta_id = @tipocuenta)
+    
+    set @fechaCierreAc = DATEADD (DAY , (@tipocuenta * @periodo ),@fechaCierre)
+   
+ 
+    update THE_ULTIMATES.Cuenta set cuen_pais_id = @idpais ,cuen_tipo_cuenta_id= @tipocuenta ,
+           cuen_fecha_cierre= @fechaCierreAc where cuen_id = @idCuenta
+           
+           
+end
+
+
+GO

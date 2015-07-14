@@ -78,31 +78,6 @@ namespace PagoElectronico.Panel
             this.label1 = new System.Windows.Forms.Label();
             this.cliNombre = new System.Windows.Forms.Label();
             this.tabCuenta = new System.Windows.Forms.TabPage();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.label40 = new System.Windows.Forms.Label();
-            this.button15 = new System.Windows.Forms.Button();
-            this.textBusUsuario = new System.Windows.Forms.TextBox();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.btnAddTarjeta = new System.Windows.Forms.Button();
-            this.btnConfTarj = new System.Windows.Forms.Button();
-            this.btnCancelarCuuuuuuuu = new System.Windows.Forms.Button();
-            this.btnGuardarCu = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnAddCuenta = new System.Windows.Forms.Button();
-            this.cbxTipoCuenta = new System.Windows.Forms.ComboBox();
-            this.dateTimeFechAper = new System.Windows.Forms.DateTimePicker();
-            this.cbxMoneda = new System.Windows.Forms.ComboBox();
-            this.cbxPaisCuenta = new System.Windows.Forms.ComboBox();
-            this.txtNumeroCuenta = new System.Windows.Forms.TextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.tabTarjeta = new System.Windows.Forms.TabPage();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panelAgregarTarjeta = new System.Windows.Forms.Panel();
@@ -188,6 +163,8 @@ namespace PagoElectronico.Panel
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.btnAdmSalir = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.altaC = new System.Windows.Forms.Button();
             this.tabUsuarioNueva.SuspendLayout();
             this.tabUsuario.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -195,8 +172,6 @@ namespace PagoElectronico.Panel
             this.tabCliente.SuspendLayout();
             this.panelBusquedaUsu.SuspendLayout();
             this.tabCuenta.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.tabTarjeta.SuspendLayout();
             this.panelAgregarTarjeta.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -666,25 +641,8 @@ namespace PagoElectronico.Panel
             // 
             // tabCuenta
             // 
-            this.tabCuenta.Controls.Add(this.panel7);
-            this.tabCuenta.Controls.Add(this.button3);
-            this.tabCuenta.Controls.Add(this.btnAddTarjeta);
-            this.tabCuenta.Controls.Add(this.btnConfTarj);
-            this.tabCuenta.Controls.Add(this.btnCancelarCuuuuuuuu);
-            this.tabCuenta.Controls.Add(this.btnGuardarCu);
+            this.tabCuenta.Controls.Add(this.altaC);
             this.tabCuenta.Controls.Add(this.button1);
-            this.tabCuenta.Controls.Add(this.btnAddCuenta);
-            this.tabCuenta.Controls.Add(this.cbxTipoCuenta);
-            this.tabCuenta.Controls.Add(this.dateTimeFechAper);
-            this.tabCuenta.Controls.Add(this.cbxMoneda);
-            this.tabCuenta.Controls.Add(this.cbxPaisCuenta);
-            this.tabCuenta.Controls.Add(this.txtNumeroCuenta);
-            this.tabCuenta.Controls.Add(this.panel2);
-            this.tabCuenta.Controls.Add(this.label18);
-            this.tabCuenta.Controls.Add(this.label17);
-            this.tabCuenta.Controls.Add(this.label16);
-            this.tabCuenta.Controls.Add(this.label15);
-            this.tabCuenta.Controls.Add(this.label5);
             this.tabCuenta.Location = new System.Drawing.Point(4, 22);
             this.tabCuenta.Name = "tabCuenta";
             this.tabCuenta.Padding = new System.Windows.Forms.Padding(3);
@@ -692,231 +650,6 @@ namespace PagoElectronico.Panel
             this.tabCuenta.TabIndex = 3;
             this.tabCuenta.Text = "Cuenta";
             this.tabCuenta.UseVisualStyleBackColor = true;
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.label40);
-            this.panel7.Controls.Add(this.button15);
-            this.panel7.Controls.Add(this.textBusUsuario);
-            this.panel7.Controls.Add(this.label37);
-            this.panel7.Controls.Add(this.label38);
-            this.panel7.Location = new System.Drawing.Point(17, 6);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(554, 44);
-            this.panel7.TabIndex = 22;
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.ForeColor = System.Drawing.Color.Red;
-            this.label40.Location = new System.Drawing.Point(41, 27);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(226, 13);
-            this.label40.TabIndex = 5;
-            this.label40.Text = "No se ha encontrado resultado a su busqueda";
-            this.label40.Visible = false;
-            // 
-            // button15
-            // 
-            this.button15.Location = new System.Drawing.Point(391, 4);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(75, 23);
-            this.button15.TabIndex = 3;
-            this.button15.Text = "Buscar";
-            this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.button15_Click);
-            // 
-            // textBusUsuario
-            // 
-            this.textBusUsuario.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.textBusUsuario.Location = new System.Drawing.Point(243, 4);
-            this.textBusUsuario.Name = "textBusUsuario";
-            this.textBusUsuario.Size = new System.Drawing.Size(100, 20);
-            this.textBusUsuario.TabIndex = 2;
-            this.textBusUsuario.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(172, 4);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(43, 13);
-            this.label37.TabIndex = 1;
-            this.label37.Text = "Usuario";
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(4, 4);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(94, 13);
-            this.label38.TabIndex = 0;
-            this.label38.Text = "Busqueda Usuario";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(241, 159);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(98, 39);
-            this.button3.TabIndex = 21;
-            this.button3.Text = "Eliminar";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // btnAddTarjeta
-            // 
-            this.btnAddTarjeta.Location = new System.Drawing.Point(412, 251);
-            this.btnAddTarjeta.Name = "btnAddTarjeta";
-            this.btnAddTarjeta.Size = new System.Drawing.Size(75, 23);
-            this.btnAddTarjeta.TabIndex = 20;
-            this.btnAddTarjeta.Text = "Tarjeta";
-            this.btnAddTarjeta.UseVisualStyleBackColor = true;
-            this.btnAddTarjeta.Visible = false;
-            this.btnAddTarjeta.Click += new System.EventHandler(this.btnAddTarjeta_Click);
-            // 
-            // btnConfTarj
-            // 
-            this.btnConfTarj.Location = new System.Drawing.Point(359, 159);
-            this.btnConfTarj.Name = "btnConfTarj";
-            this.btnConfTarj.Size = new System.Drawing.Size(92, 39);
-            this.btnConfTarj.TabIndex = 19;
-            this.btnConfTarj.Text = "Configurar Tarjeta";
-            this.btnConfTarj.UseVisualStyleBackColor = true;
-            this.btnConfTarj.Click += new System.EventHandler(this.btnConfTarj_Click);
-            // 
-            // btnCancelarCuuuuuuuu
-            // 
-            this.btnCancelarCuuuuuuuu.Location = new System.Drawing.Point(139, 396);
-            this.btnCancelarCuuuuuuuu.Name = "btnCancelarCuuuuuuuu";
-            this.btnCancelarCuuuuuuuu.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelarCuuuuuuuu.TabIndex = 18;
-            this.btnCancelarCuuuuuuuu.Text = "Cancelar";
-            this.btnCancelarCuuuuuuuu.UseVisualStyleBackColor = true;
-            // 
-            // btnGuardarCu
-            // 
-            this.btnGuardarCu.Location = new System.Drawing.Point(17, 396);
-            this.btnGuardarCu.Name = "btnGuardarCu";
-            this.btnGuardarCu.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardarCu.TabIndex = 17;
-            this.btnGuardarCu.Text = "Guardar ";
-            this.btnGuardarCu.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(123, 159);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(91, 39);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Modificar";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // btnAddCuenta
-            // 
-            this.btnAddCuenta.Location = new System.Drawing.Point(17, 159);
-            this.btnAddCuenta.Name = "btnAddCuenta";
-            this.btnAddCuenta.Size = new System.Drawing.Size(91, 39);
-            this.btnAddCuenta.TabIndex = 14;
-            this.btnAddCuenta.Text = "Nueva Cuenta";
-            this.btnAddCuenta.UseVisualStyleBackColor = true;
-            // 
-            // cbxTipoCuenta
-            // 
-            this.cbxTipoCuenta.FormattingEnabled = true;
-            this.cbxTipoCuenta.Location = new System.Drawing.Point(139, 352);
-            this.cbxTipoCuenta.Name = "cbxTipoCuenta";
-            this.cbxTipoCuenta.Size = new System.Drawing.Size(121, 21);
-            this.cbxTipoCuenta.TabIndex = 13;
-            // 
-            // dateTimeFechAper
-            // 
-            this.dateTimeFechAper.Location = new System.Drawing.Point(139, 334);
-            this.dateTimeFechAper.Name = "dateTimeFechAper";
-            this.dateTimeFechAper.Size = new System.Drawing.Size(200, 20);
-            this.dateTimeFechAper.TabIndex = 12;
-            // 
-            // cbxMoneda
-            // 
-            this.cbxMoneda.FormattingEnabled = true;
-            this.cbxMoneda.Location = new System.Drawing.Point(139, 303);
-            this.cbxMoneda.Name = "cbxMoneda";
-            this.cbxMoneda.Size = new System.Drawing.Size(121, 21);
-            this.cbxMoneda.TabIndex = 11;
-            // 
-            // cbxPaisCuenta
-            // 
-            this.cbxPaisCuenta.FormattingEnabled = true;
-            this.cbxPaisCuenta.Location = new System.Drawing.Point(139, 279);
-            this.cbxPaisCuenta.Name = "cbxPaisCuenta";
-            this.cbxPaisCuenta.Size = new System.Drawing.Size(121, 21);
-            this.cbxPaisCuenta.TabIndex = 10;
-            // 
-            // txtNumeroCuenta
-            // 
-            this.txtNumeroCuenta.Location = new System.Drawing.Point(139, 251);
-            this.txtNumeroCuenta.Name = "txtNumeroCuenta";
-            this.txtNumeroCuenta.Size = new System.Drawing.Size(200, 20);
-            this.txtNumeroCuenta.TabIndex = 9;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.checkedListBox2);
-            this.panel2.Location = new System.Drawing.Point(0, 56);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(602, 100);
-            this.panel2.TabIndex = 8;
-            // 
-            // checkedListBox2
-            // 
-            this.checkedListBox2.FormattingEnabled = true;
-            this.checkedListBox2.Location = new System.Drawing.Point(17, 0);
-            this.checkedListBox2.Name = "checkedListBox2";
-            this.checkedListBox2.Size = new System.Drawing.Size(496, 94);
-            this.checkedListBox2.TabIndex = 0;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(14, 361);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(80, 13);
-            this.label18.TabIndex = 7;
-            this.label18.Text = "Tipo de Cuenta";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(14, 334);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(94, 13);
-            this.label17.TabIndex = 6;
-            this.label17.Text = "Fecha de apertura";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(14, 306);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(46, 13);
-            this.label16.TabIndex = 5;
-            this.label16.Text = "Moneda";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(14, 279);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(29, 13);
-            this.label15.TabIndex = 4;
-            this.label15.Text = "País";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 251);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 13);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "Número de Cuenta";
             // 
             // tabTarjeta
             // 
@@ -1721,6 +1454,26 @@ namespace PagoElectronico.Panel
             this.btnAdmSalir.UseVisualStyleBackColor = false;
             this.btnAdmSalir.Click += new System.EventHandler(this.btnAdmSalir_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(21, 41);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Consulta";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // altaC
+            // 
+            this.altaC.Location = new System.Drawing.Point(142, 41);
+            this.altaC.Name = "altaC";
+            this.altaC.Size = new System.Drawing.Size(75, 23);
+            this.altaC.TabIndex = 1;
+            this.altaC.Text = "Alta";
+            this.altaC.UseVisualStyleBackColor = true;
+            this.altaC.Click += new System.EventHandler(this.altaC_Click);
+            // 
             // PanelAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1742,10 +1495,6 @@ namespace PagoElectronico.Panel
             this.panelBusquedaUsu.ResumeLayout(false);
             this.panelBusquedaUsu.PerformLayout();
             this.tabCuenta.ResumeLayout(false);
-            this.tabCuenta.PerformLayout();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
-            this.panel2.ResumeLayout(false);
             this.tabTarjeta.ResumeLayout(false);
             this.tabTarjeta.PerformLayout();
             this.panelAgregarTarjeta.ResumeLayout(false);
@@ -1818,22 +1567,6 @@ namespace PagoElectronico.Panel
         private System.Windows.Forms.DateTimePicker clieNacimientoPicker;
         private System.Windows.Forms.TextBox clieNacionalidadTxt;
         private System.Windows.Forms.TextBox clieLocalidTxt;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Button btnAddCuenta;
-        private System.Windows.Forms.ComboBox cbxTipoCuenta;
-        private System.Windows.Forms.DateTimePicker dateTimeFechAper;
-        private System.Windows.Forms.ComboBox cbxMoneda;
-        private System.Windows.Forms.ComboBox cbxPaisCuenta;
-        private System.Windows.Forms.TextBox txtNumeroCuenta;
-        private System.Windows.Forms.Button btnGuardarCu;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnConfTarj;
-        private System.Windows.Forms.Button btnCancelarCuuuuuuuu;
         private System.Windows.Forms.TabPage tabTarjeta;
         private System.Windows.Forms.TabPage Saldo;
         private System.Windows.Forms.Panel panel3;
@@ -1842,9 +1575,6 @@ namespace PagoElectronico.Panel
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private System.Windows.Forms.CheckedListBox checkedListBox2;
-        private System.Windows.Forms.Button btnAddTarjeta;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Panel panelAgregarTarjeta;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label22;
@@ -1902,15 +1632,9 @@ namespace PagoElectronico.Panel
         private System.Windows.Forms.Button btn5Retiro;
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Button btnLimpiar;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.TextBox textBusUsuario;
-        private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.Label label38;
         private System.Windows.Forms.TabPage tabRol;
         private System.Windows.Forms.Button altaRolButton;
         private System.Windows.Forms.Label lblErrorBuqUsuCli;
-        private System.Windows.Forms.Label label40;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Label label44;
@@ -1955,5 +1679,7 @@ namespace PagoElectronico.Panel
         private Button eliminarRolButton;
         private Button modificarRolButton;
         private Button buscarRolButton;
+        private Button button1;
+        private Button altaC;
     }
 }

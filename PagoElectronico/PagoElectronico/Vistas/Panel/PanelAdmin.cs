@@ -11,6 +11,7 @@ using PagoElectronico.DAO;
 using PagoElectronico.Controladores;
 using PagoElectronico.Vistas.Abm.Usuario;
 using PagoElectronico.Vistas.Abm.Rol;
+using PagoElectronico.Vistas.Abm.Cuenta;
 
 
 namespace PagoElectronico.Panel
@@ -58,11 +59,7 @@ namespace PagoElectronico.Panel
 
         }
 
-        private void btnConfTarj_Click(object sender, EventArgs e)
-        {
-            btnAddTarjeta.Visible=true;
-        }
-
+       
         private void loadCombo()
         {
             sisDAO = new SisDAO();
@@ -119,14 +116,7 @@ namespace PagoElectronico.Panel
 
         }
 
-        private void button15_Click(object sender, EventArgs e)
-        {
-            cuentaDao = new CuentaDao();
-            List<Cuenta> cuentas = cuentaDao.listaCuentas(Convert.ToInt32(_cliente));
-            checkedListBox2.DataSource = cuentas;
-            checkedListBox2.DisplayMember = "Cuentas";
-        }
-
+      
         private void textBox6_TextChanged(object sender, EventArgs e)
         {
             TextBox clienteTextBox = (TextBox)sender;
@@ -202,6 +192,18 @@ namespace PagoElectronico.Panel
         {
             ListadoRol listadoRolForm = new ListadoRol("Eliminar");
             listadoRolForm.Show();
+        }
+
+        private void altaC_Click(object sender, EventArgs e)
+        {
+            AltaCuenta altaCuenta = new AltaCuenta();
+            altaCuenta.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ConsultaCuenta consulta = new ConsultaCuenta();
+            consulta.Show();
         }
 
 
