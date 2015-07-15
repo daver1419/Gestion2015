@@ -6,6 +6,7 @@ using PagoElectronico.Entidad;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using PagoElectronico.Properties;
+using System.Data;
 
 namespace PagoElectronico.DAO
 {
@@ -54,14 +55,14 @@ namespace PagoElectronico.DAO
                     Cuenta cuenta = new Cuenta();
 
                     cuenta.idCuenta = reader.GetDecimal(0);
-                    cuenta.idCliente = reader.GetInt16(1);
-                    cuenta.tipoCuenta = reader.GetInt16(2);
+                    cuenta.idCliente = reader.GetInt32(1);
+                    cuenta.tipoCuenta = reader.GetInt32(2);
                     cuenta.fechaCreacion = reader.GetDateTime(3);
                     cuenta.FechaCierre = reader.GetDateTime(4);
-                    cuenta.estadoId = reader.GetInt16(5);
-                    cuenta.idPais = reader.GetInt16(6);
-                    cuenta.cuentaSaldo = reader.GetInt16(7);
-                    cuenta.tipoMoneda = reader.GetInt16(8);
+                    cuenta.estadoId = reader.GetInt32(5);
+                    cuenta.idPais = reader.GetInt32(6);
+                    cuenta.cuentaSaldo = reader.GetInt32(7);
+                    cuenta.tipoMoneda = reader.GetInt32(8);
                     cuentas.Add(cuenta);
 
                 }
@@ -76,6 +77,26 @@ namespace PagoElectronico.DAO
                 return cuentas;
             }
             }
+
+        public DataTable cuentasCli(decimal tipoD, decimal numero)
+        {
+            DataTable dt = new DataTable();
+            using (SqlCommand command = InitializeConnection("SP_Cuentas_Cliente"))
+            {
+                command.Parameters.Add("@idTipoDoc", System.Data.SqlDbType.Decimal).Value = tipoD;
+                command.Parameters.Add("@numeroDoc", System.Data.SqlDbType.Decimal).Value = numero;
+ 
+              
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(dt);
+            }
+
+            if (dt.Rows.Count > 0)
+                return dt;
+            else
+                return null;
+
+        }
 
 
         public void crearCuenta(decimal tipoDoc, decimal numeroDoc, int idTipoCuenta,

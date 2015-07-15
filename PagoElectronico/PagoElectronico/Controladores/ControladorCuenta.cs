@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using PagoElectronico.DAO;
 using PagoElectronico.Entidad;
+using System.Data;
 
 namespace PagoElectronico.Controladores
 {
@@ -19,6 +20,14 @@ namespace PagoElectronico.Controladores
         {
             cuentaDao.crearCuenta(tipoCuenta, numDoc, tipoCuenta, idPais, idMoneda , periodo);
         }
+        public void bajaCuenta( decimal idCuenta)
+        {
+            cuentaDao.bajaCuenta(idCuenta);
+        }
+
+         public DataTable cuentasParaCli(decimal  tipoDoc, decimal numDoc){
+           return  cuentaDao.cuentasCli(tipoDoc, numDoc);
+         }
 
 
     }

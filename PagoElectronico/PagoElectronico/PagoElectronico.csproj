@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Conexion.cs" />
     <Compile Include="Controladores\Controlador.cs" />
     <Compile Include="Controladores\ControladorCuenta.cs" />
     <Compile Include="Controladores\ControladorRol.cs" />
@@ -185,6 +186,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Utilitario\Util.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Imagen\cruz.png" />
+    <Content Include="Imagen\graphic_design.ico" />
+    <Content Include="Imagen\pencil.png" />
+    <Content Include="Imagen\sign_deny.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

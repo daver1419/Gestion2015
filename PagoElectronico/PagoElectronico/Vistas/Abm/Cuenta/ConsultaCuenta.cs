@@ -29,7 +29,7 @@ namespace PagoElectronico.Vistas.Abm.Cuenta
         {
             listTD = controlSis.listaTipoDoc();
             cbxCTD.DataSource = listTD;
-            cbxCTD.DisplayMember = "DECRIPCION";
+            cbxCTD.DisplayMember = "DESCRIPCION";
             cbxCTD.Text = "Eliga una opción";
        
         }

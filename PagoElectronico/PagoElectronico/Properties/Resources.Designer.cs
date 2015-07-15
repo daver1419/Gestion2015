@@ -51,6 +51,34 @@ namespace PagoElectronico.Properties
             }
         }
 
+        internal static System.Drawing.Icon edit_ico
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("edit_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+
+
+        internal static System.Drawing.Icon accept_ico
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("accept_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+
+        internal static System.Drawing.Icon deny_ico
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("deny_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -66,6 +94,9 @@ namespace PagoElectronico.Properties
             {
                 resourceCulture = value;
             }
+
+
+
         }
     }
 }

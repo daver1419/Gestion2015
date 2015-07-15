@@ -78,6 +78,8 @@ namespace PagoElectronico.Panel
             this.label1 = new System.Windows.Forms.Label();
             this.cliNombre = new System.Windows.Forms.Label();
             this.tabCuenta = new System.Windows.Forms.TabPage();
+            this.altaC = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabTarjeta = new System.Windows.Forms.TabPage();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panelAgregarTarjeta = new System.Windows.Forms.Panel();
@@ -163,8 +165,7 @@ namespace PagoElectronico.Panel
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.btnAdmSalir = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.altaC = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.tabUsuarioNueva.SuspendLayout();
             this.tabUsuario.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -641,6 +642,7 @@ namespace PagoElectronico.Panel
             // 
             // tabCuenta
             // 
+            this.tabCuenta.Controls.Add(this.button2);
             this.tabCuenta.Controls.Add(this.altaC);
             this.tabCuenta.Controls.Add(this.button1);
             this.tabCuenta.Location = new System.Drawing.Point(4, 22);
@@ -650,6 +652,26 @@ namespace PagoElectronico.Panel
             this.tabCuenta.TabIndex = 3;
             this.tabCuenta.Text = "Cuenta";
             this.tabCuenta.UseVisualStyleBackColor = true;
+            // 
+            // altaC
+            // 
+            this.altaC.Location = new System.Drawing.Point(142, 41);
+            this.altaC.Name = "altaC";
+            this.altaC.Size = new System.Drawing.Size(75, 23);
+            this.altaC.TabIndex = 1;
+            this.altaC.Text = "Alta";
+            this.altaC.UseVisualStyleBackColor = true;
+            this.altaC.Click += new System.EventHandler(this.altaC_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(21, 41);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Consulta";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tabTarjeta
             // 
@@ -1454,25 +1476,15 @@ namespace PagoElectronico.Panel
             this.btnAdmSalir.UseVisualStyleBackColor = false;
             this.btnAdmSalir.Click += new System.EventHandler(this.btnAdmSalir_Click);
             // 
-            // button1
+            // button2
             // 
-            this.button1.Location = new System.Drawing.Point(21, 41);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Consulta";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // altaC
-            // 
-            this.altaC.Location = new System.Drawing.Point(142, 41);
-            this.altaC.Name = "altaC";
-            this.altaC.Size = new System.Drawing.Size(75, 23);
-            this.altaC.TabIndex = 1;
-            this.altaC.Text = "Alta";
-            this.altaC.UseVisualStyleBackColor = true;
-            this.altaC.Click += new System.EventHandler(this.altaC_Click);
+            this.button2.Location = new System.Drawing.Point(254, 40);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Baja";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // PanelAdmin
             // 
@@ -1681,5 +1693,6 @@ namespace PagoElectronico.Panel
         private Button buscarRolButton;
         private Button button1;
         private Button altaC;
+        private Button button2;
     }
 }

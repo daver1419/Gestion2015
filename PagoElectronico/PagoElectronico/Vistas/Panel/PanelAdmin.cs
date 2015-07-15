@@ -206,6 +206,13 @@ namespace PagoElectronico.Panel
             consulta.Show();
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            BajaCuenta baja = new BajaCuenta();
+
+            baja.Show();
+        }
+
 
 
         
