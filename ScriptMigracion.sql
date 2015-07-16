@@ -43,6 +43,7 @@ create table THE_ULTIMATES.Usuario(
 	usu_respuesta char(64),
 	usu_activo bit DEFAULT 0,
 	usu_intentos_fallidos int not null,
+	usu_new_pass int
 );
 
 GO
@@ -639,10 +640,10 @@ insert into THE_ULTIMATES.Estado_Cuenta values ('Pendiente de Activacion'),
 go
 
 --TIPO_CUENTA
-insert into THE_ULTIMATES.Tipo_Cuenta values ('Oro', 31, 30.00),
-											('Plata', 31, 20.00),
-											('Bronce', 31, 10.00),
-											('Gratuita', 1, 0.00);
+insert into THE_ULTIMATES.Tipo_Cuenta values ('Oro', 100, 30.00),
+											('Plata', 80, 20.00),
+											('Bronce', 50, 10.00),
+											('Gratuita', 120, 0.00);
 go
 
 --TIPO_MONEDA
@@ -672,10 +673,10 @@ go
 
 --CLIENTE,USUARIO,ROL_USUARIO
 
-insert into THE_ULTIMATES.Usuario values ('romi','w23e',GETDATE(),GETDATE(),null,null,1,0),
-										('emi','w23e',GETDATE(),GETDATE(),null,null,1,0),
-										('meli','w23e',GETDATE(),GETDATE(),null,null,1,0),
-										('david','w23e',GETDATE(),GETDATE(),null,null,1,0);
+insert into THE_ULTIMATES.Usuario values ('romi','w23e',GETDATE(),GETDATE(),null,null,1,0,0),
+										('emi','w23e',GETDATE(),GETDATE(),null,null,1,0,0),
+										('meli','w23e',GETDATE(),GETDATE(),null,null,1,0,0),
+										('david','w23e',GETDATE(),GETDATE(),null,null,1,0,0);
 go
 
 insert into THE_ULTIMATES.Rol_Usuario values (1,1),(1,2),(1,3),(1,4);
@@ -746,7 +747,8 @@ BEGIN
 											[usu_pregunta],
 											[usu_respuesta],
 											[usu_activo],
-											[usu_intentos_fallidos])
+											[usu_intentos_fallidos],
+											[usu_new_pass])
 		VALUES (@username, 
 				@username, -- Por unica vez se le asigna el usuario como password, 
 						   -- luego el cliente tendra que cambiarla cuando ingrese por primera vez al sistema.
@@ -755,6 +757,7 @@ BEGIN
 				NULL, 
 				NULL, 
 				1, 
+				0,
 				0)
 			
 		SET @usu_id = SCOPE_IDENTITY()	

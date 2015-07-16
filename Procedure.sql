@@ -180,8 +180,8 @@ CREATE procedure  [THE_ULTIMATES].[SP_Crear_usu_posible]
 as 
  begin 
 	 set nocount on;
-	 insert into THE_ULTIMATES.Usuario (usu_username, usu_password , usu_fecha_alta , usu_fecha_mod ,usu_pregunta , usu_respuesta , usu_activo , usu_intentos_fallidos)
-     values (@usuname, @pass , @fecha, null , null , null , 0 , 0);
+	 insert into THE_ULTIMATES.Usuario (usu_username, usu_password , usu_fecha_alta , usu_fecha_mod ,usu_pregunta , usu_respuesta , usu_activo , usu_intentos_fallidos, usu_new_pass)
+     values (@usuname, @pass , @fecha, null , null , null , 0 , 0,null);
  end 
 
 
@@ -339,7 +339,7 @@ begin
    
    
     insert into THE_ULTIMATES.Cuenta (cuen_clie_id , cuen_tipo_cuenta_id , cuen_fecha_creacion , cuen_fecha_cierre , cuen_estado_id,cuen_pais_id , cuen_saldo ,cuen_tipo_mon_id) 
-    values (@cli,@id_cuenta_tipo ,@fech_creacion ,@fechaCierre,@id_estado,@id_pais,@saldo, @id_tipo_moneda )  
+    values (@cli,@id_cuenta_tipo ,@fech_creacion ,@fechaCierre,@id_estado,@id_pais,@saldo, @id_tipo_moneda)  
      end
 
 end 
