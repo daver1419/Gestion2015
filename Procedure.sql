@@ -489,3 +489,24 @@ end
 
 
 GO
+
+CREATE PROCEDURE [THE_ULTIMATES].[Alta_Tarjeta]
+@tarj_clie_id int,
+@tarj_numero char(20),
+@tarj_emisor_id int,
+@tarj_fecha_emision datetime,
+@tarj_fecha_venc datetime,
+@tarj_codigo_seg char(20)
+
+AS
+BEGIN
+    DECLARE @tarj_numero_preview char(4)
+    SET @tarj_numero_preview = RIGHT(@tarj_numero,4)
+    SET @tarj_numero = HASHBYTES('SHA1', @tarj_numero)
+    SET @tarj_codigo_seg= HASHBYTES('SHA1', @tarj_codigo_seg)
+	INSERT INTO THE_ULTIMATES.Tarjeta(tarj_clie_id,tarj_numero,tarj_numero_preview,tarj_emisor_id,tarj_fecha_emision,tarj_fecha_venc,tarj_codigo_seg)
+	VALUES(@tarj_clie_id,@tarj_numero,@tarj_numero_preview,@tarj_emisor_id,@tarj_fecha_emision,@tarj_fecha_venc,@tarj_codigo_seg)
+END
+
+GO
+
